@@ -64,7 +64,7 @@ CREATE TABLE beer (
 
 CREATE TABLE brewery (
 	brewery_id int DEFAULT nextval('seq_brewery_id'::regclass) NOT NULL,
-	owener_id int NOT NULL,
+	owner_id int NOT NULL,
 	name varchar(50) NOT NULL,
 	address varchar(50) NOT NULL,
 	description varchar(200),
@@ -110,7 +110,7 @@ FOREIGN KEY (brewery_id) REFERENCES brewery(brewery_id);
 
 ALTER TABLE brewery
 ADD CONSTRAINT FK_owner_id 
-FOREIGN KEY (owener_id) REFERENCES users(user_id);
+FOREIGN KEY (owner_id) REFERENCES users(user_id);
 
 ALTER TABLE review
 ADD CONSTRAINT FK_beer_id 
@@ -122,6 +122,6 @@ FOREIGN KEY (brewery_id) REFERENCES brewery(brewery_id);
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
-
+INSERT INTO brewery (owner_id, name, address, description, image) VALUES (2, 'Test Brewery', '123 Test Drive', 'This is a brewery for testing', 'test.image');
 
 COMMIT TRANSACTION;
