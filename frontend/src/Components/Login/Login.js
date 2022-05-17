@@ -16,6 +16,8 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { Slider } from '@mui/material'
+import ImgSlider from '../ImageSlider/Slider'
 
 
 
@@ -60,6 +62,7 @@ class Login extends Component {
     render(){
         return(
             <div>
+                <ImgSlider/>
                 <Grid>
                 <Paper elevation={10} style = {PaperStyle}>
                      <Grid align="center">

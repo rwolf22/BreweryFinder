@@ -23,9 +23,6 @@ export default function Footer(){
                         <Box>
                             <Link href='/register' color="inherit">Register</Link>
                         </Box>
-                        <Box>
-                            <Link href='/account' color="inherit">Account</Link>
-                        </Box>
                     </Grid>
                     <Grid item xs={12} sm={4}>
                         <Box borderBottom={3} >
@@ -54,9 +51,6 @@ export default function Footer(){
                         </Box>
                         <Box>
                             <Link href='/support' color="inherit">News And Updates</Link>
-                        </Box>
-                        <Box>
-                            <Link href='/privacy' color="inherit">Privacy Policy</Link>
                         </Box>
                     </Grid>
                 </Grid>

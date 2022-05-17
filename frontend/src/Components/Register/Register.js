@@ -12,6 +12,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
+import ImgSlider from '../ImageSlider/Slider';
 
 
 
@@ -50,6 +51,7 @@ class Register extends Component{
     render(){
         return(
             <div>
+                <ImgSlider/>
                 <Grid>
                 <Paper elevation={10} style = {PaperStyle}>
                 <Grid  align="center">
