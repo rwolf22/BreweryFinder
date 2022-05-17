@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const PaperStyle = {Padding: '50px 20px', height:'70vh', width:450, margin: "20px auto"}
-const AvatarStyle = {backgroundColor: '#1976d2'}
+const AvatarStyle = {backgroundColor: '#2E3B55'}
 
 class Login extends Component {
     
@@ -60,7 +60,6 @@ class Login extends Component {
     render(){
         return(
             <div>
-                <PageAppBar/>
                 <Grid>
                 <Paper elevation={10} style = {PaperStyle}>
                      <Grid align="center">

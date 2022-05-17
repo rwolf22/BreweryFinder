@@ -37,7 +37,7 @@ const PageAppBar = () => {
   };
 
   return (
-    <AppBar position="relative">
+    <AppBar style={{ background: '#2E3B55' }}  position="relative">
       <Container maxWidth="x10">
         <Toolbar disableGutters>
           <SportsBarIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
