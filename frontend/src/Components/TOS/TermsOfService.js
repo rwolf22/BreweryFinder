@@ -150,8 +150,10 @@ Dispute Resolution. Please read this Arbitration Agreement carefully. It is part
 
 <p><strong>Copyright/Trademark Information.</strong> Copyright ©. All rights reserved.  All trademarks, logos and service marks displayed on the Site are our property or the property of other third-parties. You are not permitted to use these Marks without our prior written consent or the consent of such third party which may own the Marks.</p>
 <h2>Contact Information</h2>
-
-<p>Address: BreweryFinder.Support@Brewery.com</p>
+<p>If you have any questions about our Terms of Service, You can contact us:</p>
+<ul>
+<li>By email: BreweryFinder.Support@Brewery.com</li>
+</ul>
                     </Grid>
                     </Paper>
                 </Paper> 
