@@ -40,7 +40,7 @@ class Main extends Component {
 
                         </div>  
                     : 
-                        <Link to='/login'>Home | </Link>
+                        <Link to='/login'> </Link>
                 }
                 <Switch>
                     <Route path='/login' component={() => <Login/>}/>
