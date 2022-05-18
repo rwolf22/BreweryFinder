@@ -1,13 +1,7 @@
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
-import LockIcon from '@mui/icons-material/Lock';
+
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import Alert from '@mui/material/Alert';
-import Box from '@mui/material/Box';
+
 
 
 
@@ -93,7 +87,7 @@ function PrivacyPolicy(){
 
 <li><strong>Web Beacons.</strong> Certain sections of our Service and our emails may contain small electronic files known as web beacons (also referred to as clear gifs, pixel tags, and single-pixel gifs) that permit the Company, for example, to count users who have visited those pages or opened an email and for other related website statistics (for example, recording the popularity of a certain section and verifying system and server integrity).</li>
 </ul>
-<p>Cookies can be &quot;Persistent&quot; or &quot;Session&quot; Cookies. Persistent Cookies remain on Your personal computer or mobile device when You go offline, while Session Cookies are deleted as soon as You close Your web browser. Learn more about cookies: <a href="https://www.freeprivacypolicy.com/blog/sample-privacy-policy-template/#Use_Of_Cookies_And_Tracking" target="_blank">Use of Cookies by Free Privacy Policy</a>.</p>
+<p>Cookies can be &quot;Persistent&quot; or &quot;Session&quot; Cookies. Persistent Cookies remain on Your personal computer or mobile device when You go offline, while Session Cookies are deleted as soon as You close Your web browser. Use of Cookies by Free Privacy Policy.</p>
 <p>We use both Session and Persistent Cookies for the purposes set out below:</p>
 <ul>
 <li>
