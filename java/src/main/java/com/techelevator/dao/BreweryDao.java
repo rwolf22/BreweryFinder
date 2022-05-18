@@ -6,13 +6,11 @@ import java.util.List;
 
 public interface BreweryDao {
 
-    List<Brewery> listAll();
-
-    Brewery getById(Long breweryId);
-
-    Brewery getByName(String breweryName);
-
-    List<Brewery> getAllByOwnerName(String ownerName);
+    List<Brewery> getAll();
 
     boolean create(Brewery newBrewery);
+
+    List<Brewery> getFavorites(String username);
+
+    boolean addFavorite(String breweryName, String username);
 }
