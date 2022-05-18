@@ -2,23 +2,22 @@ import axios from 'axios'
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
 import { baseUrl } from '../../Shared/baseUrl'
-import PageAppBar from '../Pages/Appbar';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import LockIcon from '@mui/icons-material/Lock';
 import Paper from '@mui/material/Paper';
-import { Container } from 'reactstrap'
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
+import ImgSlider from '../ImageSlider/Slider';
 
 
 
 const PaperStyle = {Padding: '50px 20px', height:'70vh', width:450, margin: "20px auto"}
-const AvatarStyle = {backgroundColor: '#1976d2'}
+const AvatarStyle = {backgroundColor: '#2E3B55'}
 
 class Register extends Component{
 
@@ -52,7 +51,7 @@ class Register extends Component{
     render(){
         return(
             <div>
-                <PageAppBar/>
+                <ImgSlider/>
                 <Grid>
                 <Paper elevation={10} style = {PaperStyle}>
                 <Grid  align="center">
@@ -90,6 +89,7 @@ class Register extends Component{
                 </Grid>
                 </Paper> 
                 </Grid>
+                
             </div>
         )
     }

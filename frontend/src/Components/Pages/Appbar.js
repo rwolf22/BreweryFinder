@@ -37,7 +37,7 @@ const PageAppBar = () => {
   };
 
   return (
-    <AppBar position="relative">
+    <AppBar style={{ background: '#2E3B55' }}  position="relative">
       <Container maxWidth="x10">
         <Toolbar disableGutters>
           <SportsBarIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -45,7 +45,7 @@ const PageAppBar = () => {
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            href="/breweryhome"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },

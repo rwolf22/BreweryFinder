@@ -16,6 +16,8 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { Slider } from '@mui/material'
+import ImgSlider from '../ImageSlider/Slider'
 
 
 
@@ -25,7 +27,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const PaperStyle = {Padding: '50px 20px', height:'70vh', width:450, margin: "20px auto"}
-const AvatarStyle = {backgroundColor: '#1976d2'}
+const AvatarStyle = {backgroundColor: '#2E3B55'}
 
 class Login extends Component {
     
@@ -60,7 +62,7 @@ class Login extends Component {
     render(){
         return(
             <div>
-                <PageAppBar/>
+                <ImgSlider/>
                 <Grid>
                 <Paper elevation={10} style = {PaperStyle}>
                      <Grid align="center">
