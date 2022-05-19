@@ -56,7 +56,7 @@ CREATE TABLE beer (
 	brewery_id int NOT NULL,
 	name varchar(50) NOT NULL,
 	type varchar(50) NOT NULL,
-	abv int NOT NULL,
+	abv decimal(3,1) NOT NULL,
 	description varchar(200) NOT NULL,
 	image varchar(50),
 	CONSTRAINT PK_beer PRIMARY KEY (beer_id)
