@@ -14,6 +14,9 @@ import PrivacyPolicy from '../Privacy/PrivacyPolicy'
 import BreweryHome from '../Breweries/BreweryHome'
 import SelectedBreweryMenu from '../Breweries/SelectedBreweryMenu'
 import SelectedBreweryHome from '../Breweries/SelectedBreweryHome'
+import SelectedBreweryEvents from '../Breweries/SelecttedBreweryEvents'
+import MyBrewery from '../Breweries/MyBreweries'
+import MyBreweryManage from '../Breweries/ManageMyBrewery'
 
 const mapStateToProps = state => {
     return {
@@ -57,8 +60,11 @@ class Main extends Component {
                     <Route path='/contact' component={() => <ContactUs/>}/>
                     <Route path='/privacy' component={() => <PrivacyPolicy/>}/>
                     <Route path='/breweryhome' component={() => <BreweryHome/>}/>
+                    <Route path='/MyBrewerys' component={() => <MyBrewery/>}/>
+                    <Route path='/MyBrewery/Manage' component={() => <MyBreweryManage/>}/>
                     <Route path='/selectedBrewery/Menu' component={() => <SelectedBreweryMenu/>}/>
                     <Route path='/selectedBrewery/Home' component={() => <SelectedBreweryHome/>}/>
+                    <Route path='/selectedBrewery/Events' component={() => <SelectedBreweryEvents/>}/>
                     <Route path='/terms-of-service' component={() => <TermsOfService/>}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
                     <Redirect to='/login'/>

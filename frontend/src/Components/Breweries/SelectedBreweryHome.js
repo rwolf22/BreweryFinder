@@ -109,7 +109,7 @@ export default function SelectedBrewery(){
             variant="h2"
             noWrap
             component="a"
-            href="/SelectedBrewery/menu"
+            href="/SelectedBrewery/events"
             justifyContent="center"
             sx={{
               mr: 2,
@@ -124,7 +124,7 @@ export default function SelectedBrewery(){
             EVENTS 
           </Typography>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                    <img src={image7}></img>
+                    {/* <img src={image7}></img> */}
                         <Typography align='center'>
                         From our annual 4/05 Day celebration to an entire festival dedicated to our mixed fermentation sours, we believe in making memorable experiences while enjoying beer.
                         </Typography>
