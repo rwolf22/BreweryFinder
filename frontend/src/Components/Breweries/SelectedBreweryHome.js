@@ -6,7 +6,8 @@ import {Link} from 'react-router-dom'
 import Button from '@mui/material/Button';
 import { useParams } from 'react-router-dom';
 import image7 from '../../images/events.jpg'
-import * as React from 'react';
+import React, { useEffect, useState }from 'react';
+
 
 const PaperStyle = { height:'auto', width:'95%', margin: "20px auto"}
 const PaperStyle2 = { height:'auto', width:'90%', margin: "20px auto"}
@@ -16,7 +17,49 @@ const PaperStyle4 = { height:'98%', width:'98%', margin: "5px auto"}
 
 export default function SelectedBrewery(){
 
+    const [beers, setBeers] = useState([]);
+    const [breweries, setBreweries] = useState([]);
     const{ name } = useParams();
+    function getBeers(){
+        fetch("http://localhost:8081/beer/all")
+        .then(res => res.json())
+        .then((result) => {
+            setBeers(result);
+            }
+        )
+    }
+
+    
+
+    function getBreweries(){
+        fetch("http://localhost:8081/brewery/all")
+        .then(res => res.json())
+        .then((result) => {
+            setBreweries(result);
+            }
+        )
+    }
+ 
+    const filteredBrewery = breweries.filter(brewery =>{
+        return brewery.name == name;
+    })
+
+    console.log(filteredBrewery)
+    
+    
+
+    const filterdBeers = beers.filter(beer =>{
+        return beer.breweryId == name;
+    })
+    console.log(filterdBeers)
+
+
+    useEffect(() =>{
+        getBeers();
+    },[])
+
+    
+
     return(
         <div>
             
@@ -74,33 +117,14 @@ export default function SelectedBrewery(){
             MENU 
           </Typography>
                     <Grid container direction="row" justifyContent="center" alignItems="center">   
-                        <Typography align='center'>
-                            We're a project brewery that likes to push boundaries and experiment with methods and ingredients!
-                        </Typography>
-                        <Typography align='center'>
-                            We're a project brewery that likes to push boundaries and experiment with methods and ingredients!
-                        </Typography>
-                        <Typography align='center'>
-                            We're a project brewery that likes to push boundaries and experiment with methods and ingredients!
-                        </Typography>
+                         {filterdBeers.map(beer =>(
+                <Paper elevation= {6} style = {{textAlign: "center"}} key ={beer}>
+                    <Grid container direction="row" justifyContent="center" alignItems="center">
+                    NAME: {beer.name} <br/><br/>
+                    </Grid>
 
-                        <Typography align='center'>
-                            We're a project brewery that likes to push boundaries and experiment with methods and ingredients!
-                        </Typography>
-                        <Typography align='center'>
-                            We're a project brewery that likes to push boundaries and experiment with methods and ingredients!
-                        </Typography>
-                        <Typography align='center'>
-                            We're a project brewery that likes to push boundaries and experiment with methods and ingredients!
-                        </Typography>
-                        <Typography align='center'>
-                            We're a project brewery that likes to push boundaries and experiment with methods and ingredients!
-                        </Typography>
-                        <Typography align='center'>
-                            We're a project brewery that likes to push boundaries and experiment with methods and ingredients!
-                        </Typography>
-
-                        
+                </Paper>
+            ))}
                     </Grid>
                     </Paper>
                     </Paper>

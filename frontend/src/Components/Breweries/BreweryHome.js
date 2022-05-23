@@ -91,8 +91,8 @@ export default function BreweryHome(){
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                         <Button>
                             <Typography variant='p'>
-
-                                <Link to={{pathname: `/${brewery.name}`, query:'/some/other/value'}} />
+                                
+                                <Link to ="/${brewery.name}" > test</Link>
                             </Typography>
                         </Button>
                     </Grid>
