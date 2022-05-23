@@ -41,7 +41,7 @@ export default function SelectedBrewery(){
     }
  
     const filteredBrewery = breweries.filter(brewery =>{
-        return brewery.name == name;
+        return brewery.breweryId == name;
     })
 
     console.log(filteredBrewery)
@@ -56,6 +56,7 @@ export default function SelectedBrewery(){
 
     useEffect(() =>{
         getBeers();
+        getBreweries();
     },[])
 
     
@@ -81,7 +82,11 @@ export default function SelectedBrewery(){
               textDecoration: 'none',
             }}
           >
-            *BREWERY NAME GOES HERE* {name}
+            {filteredBrewery.map(brewery =>(
+                <div key ={brewery}>
+                    NAME: {brewery.name} <br/><br/>
+                    </div>
+                    ))}
           </Typography>
                 <Paper elevation={5} style = {PaperStyle2}>
                 <Paper elevation={0} style = {PaperStyle3}>
