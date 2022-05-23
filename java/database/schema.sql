@@ -84,7 +84,7 @@ CREATE TABLE review (
 CREATE TABLE news_events (
 	news_events_id int DEFAULT nextval('seq_news_events_id'),
 	brewery_id int NOT NULL,
-	name int NOT NULL,
+	name varchar(50) NOT NULL,
 	event_date DATE NOT NULL,
 	description varchar(200),
 	CONSTRAINT PK_news_events PRIMARY KEY (news_events_id)
@@ -123,5 +123,8 @@ FOREIGN KEY (brewery_id) REFERENCES brewery(brewery_id);
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 INSERT INTO brewery (owner_id, name, address, description, image) VALUES (2, 'Test Brewery', '123 Test Drive', 'This is a brewery for testing', 'test.image');
+INSERT INTO beer (brewery_id, name, type, abv, description, image) VALUES (1, 'Test Beer', 'lager', 6.4, 'This is a test beer', 'test.image');
+INSERT INTO news_events (brewery_id, name, event_date, description) VALUES (1, 'Test event', '2022-05-19', 'This is an event for testing');
+INSERT INTO review (beer_id, author, rating, review) VALUES (1, 'Rory', 5, 'This is a test review');
 
 COMMIT TRANSACTION;
