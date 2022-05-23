@@ -7,7 +7,6 @@ import {addToken, deleteUser} from '../../Redux/actionCreators'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import Footer from '../Pages/Footer'
-import PageAppBar from '../Pages/Appbar'
 import ContactUs from '../Contact/Contact'
 import TermsOfService from '../TOS/TermsOfService'
 import PrivacyPolicy from '../Privacy/PrivacyPolicy'
@@ -17,6 +16,9 @@ import SelectedBreweryHome from '../Breweries/SelectedBreweryHome'
 import SelectedBreweryEvents from '../Breweries/SelecttedBreweryEvents'
 import MyBrewery from '../Breweries/MyBreweries'
 import MyBreweryManage from '../Breweries/ManageMyBrewery'
+import HomeAppbar from '../Pages/HomeAppbar'
+import PageAppBar from '../Pages/Appbar'
+import SBHome from '../Breweries/SBHome'
 
 const mapStateToProps = state => {
     return {
@@ -48,22 +50,24 @@ class Main extends Component {
                         <div>
                             <Link to='/home'>Home | </Link>
                             <Link to='/login' onClick={this.handleLogout}>logout</Link> 
-                            <Redirect to='/home'/>
+                            <Redirect to='/breweryHome'/>
 
                         </div>  
                     : 
                         <Link to='/login'> </Link>
                 }
-                <Switch>
+               
+                <Switch> 
+                    
                     <Route path='/login' component={() => <Login/>}/>
                     <Route path='/register'component={() => <Register/>}/>
                     <Route path='/contact' component={() => <ContactUs/>}/>
                     <Route path='/privacy' component={() => <PrivacyPolicy/>}/>
                     <Route path='/breweryhome' component={() => <BreweryHome/>}/>
                     <Route path='/MyBrewerys' component={() => <MyBrewery/>}/>
+                    <Route path="/:name" component={() => <SelectedBreweryHome/>}/>
                     <Route path='/MyBrewery/Manage' component={() => <MyBreweryManage/>}/>
                     <Route path='/selectedBrewery/Menu' component={() => <SelectedBreweryMenu/>}/>
-                    <Route path='/selectedBrewery/Home' component={() => <SelectedBreweryHome/>}/>
                     <Route path='/selectedBrewery/Events' component={() => <SelectedBreweryEvents/>}/>
                     <Route path='/terms-of-service' component={() => <TermsOfService/>}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>

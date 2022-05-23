@@ -13,8 +13,11 @@ import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import ImgSlider from '../ImageSlider/Slider';
-
-
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import HomeAppbar from '../Pages/HomeAppbar';
 
 const PaperStyle = {Padding: '50px 20px', height:'70vh', width:450, margin: "20px auto"}
 const AvatarStyle = {backgroundColor: '#2E3B55'}
@@ -26,7 +29,8 @@ class Register extends Component{
         this.state = {
             username: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            role: ''
         }
         
     }
@@ -37,9 +41,10 @@ class Register extends Component{
             [event.target.name]: event.target.value
         })
     }
+    
 
     handleSubmit = () => {
-        const data = {username: this.state.username, password: this.state.password, confirmPassword: this.state.confirmPassword, role: 'USER'}
+        const data = {username: this.state.username, password: this.state.password, confirmPassword: this.state.confirmPassword, role: this.state.role}
         if(this.state.password === this.state.confirmPassword){
             axios.post(baseUrl + "/register", data)
         }else{
@@ -51,6 +56,7 @@ class Register extends Component{
     render(){
         return(
             <div>
+                <HomeAppbar/>
                 <ImgSlider/>
                 <Grid>
                 <Paper elevation={10} style = {PaperStyle}>
@@ -74,7 +80,22 @@ class Register extends Component{
                 <TextField  style = {{width: 300}} label ="Confirm Password" placeholder ="Confirm Password" type ="password" id="password-confirm"
                 name="confirmPassword"   v-model="user.password" variant="standard" 
                 onChange={this.handleInputChange} required />
-
+                <br/>
+                <br/>
+                <FormControl variant="standard">
+                <InputLabel id="role-select">Sign Up as a: </InputLabel>
+                <br/>
+                <Select
+                style = {{width: 300}}
+                    id="role-select"
+                    name = "role"
+                    label="role"
+                    onChange={this.handleInputChange}
+                >
+                    <MenuItem value="USER">Consumer</MenuItem>
+                    <MenuItem value="ADMIN">Brewer</MenuItem>
+                </Select>
+                </FormControl>
                 <br/>
                 <Stack  spacing={2} direction="column">
                 <br/> 

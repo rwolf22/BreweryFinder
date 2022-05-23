@@ -2,27 +2,35 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import ImgCarousel from '../ImageSlider/ImageCarousel';
 import Typography from '@mui/material/Typography';
-import {Link} from 'react-router-dom'
-import Button from '@mui/material/Button';
-import { useParams } from 'react-router-dom';
-import image7 from '../../images/events.jpg'
-import * as React from 'react';
+import React from "react";
 
 const PaperStyle = { height:'auto', width:'95%', margin: "20px auto"}
 const PaperStyle2 = { height:'auto', width:'90%', margin: "20px auto"}
 const PaperStyle3 = { height:'auto', width:'60%', margin: "20px auto"}
 const PaperStyle2Edited = { height:'500px', width:'500px', margin: "20px auto"}
 const PaperStyle4 = { height:'98%', width:'98%', margin: "5px auto"}
+class SBHome extends React.Component {
+    state = {
+      user: null
+    }
 
-export default function SelectedBrewery(){
-
-    const{ name } = useParams();
-    return(
+    componentDidMount () {
+      const { id } = this.props.match.params
+  
+      fetch(`http://localhost:8081/brewery/${id}`)
+        .then((user) => {
+          this.setState(() => ({ user }))
+        })
+    }
+    
+    render() {
+        return(
         <div>
             
             <>
             
             <Grid>
+                
                 <Paper elevation={0} style = {PaperStyle}>
                 <Typography
             variant="h2"
@@ -38,7 +46,7 @@ export default function SelectedBrewery(){
               textDecoration: 'none',
             }}
           >
-            *BREWERY NAME GOES HERE* {name}
+            *BREWERY NAME GOES HERE*
           </Typography>
                 <Paper elevation={5} style = {PaperStyle2}>
                 <Paper elevation={0} style = {PaperStyle3}>
@@ -153,5 +161,7 @@ export default function SelectedBrewery(){
             </Grid>
             </>
         </div>
-    )
-}
+        )
+    }
+  }
+  export default SBHome;
