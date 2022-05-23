@@ -5,6 +5,9 @@ import Typography from '@mui/material/Typography';
 import {Link} from 'react-router-dom'
 import Button from '@mui/material/Button';
 
+import { useParams } from 'react-router-dom';
+import image7 from '../../images/events.jpg'
+import React, { useEffect, useState }from 'react';
 
 
 const PaperStyle = { height:'auto', width:'95%', margin: "20px auto"}
@@ -14,6 +17,50 @@ const PaperStyle2Edited = { height:'auto', width:'30%', margin: "20px auto"}
 const PaperStyle4 = { height:'auto', width:'99%', margin: "auto auto"}
 
 export default function SelectedBreweryMenu(){
+
+    const [beers, setBeers] = useState([]);
+    const [breweries, setBreweries] = useState([]);
+    const{ id } = useParams();
+    function getBeers(){
+        fetch("http://localhost:8081/beer/all")
+        .then(res => res.json())
+        .then((result) => {
+            setBeers(result);
+            }
+        )
+    }
+
+    
+
+    function getBreweries(){
+        fetch("http://localhost:8081/brewery/all")
+        .then(res => res.json())
+        .then((result) => {
+            setBreweries(result);
+            }
+        )
+    }
+ 
+    const filteredBrewery = breweries.filter(brewery =>{
+        return brewery.breweryId == id;
+    })
+
+    console.log(filteredBrewery)
+    
+    
+
+    const filterdBeers = beers.filter(beer =>{
+        return beer.breweryId == id;
+    })
+    console.log(filterdBeers)
+
+
+    useEffect(() =>{
+        getBeers();
+        getBreweries();
+    },[])
+
+    
     return(
         <div>
             <>
@@ -35,7 +82,11 @@ export default function SelectedBreweryMenu(){
               textDecoration: 'none',
             }}
           >
-            *BREWERY NAME GOES HERE*
+            {filteredBrewery.map(brewery =>(
+                <div key ={brewery}>
+                    NAME: {brewery.name} <br/><br/>
+                    </div>
+                    ))}
           </Typography>
                 <Paper elevation={5} style = {PaperStyle2}>
                 <Paper elevation={0} style = {PaperStyle3}>
@@ -65,33 +116,16 @@ export default function SelectedBreweryMenu(){
           </Typography>
                     </Paper>
                     <Grid container direction="row" justifyContent="center" alignItems="center" >
-                    <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
+                    <Grid container direction="row" justifyContent="center" alignItems="center">   
+                         {filterdBeers.map(beer =>(
+                <Paper elevation={5} style = {PaperStyle2Edited} key = {beer}>
+                    <Grid container direction="row" justifyContent="center" alignItems="center">
+                    NAME: {beer.name} <br/><br/>
+                    TYPE: {beer.type}<br/><br/>
+                    ABV: {beer.abv}<br/><br/>
+                    DESCRIPTION: {beer.description}<br/><br/>
+                    IMG: {beer.image}
+                    </Grid>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                         <Button>
                             <Typography variant='p'>
@@ -99,513 +133,10 @@ export default function SelectedBreweryMenu(){
                             </Typography>
                         </Button>
                     </Grid>
-                    </Paper>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/selectedBrewery"> ADD TO FAVORITES</Link>
-                            </Typography>
-                        </Button>
+                </Paper>
+            ))}
                     </Grid>
-                    </Paper>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/selectedBrewery"> ADD TO FAVORITES</Link>
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/selectedBrewery"> ADD TO FAVORITES</Link>
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/selectedBrewery"> ADD TO FAVORITES</Link>
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    </Paper>
-
-                    <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/selectedBrewery"> ADD TO FAVORITES</Link>
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/selectedBrewery"> ADD TO FAVORITES</Link>
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/selectedBrewery"> ADD TO FAVORITES</Link>
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/selectedBrewery"> ADD TO FAVORITES</Link>
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/selectedBrewery"> ADD TO FAVORITES</Link>
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/selectedBrewery"> ADD TO FAVORITES</Link>
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/selectedBrewery"> ADD TO FAVORITES</Link>
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/selectedBrewery"> ADD TO FAVORITES</Link>
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/selectedBrewery"> ADD TO FAVORITES</Link>
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/selectedBrewery"> ADD TO FAVORITES</Link>
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    </Paper>
+                  
                     </Grid>
                     
                     

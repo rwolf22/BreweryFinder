@@ -19,7 +19,7 @@ export default function SelectedBrewery(){
 
     const [beers, setBeers] = useState([]);
     const [breweries, setBreweries] = useState([]);
-    const{ name } = useParams();
+    const{ id } = useParams();
     function getBeers(){
         fetch("http://localhost:8081/beer/all")
         .then(res => res.json())
@@ -41,7 +41,7 @@ export default function SelectedBrewery(){
     }
  
     const filteredBrewery = breweries.filter(brewery =>{
-        return brewery.breweryId == name;
+        return brewery.breweryId == id;
     })
 
     console.log(filteredBrewery)
@@ -49,7 +49,7 @@ export default function SelectedBrewery(){
     
 
     const filterdBeers = beers.filter(beer =>{
-        return beer.breweryId == name;
+        return beer.breweryId == id;
     })
     console.log(filterdBeers)
 

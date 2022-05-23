@@ -74,10 +74,11 @@ class Main extends Component {
                     <Route path='/contact' component={() => <ContactUs/>}/>
                     <Route path='/privacy' component={() => <PrivacyPolicy/>}/>
                     <Route path='/breweryhome' component={() => <BreweryHome/>}/>
-                    <Route path='/MyBrewerys' component={() => <MyBrewery/>}/>
-                    <Route path="/:name" component={() => <SelectedBreweryHome/>}/>
+                    <Route path='/MyBrewerys' component={() => <MyBrewery/>}/> 
+                    <Route path='/:id/Menu' component={() => <SelectedBreweryMenu/>}/>
+                    <Route path="/:id" component={() => <SelectedBreweryHome/>}/>
                     <Route path='/MyBrewery/Manage' component={() => <MyBreweryManage/>}/>
-                    <Route path='/selectedBrewery/Menu' component={() => <SelectedBreweryMenu/>}/>
+                   
                     <Route path='/selectedBrewery/Events' component={() => <SelectedBreweryEvents/>}/>
                     <Route path='/terms-of-service' component={() => <TermsOfService/>}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
