@@ -67,7 +67,7 @@ CREATE TABLE brewery (
 	owner_id int NOT NULL,
 	name varchar(50) NOT NULL,
 	address varchar(50) NOT NULL,
-	description varchar(200),
+	description varchar(400),
 	image varchar(50),
 	CONSTRAINT PK_brewery PRIMARY KEY (brewery_id)
 );
@@ -122,9 +122,26 @@ FOREIGN KEY (brewery_id) REFERENCES brewery(brewery_id);
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
-INSERT INTO brewery (owner_id, name, address, description, image) VALUES (2, 'Test Brewery', '123 Test Drive', 'This is a brewery for testing', 'test.image');
-INSERT INTO beer (brewery_id, name, type, abv, description, image) VALUES (1, 'Test Beer', 'lager', 6.4, 'This is a test beer', 'test.image');
-INSERT INTO news_events (brewery_id, name, event_date, description) VALUES (1, 'Test event', '2022-05-19', 'This is an event for testing');
-INSERT INTO review (beer_id, author, rating, review) VALUES (1, 'Rory', 5, 'This is a test review');
+
+-- INSERT INTO brewery (owner_id, name, address, description, image) VALUES (2, 'Test Brewery', '123 Test Drive', 'This is a brewery for testing', 'test.image');
+-- INSERT INTO beer (brewery_id, name, type, abv, description, image) VALUES (1, 'Test Beer', 'lager', 6.4, 'This is a test beer', 'test.image');
+-- INSERT INTO news_events (brewery_id, name, event_date, description) VALUES (1, 'Test event', '2022-05-19', 'This is an event for testing');
+-- INSERT INTO review (beer_id, author, rating, review) VALUES (1, 'Rory', 5, 'This is a test review');
+
+INSERT INTO brewery (owner_id, name, address, description) VALUES (2, 'Twin Barrel Brewing Co.', '123 North Street', 'We are a 8 barrel brewery, dedicated to crafting exceptional beers. Direct from owner and head brewer Blane Perry''s passion for the art of brewing, we offer a selection of signature beers, rotating seasonal specialties and experimental beers using locally sourced ingredients. Flight tastings, pints and crowler fills are available in our tasting room.');
+
+INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (1, 'Brother''s Bull', 'Lager', 4.5, 'Placeholder');
+INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (1, 'Space Daydream', 'IPA', 8.9, 'Placeholder');
+INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (1, 'Swimmer''s Kangaroo Amber', 'Amber', 5.1, 'Placeholder');
+INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (1, 'Kickback', 'Hard Seltzer', 5.0, 'Placeholder');
+INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (1, 'Old School', 'IPA', 8.4, 'Placeholder');
+INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (1, 'Whirlpool Island', 'Porter', 5.6, 'Placeholder');
+INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (1, 'Nightcap Ale', 'Wheat Ale', 5.3, 'Placeholder');
+INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (1, 'Iron Pig', 'Porter', 5.1, 'Placeholder');
+INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (1, 'Blueberry Hand Apple', 'Pale Ale', 4.9, 'Placeholder');
+INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (1, 'Harvest Cider', 'Hard Cider', 4.3, 'Placeholder');
+INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (1, 'Sweet and Sour', 'Sour', 6.8, 'Placeholder');
+INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (1, 'Heavy Rider', 'Stout', 9.0, 'Placeholder');
+
 
 COMMIT TRANSACTION;
