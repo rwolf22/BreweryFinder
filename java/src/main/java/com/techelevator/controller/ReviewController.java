@@ -2,8 +2,11 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.JdbcReviewDao;
 import com.techelevator.model.Review;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,8 +25,10 @@ public class ReviewController {
         return reviewDao.getAll();
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/create", method = RequestMethod.POST)
-    public boolean create(@RequestBody Review newReview) {
+    public boolean create(@RequestBody @Valid Review newReview) {
         return reviewDao.create(newReview);
     }
 }

@@ -2,9 +2,11 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.JdbcBreweryDao;
 import com.techelevator.model.Brewery;
-import org.springframework.security.core.parameters.P;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,8 +25,10 @@ public class BreweryController {
         return breweryDao.getAll();
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/create", method = RequestMethod.POST)
-    public boolean create(@RequestBody Brewery newBrewery) {
+    public boolean create(@RequestBody @Valid Brewery newBrewery) {
         return breweryDao.create(newBrewery);
     }
 
@@ -33,6 +37,7 @@ public class BreweryController {
         return breweryDao.getFavorites(username);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "favorites/{username}/add/{breweryName}", method = RequestMethod.POST)
     public boolean addFavorite(@PathVariable String username, @PathVariable String breweryName) {
         return breweryDao.addFavorite(breweryName, username);

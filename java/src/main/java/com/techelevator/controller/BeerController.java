@@ -2,8 +2,11 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.JdbcBeerDao;
 import com.techelevator.model.Beer;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,8 +25,10 @@ public class BeerController {
         return beerDao.getAll();
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/create", method = RequestMethod.POST)
-    public boolean create(@RequestBody Beer newBeer) {
+    public boolean create(@RequestBody @Valid Beer newBeer) {
         return beerDao.createBeer(newBeer);
     }
 
@@ -32,6 +37,7 @@ public class BeerController {
         return beerDao.getFavorites(username);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/favorites/{username}/add/{beerName}", method = RequestMethod.POST)
     public boolean addFavorite(@PathVariable String username, @PathVariable String beerName) {
         return beerDao.addFavorite(username, beerName);

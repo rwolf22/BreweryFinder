@@ -1,13 +1,21 @@
 package com.techelevator.model;
 
+import javax.validation.constraints.NotNull;
+
 public class Beer {
 
     private Long beerId;
+    @NotNull
     private Long breweryId;
+    @NotNull
     private String name;
+    @NotNull
     private String type;
+    @NotNull
     private Double abv;
+    @NotNull
     private String description;
+    @NotNull
     private String image;
 
     public Beer() {
