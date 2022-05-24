@@ -59,7 +59,7 @@ export default function BreweryHome(){
           >
             DRINK WHERE YOUR BEER IS MADE
           </Typography>
-                <Paper elevation={5} style = {PaperStyle2}>
+                <Paper elevation={0} style = {PaperStyle2}>
                 <Paper elevation={0} style = {PaperStyle3}>
                     <ImgCarousel/>
                    
@@ -85,7 +85,7 @@ export default function BreweryHome(){
                         <br/>
                     <Paper elevation={0} style = {PaperStyle4}>
                     {breweries.map(brewery =>(
-                <Paper elevation= {6} style = {{margin:'10px', padding: "15px", textAlign: "center"}} key ={brewery.breweryId}>
+                <Paper elevation= {9} style = {{margin:'10px', padding: "15px", textAlign: "center"}} key ={brewery.breweryId}>
                     NAME: {brewery.name} <br/><br/>
                     ADDRESS: {brewery.address}<br/><br/>
                     description: {brewery.description}<br/><br/>
@@ -99,7 +99,7 @@ export default function BreweryHome(){
                                     pathname: `/${brewery.breweryId}`,
                                 }}
                                 >
-                                Link
+                                SEE MORE
                                 </Link>
                             </Typography>
                         </Button>

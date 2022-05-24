@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import EmailIcon from '@mui/icons-material/Email';
 import ImgSlider from '../ImageSlider/Slider';
+import HomeAppbar from '../Pages/HomeAppbar';
 
 const PaperStyle = {height:'70vh', width:450, margin: "30px auto"}
 const AvatarStyle = {backgroundColor: '#2E3B55'}
@@ -18,6 +19,7 @@ function ContactUs() {
 
     return (
       <div>
+        <HomeAppbar/>
         <ImgSlider/>
           <Grid>
                 <Paper elevation={10} style = {PaperStyle}>
