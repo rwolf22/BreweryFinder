@@ -56,7 +56,7 @@ class Register extends Component{
     render(){
         return(
             <div>
-                
+                <HomeAppbar/>
                 <ImgSlider/>
                 <Grid>
                 <Paper elevation={10} style = {PaperStyle}>
