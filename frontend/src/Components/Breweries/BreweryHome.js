@@ -3,9 +3,10 @@ import Grid from '@mui/material/Grid';
 import ImgCarousel from '../ImageSlider/ImageCarousel';
 import Typography from '@mui/material/Typography';
 import React, { useEffect, useState }from 'react';
-import {Link} from 'react-router-dom'
 import Button from '@mui/material/Button';
 import SelectedBrewery from './SelectedBreweryHome';
+
+import {Link} from 'react-router-dom'
 
 
 const PaperStyle = { height:'auto', width:'95%', margin: "20px auto"}
@@ -81,7 +82,8 @@ export default function BreweryHome(){
           </Typography>
                     </Paper>
                     <Paper elevation={5} style = {PaperStyle2}>
-                    <Paper elevation={5} style = {PaperStyle4}>
+                        <br/>
+                    <Paper elevation={0} style = {PaperStyle4}>
                     {breweries.map(brewery =>(
                 <Paper elevation= {6} style = {{margin:'10px', padding: "15px", textAlign: "center"}} key ={brewery.breweryId}>
                     NAME: {brewery.name} <br/><br/>
@@ -92,13 +94,20 @@ export default function BreweryHome(){
                         <Button>
                             <Typography variant='p'>
                                 
-                                <Link to ="/${brewery.name}" > test</Link>
+                            <Link
+                                to={{
+                                    pathname: `/${brewery.breweryId}`,
+                                }}
+                                >
+                                Link
+                                </Link>
                             </Typography>
                         </Button>
                     </Grid>
 
                 </Paper>
             ))}
+            <br/>
                     </Paper>
                     </Paper>
 

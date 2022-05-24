@@ -76,10 +76,9 @@ class Main extends Component {
                     <Route path='/breweryhome' component={() => <BreweryHome/>}/>
                     <Route path='/MyBrewerys' component={() => <MyBrewery/>}/> 
                     <Route path='/:id/Menu' component={() => <SelectedBreweryMenu/>}/>
+                    <Route path='/:id/OurEvents' component={() => <SelectedBreweryEvents/>}/>
                     <Route path="/:id" component={() => <SelectedBreweryHome/>}/>
                     <Route path='/MyBrewery/Manage' component={() => <MyBreweryManage/>}/>
-                   
-                    <Route path='/selectedBrewery/Events' component={() => <SelectedBreweryEvents/>}/>
                     <Route path='/terms-of-service' component={() => <TermsOfService/>}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
                     <Redirect to='/login'/>

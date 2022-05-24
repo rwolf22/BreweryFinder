@@ -62,8 +62,9 @@ export default function SelectedBrewery(){
     
 
     return(
+        
         <div>
-            
+           
             <>
             
             <Grid>
@@ -84,7 +85,7 @@ export default function SelectedBrewery(){
           >
             {filteredBrewery.map(brewery =>(
                 <div key ={brewery}>
-                    NAME: {brewery.name} <br/><br/>
+                    NAME: {brewery.name}
                     </div>
                     ))}
           </Typography>
@@ -102,12 +103,11 @@ export default function SelectedBrewery(){
                     </Paper>
                     <Grid container direction="row" justifyContent="center" alignItems="center" >
                     <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
+                    <Paper elevation={0} style = {PaperStyle4}>
                     <Typography
             variant="h2"
             noWrap
             component="a"
-            href="/SelectedBrewery/menu"
             justifyContent="center"
             sx={{
               mr: 2,
@@ -118,17 +118,24 @@ export default function SelectedBrewery(){
               color: '#2E3B55',
               textDecoration: 'none',
             }}
+          ><Link
+          to={{
+              pathname: `${id}/menu`,
+          }}
           >
-            MENU 
+          MENU
+      </Link>
           </Typography>
+                
                     <Grid container direction="row" justifyContent="center" alignItems="center">   
-                         {filterdBeers.map(beer =>(
-                <Paper elevation= {6} style = {{textAlign: "center"}} key ={beer}>
+                         {filterdBeers.map((beer,index) =>(
+                             index < 7 && (
+                <Paper elevation= {1} style = {PaperStyle4} key ={beer}>
                     <Grid container direction="row" justifyContent="center" alignItems="center">
                     NAME: {beer.name} <br/><br/>
                     </Grid>
 
-                </Paper>
+                </Paper>)
             ))}
                     </Grid>
                     </Paper>
@@ -139,7 +146,6 @@ export default function SelectedBrewery(){
             variant="h2"
             noWrap
             component="a"
-            href="/SelectedBrewery/events"
             justifyContent="center"
             sx={{
               mr: 2,
@@ -150,8 +156,13 @@ export default function SelectedBrewery(){
               color: '#2E3B55',
               textDecoration: 'none',
             }}
+          ><Link
+          to={{
+              pathname: `${id}/OurEvents`,
+          }}
           >
-            EVENTS 
+          EVENTS
+      </Link>
           </Typography>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                     {/* <img src={image7}></img> */}
