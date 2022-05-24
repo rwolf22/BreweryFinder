@@ -19,7 +19,24 @@ export default function SelectedBrewery(){
 
     const [beers, setBeers] = useState([]);
     const [breweries, setBreweries] = useState([]);
+    const [events, setEvents] = useState([]);
     const{ id } = useParams();
+
+    function getEvents(){
+        fetch("http://localhost:8081/newsAndEvents/all")
+        .then(res => res.json())
+        .then((result) => {
+            setEvents(result);
+            }
+        )
+    }
+
+
+    const filteredEvents = events.filter(event =>{
+        return event.breweryId == id;
+    })
+
+
     function getBeers(){
         fetch("http://localhost:8081/beer/all")
         .then(res => res.json())
@@ -55,6 +72,7 @@ export default function SelectedBrewery(){
 
 
     useEffect(() =>{
+        getEvents();
         getBeers();
         getBreweries();
     },[])
@@ -164,12 +182,16 @@ export default function SelectedBrewery(){
           EVENTS
       </Link>
           </Typography>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                    {/* <img src={image7}></img> */}
-                        <Typography align='center'>
-                        From our annual 4/05 Day celebration to an entire festival dedicated to our mixed fermentation sours, we believe in making memorable experiences while enjoying beer.
-                        </Typography>
-                        
+                    <Grid container direction="row" justifyContent="center" alignItems="center">   
+                         {filteredEvents.map((event,index) =>(
+                             index < 7 && (
+                <Paper elevation= {1} style = {PaperStyle4} key ={event}>
+                    <Grid container direction="row" justifyContent="center" alignItems="center">
+                    NAME: {event.name} <br/><br/>
+                    </Grid>
+
+                </Paper>)
+            ))}
                     </Grid>
                     </Paper>
                     </Paper>

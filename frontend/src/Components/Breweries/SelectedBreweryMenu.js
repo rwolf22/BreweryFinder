@@ -84,7 +84,7 @@ export default function SelectedBreweryMenu(){
           >
             {filteredBrewery.map(brewery =>(
                 <div key ={brewery}>
-                    NAME: {brewery.name} <br/><br/>
+                    NAME: {brewery.name} 
                     </div>
                     ))}
           </Typography>

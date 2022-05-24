@@ -55,9 +55,10 @@ class Main extends Component {
         
         return(
             <div>
-                <PageAppBar/>
+                <HomeAppbar/>
                 {this.props.token.token !== undefined ?
                         <div>
+                            <PageAppBar/>
                             <Link to='/home'>Home | </Link>
                             <Link to='/login' onClick={this.handleLogout}>logout</Link> 
                             <Redirect to='/breweryHome'/>
