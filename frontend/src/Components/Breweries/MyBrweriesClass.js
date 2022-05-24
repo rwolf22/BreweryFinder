@@ -6,6 +6,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { baseUrl } from '../../Shared/baseUrl'
 
 
 const AvatarStyle = {backgroundColor: '#2E3B55'}
@@ -21,10 +22,10 @@ class MyBreweries extends Component{
     constructor(props){
         super(props);
         this.state = {
-            name: '',
+            name: "",
             address: '',
-            descrption: '',
-            image: ''
+            description: ' ',
+            image: '  '
         }
         
     }
@@ -38,14 +39,19 @@ class MyBreweries extends Component{
     
 
     handleSubmit = () => {
-        const data = {ownerid: 2, name: this.state.name, address: this.state.address, descrption: this.state.descrption, image: this.state.image}
-            fetch("http://localhost:8081/brewery/create",{
-            method: 'POST',
-            headers: { "Content-Type": "application/json"},
-            body: JSON.stringify(data)
-        }).then(() =>{
-            console.log("new brewery added.")
-        })
+        const data = {ownerId: 6, name: this.state.name, address: this.state.address, description: this.state.description, image: this.state.image}
+        axios.post(baseUrl + '/brewery/create', 
+            {
+                ownerId: 6, 
+                name: this.state.name, 
+                address: this.state.address, 
+                description: this.state.description, 
+                image: this.state.image
+            }
+          ,{
+            headers: {
+              'Authorization' : `Bearer ${this.props.token.token}`
+    }})
             console.log(data)
     }
 
@@ -146,7 +152,7 @@ class MyBreweries extends Component{
                     <Button type="submit" variant="contained" 
                     color="primary" fullWidth onClick={this.handleSubmit}> Add Brewery</Button>
                   </Grid>
-  
+                  
                 </Grid>
               </form>
 

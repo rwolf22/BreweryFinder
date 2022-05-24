@@ -56,13 +56,13 @@ class Main extends Component {
                 {this.props.token.token !== undefined ?
                         <div>
                             <PageAppBar/>
-                            <Link to='/home'>Home | </Link>
+                            <Link to='/breweryhome'>Home | </Link>
                             <Link to='/login' onClick={this.handleLogout}>logout</Link> 
-                            <Redirect to='/breweryHome'/>
+                            <Redirect to='/MyBreweries'/>
                             <Route path='/breweryhome' component={() => <BreweryHome/>}/>
-
+                            <Route path='/MyBreweries' component={() => <MyBreweries token={this.props.token}/>} />
                         </div>  
-                    : 
+                    :   
                         <Link to='/login'> </Link>
                 }
                

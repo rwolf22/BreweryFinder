@@ -13,7 +13,7 @@ import SportsBarIcon from '@mui/icons-material/SportsBar';
 import PersonIcon from '@mui/icons-material/Person';
 
 
-const HomeAppbar = () => {
+const HomeAppbar = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
