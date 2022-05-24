@@ -19,6 +19,7 @@ import MyBreweryManage from '../Breweries/ManageMyBrewery'
 import HomeAppbar from '../Pages/HomeAppbar'
 import PageAppBar from '../Pages/Appbar'
 import SBHome from '../Breweries/SBHome'
+import MyBreweries from '../Breweries/MyBrweriesClass'
 
 const mapStateToProps = state => {
     return {
@@ -55,13 +56,13 @@ class Main extends Component {
         
         return(
             <div>
-                <HomeAppbar/>
                 {this.props.token.token !== undefined ?
                         <div>
                             <PageAppBar/>
                             <Link to='/home'>Home | </Link>
                             <Link to='/login' onClick={this.handleLogout}>logout</Link> 
                             <Redirect to='/breweryHome'/>
+                            <Route path='/breweryhome' component={() => <BreweryHome/>}/>
 
                         </div>  
                     : 
@@ -69,19 +70,18 @@ class Main extends Component {
                 }
                
                 <Switch> 
-                    
+                <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
                     <Route path='/login' component={() => <Login/>}/>
                     <Route path='/register'component={() => <Register/>}/>
                     <Route path='/contact' component={() => <ContactUs/>}/>
                     <Route path='/privacy' component={() => <PrivacyPolicy/>}/>
-                    <Route path='/breweryhome' component={() => <BreweryHome/>}/>
-                    <Route path='/MyBrewerys' component={() => <MyBrewery/>}/> 
+                   
+                    <Route path='/MyBrewery/Manage' component={() => <MyBreweryManage/>}/>
+                    <Route path='/MyBreweries' component={() => <MyBreweries/>}/>
+                    <Route path='/terms-of-service' component={() => <TermsOfService/>}/>
                     <Route path='/:id/Menu' component={() => <SelectedBreweryMenu/>}/>
                     <Route path='/:id/OurEvents' component={() => <SelectedBreweryEvents/>}/>
                     <Route path="/:id" component={() => <SelectedBreweryHome/>}/>
-                    <Route path='/MyBrewery/Manage' component={() => <MyBreweryManage/>}/>
-                    <Route path='/terms-of-service' component={() => <TermsOfService/>}/>
-                    <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
                     <Redirect to='/login'/>
                 </Switch>
                 <Footer/>
