@@ -1,23 +1,11 @@
 import axios from 'axios'
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
-import { baseUrl } from '../../Shared/baseUrl'
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
-import LockIcon from '@mui/icons-material/Lock';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import Alert from '@mui/material/Alert';
-import Box from '@mui/material/Box';
-import ImgSlider from '../ImageSlider/Slider';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import HomeAppbar from '../Pages/HomeAppbar';
 
 
 const AvatarStyle = {backgroundColor: '#2E3B55'}

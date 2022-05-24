@@ -3,9 +3,7 @@ import Grid from '@mui/material/Grid';
 import ImgCarousel from '../ImageSlider/ImageCarousel';
 import Typography from '@mui/material/Typography';
 import {Link} from 'react-router-dom'
-import Button from '@mui/material/Button';
 import { useParams } from 'react-router-dom';
-import image7 from '../../images/events.jpg'
 import React, { useEffect, useState }from 'react';
 
 
@@ -15,7 +13,7 @@ const PaperStyle3 = { height:'auto', width:'60%', margin: "20px auto"}
 const PaperStyle2Edited = { height:'500px', width:'500px', margin: "20px auto"}
 const PaperStyle4 = { height:'98%', width:'98%', margin: "5px auto"}
 
-export default function SelectedBrewery(){
+export default function SelectedBreweryHome(){
 
     const [beers, setBeers] = useState([]);
     const [breweries, setBreweries] = useState([]);

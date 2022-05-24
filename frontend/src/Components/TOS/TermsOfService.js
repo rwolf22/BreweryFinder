@@ -1,6 +1,7 @@
 
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import HomeAppbar from '../Pages/HomeAppbar';
 
 
 
@@ -11,6 +12,7 @@ const PaperStyle2 = { height:'auto', width:'98%', margin: "20px auto"}
 function TermsOfService(){
     return(
         <div>
+            <HomeAppbar/>
             <>
             <Grid>
                 <Paper elevation={10} style = {PaperStyle}>

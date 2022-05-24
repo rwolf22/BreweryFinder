@@ -5,18 +5,15 @@ import {withRouter} from 'react-router-dom'
 import {addToken, addUser} from '../../Redux/actionCreators'
 import {baseUrl} from '../../Shared/baseUrl'
 import axios from 'axios'
-import PageAppBar from '../Pages/Appbar'
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import LockIcon from '@mui/icons-material/Lock';
 import Paper from '@mui/material/Paper';
-import { Container } from 'reactstrap'
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { Slider } from '@mui/material'
 import ImgSlider from '../ImageSlider/Slider'
 import HomeAppbar from '../Pages/HomeAppbar'
 

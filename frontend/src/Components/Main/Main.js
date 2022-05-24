@@ -14,11 +14,8 @@ import BreweryHome from '../Breweries/BreweryHome'
 import SelectedBreweryMenu from '../Breweries/SelectedBreweryMenu'
 import SelectedBreweryHome from '../Breweries/SelectedBreweryHome'
 import SelectedBreweryEvents from '../Breweries/SelecttedBreweryEvents'
-import MyBrewery from '../Breweries/MyBreweries'
 import MyBreweryManage from '../Breweries/ManageMyBrewery'
-import HomeAppbar from '../Pages/HomeAppbar'
 import PageAppBar from '../Pages/Appbar'
-import SBHome from '../Breweries/SBHome'
 import MyBreweries from '../Breweries/MyBrweriesClass'
 
 const mapStateToProps = state => {
@@ -75,13 +72,13 @@ class Main extends Component {
                     <Route path='/register'component={() => <Register/>}/>
                     <Route path='/contact' component={() => <ContactUs/>}/>
                     <Route path='/privacy' component={() => <PrivacyPolicy/>}/>
-                   
                     <Route path='/MyBrewery/Manage' component={() => <MyBreweryManage/>}/>
                     <Route path='/MyBreweries' component={() => <MyBreweries/>}/>
                     <Route path='/terms-of-service' component={() => <TermsOfService/>}/>
-                    <Route path='/:id/Menu' component={() => <SelectedBreweryMenu/>}/>
-                    <Route path='/:id/OurEvents' component={() => <SelectedBreweryEvents/>}/>
-                    <Route path="/:id" component={() => <SelectedBreweryHome/>}/>
+                    <Route path='/breweryhome' component={this.props.token.token === undefined ? () => null : null}/>
+                    <Route path='/:id/Menu'  component={this.props.token.token !== undefined ? () => <SelectedBreweryMenu/> : null}/>
+                    <Route path='/:id/OurEvents' component={this.props.token.token !== undefined ? () => <SelectedBreweryEvents/> : null}/>
+                    <Route path="/:id" component={this.props.token.token !== undefined ? () => <SelectedBreweryHome/> : null}/>
                     <Redirect to='/login'/>
                 </Switch>
                 <Footer/>
