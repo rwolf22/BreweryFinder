@@ -12,9 +12,11 @@ import java.util.List;
 public class JdbcNewsAndEventsDao implements NewsAndEventsDao{
 
     JdbcTemplate jdbcTemplate;
+    JdbcBreweryDao breweryDao;
 
-    public JdbcNewsAndEventsDao(JdbcTemplate jdbcTemplate) {
+    public JdbcNewsAndEventsDao(JdbcTemplate jdbcTemplate, JdbcBreweryDao breweryDao) {
         this.jdbcTemplate = jdbcTemplate;
+        this.breweryDao = breweryDao;
     }
 
     @Override
@@ -40,6 +42,7 @@ public class JdbcNewsAndEventsDao implements NewsAndEventsDao{
         NewsAndEvents event = new NewsAndEvents();
         event.setNewsEventsId(rowSet.getLong("news_events_id"));
         event.setBreweryId(rowSet.getLong("brewery_id"));
+        event.setBreweryName(breweryDao.getNameById(event.getBreweryId()));
         event.setName(rowSet.getString("name"));
         event.setEventDate(rowSet.getDate("event_date").toLocalDate());
         event.setDescription(rowSet.getString("description"));

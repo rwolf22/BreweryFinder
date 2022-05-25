@@ -7,6 +7,7 @@ public class Beer {
     private Long beerId;
     @NotNull
     private Long breweryId;
+    private String breweryName;
     @NotNull
     private String name;
     @NotNull
@@ -21,9 +22,10 @@ public class Beer {
     public Beer() {
     }
 
-    public Beer(Long beerId, Long breweryId, String name, String type, Double abv, String description, String image) {
+    public Beer(Long beerId, Long breweryId,String breweryName, String name, String type, Double abv, String description, String image) {
         this.beerId = beerId;
         this.breweryId = breweryId;
+        this.breweryName = breweryName;
         this.name = name;
         this.type = type;
         this.abv = abv;
@@ -45,6 +47,14 @@ public class Beer {
 
     public void setBreweryId(Long breweryId) {
         this.breweryId = breweryId;
+    }
+
+    public String getBreweryName() {
+        return breweryName;
+    }
+
+    public void setBreweryName(String breweryName) {
+        this.breweryName = breweryName;
     }
 
     public String getName() {

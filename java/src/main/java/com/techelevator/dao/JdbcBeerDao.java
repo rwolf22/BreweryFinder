@@ -11,10 +11,12 @@ import java.util.List;
 @Service
 public class JdbcBeerDao implements BeerDao{
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+    private final JdbcBreweryDao breweryDao;
 
-    public JdbcBeerDao(JdbcTemplate jdbcTemplate) {
+    public JdbcBeerDao(JdbcTemplate jdbcTemplate, JdbcBreweryDao breweryDao) {
         this.jdbcTemplate = jdbcTemplate;
+        this.breweryDao = breweryDao;
     }
 
     @Override
@@ -65,6 +67,7 @@ public class JdbcBeerDao implements BeerDao{
         Beer beer = new Beer();
         beer.setBeerId(rowSet.getLong("beer_id"));
         beer.setBreweryId(rowSet.getLong("brewery_id"));
+        beer.setBreweryName(breweryDao.getNameById(beer.getBreweryId()));
         beer.setName(rowSet.getString("name"));
         beer.setType(rowSet.getString("type"));
         beer.setAbv(rowSet.getDouble("abv"));

@@ -13,4 +13,6 @@ public interface BreweryDao {
     List<Brewery> getFavorites(String username);
 
     boolean addFavorite(String breweryName, String username);
+
+    String getNameById(Long breweryId);
 }

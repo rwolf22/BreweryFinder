@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class JdbcBreweryDao implements BreweryDao{
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public JdbcBreweryDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -60,6 +60,13 @@ public class JdbcBreweryDao implements BreweryDao{
         int rowsUpdated = jdbcTemplate.update(sql, username, breweryName);
         return rowsUpdated > 0;
     }
+
+    @Override
+    public String getNameById(Long breweryId) {
+        String sql = "SELECT name FROM brewery WHERE brewery_id = ?;";
+        return jdbcTemplate.queryForObject(sql, String.class, breweryId);
+    }
+
 
     private Brewery mapRowToBrewery(SqlRowSet rowSet) {
         Brewery brewery = new Brewery();
