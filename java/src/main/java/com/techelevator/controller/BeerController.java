@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.JdbcBeerDao;
 import com.techelevator.model.Beer;
+import com.techelevator.model.FavoriteAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ import java.util.List;
 @RequestMapping(path = "/beer")
 public class BeerController {
 
-    private JdbcBeerDao beerDao;
+    private final JdbcBeerDao beerDao;
 
     public BeerController(JdbcBeerDao beerDao) {
         this.beerDao = beerDao;
@@ -40,6 +41,14 @@ public class BeerController {
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/favorites/{username}/add/{beerName}", method = RequestMethod.POST)
     public boolean addFavorite(@PathVariable String username, @PathVariable String beerName) {
-        return beerDao.addFavorite(username, beerName);
+        if (!beerDao.favoriteExists(username, beerName)) {
+            return beerDao.addFavorite(username, beerName);
+        }
+        throw new FavoriteAlreadyExistsException();
+    }
+
+    @RequestMapping(path = "/favorites/{username}/remove/{beerName}", method = RequestMethod.DELETE)
+    public boolean removeFavorite(@PathVariable String username, @PathVariable String beerName) {
+        return beerDao.removeFavorite(username, beerName);
     }
 }

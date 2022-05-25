@@ -35,7 +35,7 @@ public class JdbcBeerDao implements BeerDao{
         String sql = "INSERT INTO beer (brewery_id, name, type, abv, description, image) " +
                 "VALUES(?, ?, ?, ?, ?, ?);";
         int rowsUpdated = jdbcTemplate.update(sql, newBeer.getBreweryId(), newBeer.getName(), newBeer.getType(), newBeer.getAbv(), newBeer.getDescription(), newBeer.getImage());
-        return rowsUpdated > 0;
+        return rowsUpdated == 1;
     }
 
     @Override
@@ -53,6 +53,16 @@ public class JdbcBeerDao implements BeerDao{
     }
 
     @Override
+    public boolean favoriteExists(String username, String beerName) {
+        for (Beer beer: this.getFavorites(username)) {
+            if (beer.getName().equalsIgnoreCase(beerName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public boolean addFavorite(String username, String beerName) {
         String sql = "INSERT INTO favorite_beer (user_id, beer_id) " +
                 "VALUES (" +
@@ -60,7 +70,16 @@ public class JdbcBeerDao implements BeerDao{
                 "(SELECT beer_id FROM beer WHERE name = ?)" +
                 ");";
         int rowsUpdated = jdbcTemplate.update(sql, username, beerName);
-        return rowsUpdated > 0;
+        return rowsUpdated == 1;
+    }
+
+    @Override
+    public boolean removeFavorite(String username, String beerName) {
+        String sql = "DELETE FROM favorite_beer WHERE " +
+                "user_id = (SELECT user_id FROM users WHERE username = ?) AND " +
+                "beer_id = (SELECT beer_id FROM beer WHERE name = ?);";
+        int rowsDeleted = jdbcTemplate.update(sql, username, beerName);
+        return rowsDeleted == 1;
     }
 
     private Beer mapRowToBeer(SqlRowSet rowSet) {

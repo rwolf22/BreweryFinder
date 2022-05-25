@@ -51,6 +51,16 @@ public class JdbcBreweryDao implements BreweryDao{
     }
 
     @Override
+    public boolean favoriteExists(String username, String breweryName) {
+        for (Brewery brewery: this.getFavorites(username)) {
+            if (brewery.getName().equalsIgnoreCase(breweryName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public boolean addFavorite(String breweryName, String username) {
         String sql = "INSERT INTO favorite_brewery (user_id, brewery_id) " +
                 "VALUES (" +
@@ -59,6 +69,15 @@ public class JdbcBreweryDao implements BreweryDao{
                 ");";
         int rowsUpdated = jdbcTemplate.update(sql, username, breweryName);
         return rowsUpdated > 0;
+    }
+
+    @Override
+    public boolean removeFavorite(String username, String breweryName) {
+        String sql = "DELETE FROM favorite_brewery WHERE " +
+                "user_id = (SELECT user_id FROM users WHERE username = ?) AND " +
+                "brewery_id = (SELECT brewery_id FROM brewery WHERE name = ?);";
+        int rowsDeleted = jdbcTemplate.update(sql, username, breweryName);
+        return rowsDeleted == 1;
     }
 
     @Override
