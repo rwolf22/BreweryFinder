@@ -36,7 +36,7 @@ export default function BreweryHome(props){
     },[])
 
     
-    function addToFavorites(breweryNamed){
+    function addToFavorites(breweryName){
         console.log("added to favorites")
         axios.post(baseUrl + "/brewery/favorites/" + props.props + "/add/" + breweryName)
     }
