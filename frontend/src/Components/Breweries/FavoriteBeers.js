@@ -37,7 +37,7 @@ export default function FavoriteBeers(props){
     
     function removeBeer(beerName){
         console.log("Removed Brewery")
-        axios.delete(baseUrl + "/beer/favorites/" + props.props + "/add/" + beerName)
+        axios.delete(baseUrl + "/beer/favorites/" + props.props + "/remove/" + beerName)
     }
 
     return(
