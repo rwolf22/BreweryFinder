@@ -5,7 +5,8 @@ import Typography from '@mui/material/Typography';
 import React, { useEffect, useState }from 'react';
 import Button from '@mui/material/Button';
 import SelectedBrewery from './SelectedBreweryHome';
-
+import axios from 'axios'
+import { baseUrl } from '../../Shared/baseUrl'
 import {Link} from 'react-router-dom'
 
 
@@ -17,10 +18,10 @@ const PaperStyle4 = { height:'auto', width:'99%', margin: "auto auto"}
 
 
 
-export default function BreweryHome(){
+export default function BreweryHome(props){
     
     const [breweries, setBreweries] = useState([]);
-
+    const breweryName = "Test Brewery";
     function getBreweries(){
         fetch("http://localhost:8081/brewery/all")
         .then(res => res.json())
@@ -34,14 +35,17 @@ export default function BreweryHome(){
         getBreweries();
     },[])
 
-
+    
+    function addToFavorites(breweryNamed){
+        console.log("added to favorites")
+        axios.post(baseUrl + "/brewery/favorites/" + props.props + "/add/" + breweryName)
+    }
 
     return(
         <div>
-            <>
-            
+            <> HELLO  {props.props}
             <Grid>
-                
+            
                 <Paper elevation={0} style = {PaperStyle}>
                 <Typography
             variant="h2"
@@ -57,7 +61,8 @@ export default function BreweryHome(){
               textDecoration: 'none',
             }}
           >
-            DRINK WHERE YOUR BEER IS MADE
+            DRINK WHERE YOUR BEER IS MADE 
+            
           </Typography>
                 <Paper elevation={0} style = {PaperStyle2}>
                 <Paper elevation={0} style = {PaperStyle3}>
@@ -84,26 +89,59 @@ export default function BreweryHome(){
                     <Paper elevation={5} style = {PaperStyle2}>
                         <br/>
                     <Paper elevation={0} style = {PaperStyle4}>
+                        
                     {breweries.map(brewery =>(
                 <Paper elevation= {9} style = {{margin:'10px', padding: "15px", textAlign: "center"}} key ={brewery.breweryId}>
+                    
+                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
+                        <Button onClick ={()=> addToFavorites(brewery.name)}>
+                        <Typography
+                            variant="p"
+                            noWrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            }}
+                        > 
+                                ADD TO FAVORITES
+                            </Typography>
+                        </Button> 
+                        
+                    </Grid>
                     NAME: {brewery.name} <br/><br/>
                     ADDRESS: {brewery.address}<br/><br/>
                     description: {brewery.description}<br/><br/>
                     image: {brewery.image}<br/><br/>
+                    
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                         <Button>
-                            <Typography variant='p'>
+                        <Typography
+                            variant="p"
+                            noWrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            }}
+                        >
                                 
                             <Link
                                 to={{
-                                    pathname: `/${brewery.breweryId}`,
+                                    pathname: `/selectedbrewery/${brewery.breweryId}`,
                                 }}
                                 >
-                                SEE MORE
+                                VISIT
                                 </Link>
                             </Typography>
-                        </Button>
+                        </Button> 
+                        
                     </Grid>
+                    
 
                 </Paper>
             ))}

@@ -14,7 +14,6 @@ import BreweryHome from '../Breweries/BreweryHome'
 import SelectedBreweryMenu from '../Breweries/SelectedBreweryMenu'
 import SelectedBreweryHome from '../Breweries/SelectedBreweryHome'
 import SelectedBreweryEvents from '../Breweries/SelecttedBreweryEvents'
-import MyBreweryManage from '../Breweries/ManageMyBrewery'
 import PageAppBar from '../Pages/Appbar'
 import MyBreweries from '../Breweries/MyBrweriesClass'
 
@@ -59,28 +58,25 @@ class Main extends Component {
                             <Link to='/breweryhome'>Home | </Link>
                             <Link to='/login' onClick={this.handleLogout}>logout</Link> 
                             <Redirect to='/MyBreweries'/>
-                            <Route path='/breweryhome' component={() => <BreweryHome/>}/>
+                            <Route path='/breweryhome' component={() => <BreweryHome props={this.props.user.username}/>}/>
                             <Route path='/MyBreweries' component={() => <MyBreweries token={this.props.token}/>} />
+                            <Route path='/selectedbrewery/:id/Menu'  component={this.props.token.token !== undefined ? () => <SelectedBreweryMenu/> : null}/>
+                            <Route path='/selectedbrewery/:id/OurEvents' component={this.props.token.token !== undefined ? () => <SelectedBreweryEvents/> : null}/>
+                            <Route path="/selectedbrewery/:id" component={this.props.token.token !== undefined ? () => <SelectedBreweryHome/> : null}/>
                         </div>  
                     :   
-                        <Link to='/login'> </Link>
+                     <Switch> 
+                        <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
+                            <Route path='/register'component={() => <Register/>}/>
+                            <Route path='/login' component={() => <Login/>}/>
+                            <Route path='/contact' component={() => <ContactUs/>}/>
+                            <Route path='/privacy' component={() => <PrivacyPolicy/>}/>
+                            <Route path='/terms-of-service' component={() => <TermsOfService/>}/>
+                            <Redirect to='/login'/>
+                    </Switch>   
                 }
                
-                <Switch> 
-                <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
-                    <Route path='/login' component={() => <Login/>}/>
-                    <Route path='/register'component={() => <Register/>}/>
-                    <Route path='/contact' component={() => <ContactUs/>}/>
-                    <Route path='/privacy' component={() => <PrivacyPolicy/>}/>
-                    <Route path='/MyBrewery/Manage' component={() => <MyBreweryManage/>}/>
-                    <Route path='/MyBreweries' component={() => <MyBreweries/>}/>
-                    <Route path='/terms-of-service' component={() => <TermsOfService/>}/>
-                    <Route path='/breweryhome' component={this.props.token.token === undefined ? () => null : null}/>
-                    <Route path='/:id/Menu'  component={this.props.token.token !== undefined ? () => <SelectedBreweryMenu/> : null}/>
-                    <Route path='/:id/OurEvents' component={this.props.token.token !== undefined ? () => <SelectedBreweryEvents/> : null}/>
-                    <Route path="/:id" component={this.props.token.token !== undefined ? () => <SelectedBreweryHome/> : null}/>
-                    <Redirect to='/login'/>
-                </Switch>
+                
                 <Footer/>
             </div>
         )
