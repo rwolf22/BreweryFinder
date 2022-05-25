@@ -4,10 +4,11 @@ import ImgCarousel from '../ImageSlider/ImageCarousel';
 import Typography from '@mui/material/Typography';
 import {Link} from 'react-router-dom'
 import Button from '@mui/material/Button';
-
+import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import image7 from '../../images/events.jpg'
 import React, { useEffect, useState }from 'react';
+import { baseUrl } from '../../Shared/baseUrl'
 
 
 const PaperStyle = { height:'auto', width:'95%', margin: "20px auto"}
@@ -16,7 +17,7 @@ const PaperStyle3 = { height:'auto', width:'60%', margin: "20px auto"}
 const PaperStyle2Edited = { height:'auto', width:'30%', margin: "20px auto"}
 const PaperStyle4 = { height:'auto', width:'99%', margin: "auto auto"}
 
-export default function SelectedBreweryMenu(){
+export default function SelectedBreweryMenu(props){
 
     const [beers, setBeers] = useState([]);
     const [breweries, setBreweries] = useState([]);
@@ -60,6 +61,10 @@ export default function SelectedBreweryMenu(){
         getBreweries();
     },[])
 
+    function addToFavorites(beerName){
+        console.log("added beer to favorites")
+        axios.post(baseUrl + "/beer/favorites/" + props.props + "/add/" + beerName)
+    }
     
     return(
         <div>
@@ -127,9 +132,9 @@ export default function SelectedBreweryMenu(){
                     IMG: {beer.image}
                     </Grid>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
+                    <Button onClick ={()=> addToFavorites(beer.name)}>
                             <Typography variant='p'>
-                                <Link to="/selectedBrewery"> ADD TO FAVORITES</Link>
+                                ADD TO FAVORITES
                             </Typography>
                         </Button>
                     </Grid>

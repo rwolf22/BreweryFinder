@@ -16,6 +16,8 @@ import SelectedBreweryHome from '../Breweries/SelectedBreweryHome'
 import SelectedBreweryEvents from '../Breweries/SelecttedBreweryEvents'
 import PageAppBar from '../Pages/Appbar'
 import MyBreweries from '../Breweries/MyBrweriesClass'
+import FavoriteBreweries from '../Breweries/FavoriteBreweries'
+import FavoriteBeers from '../Breweries/FavoriteBeers'
 
 const mapStateToProps = state => {
     return {
@@ -56,11 +58,16 @@ class Main extends Component {
                         <div>
                             <PageAppBar/>
                             <Link to='/breweryhome'>Home | </Link>
-                            <Link to='/login' onClick={this.handleLogout}>logout</Link> 
-                            <Redirect to='/MyBreweries'/>
+                            <Link to='/login' onClick={this.handleLogout}>logout | </Link> 
+                            <Link to='/MyBreweries' >my Breweries  | </Link> 
+                            <Link to='/favorite/breweries'> favorite breweries  | </Link> 
+                            <Link to='/favorite/beers'> favorite beers  | </Link> 
+                            <Redirect to='/breweryhome'/>
+                            <Route path='/favorite/beers' component={() => <FavoriteBeers props={this.props.user.username}/>}/>
+                            <Route path='/favorite/breweries' component={() => <FavoriteBreweries props={this.props.user.username}/>}/>
                             <Route path='/breweryhome' component={() => <BreweryHome props={this.props.user.username}/>}/>
                             <Route path='/MyBreweries' component={() => <MyBreweries token={this.props.token}/>} />
-                            <Route path='/selectedbrewery/:id/Menu'  component={this.props.token.token !== undefined ? () => <SelectedBreweryMenu/> : null}/>
+                            <Route path='/selectedbrewery/:id/Menu'  component={this.props.token.token !== undefined ? () => <SelectedBreweryMenu props={this.props.user.username}/> : null}/>
                             <Route path='/selectedbrewery/:id/OurEvents' component={this.props.token.token !== undefined ? () => <SelectedBreweryEvents/> : null}/>
                             <Route path="/selectedbrewery/:id" component={this.props.token.token !== undefined ? () => <SelectedBreweryHome/> : null}/>
                         </div>  
