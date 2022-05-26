@@ -32,7 +32,6 @@ export default function SelectedBreweryEvents(){
     const filteredEvents = events.filter(event =>{
         return event.breweryId == id;
     })
-    console.log(filteredEvents)
 
     function getBreweries(){
         fetch("http://localhost:8081/brewery/all")
@@ -46,7 +45,6 @@ export default function SelectedBreweryEvents(){
     const filteredBrewery = breweries.filter(brewery =>{
         return brewery.breweryId == id;
     })
-    console.log(filteredBrewery)
 
     useEffect(() =>{
         getEvents();

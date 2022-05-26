@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import React, { useEffect, useState }from 'react';
 import TextField from '@mui/material/TextField';
 import { useParams } from 'react-router-dom';
-
+import axios from 'axios'
 
 
 const PaperStyle = { height:'auto', width:'95%', margin: "20px auto"}
@@ -23,6 +23,12 @@ export default function MyBreweryManage(props){
     const [breweries, setBreweries] = useState([]);
     const [events, setEvents] = useState([]);
 
+    const [name, setBeerName] = useState("");
+    const [type, setBeerType] = useState("");
+    const [abv, setBeerABV] = useState("");
+    const [image, setBeerImage] = useState("");
+    const [description, setBeerDescription] = useState("");
+    const breweryId = id;
     function getEvents(){
       fetch("http://localhost:8081/newsAndEvents/all")
       .then(res => res.json())
@@ -40,12 +46,12 @@ export default function MyBreweryManage(props){
       )
   }
   const filterdBeers = beers.filter(beer =>{
-    return beer.breweryId == 1;
+    return beer.breweryId == id;
   })
 
 
     const filteredEvents = events.filter(event =>{
-        return event.breweryId == 1;
+        return event.breweryId == id;
     })
     function getBreweries(){
       fetch("http://localhost:8081/brewery/all")
@@ -66,13 +72,25 @@ export default function MyBreweryManage(props){
   },[])
 
 
+const handleClick=(e) =>{
+        e.preventDefault()
+        const newBeer = {breweryId, name, type, abv, image, description}
+        fetch("http://localhost:8081/beer/create",{
+          method: 'POST',
+          body: {breweryId, name, type, abv, image, description}
+        })
+        .then((response) => {
+            return response.text();
+        })
+        .then((data) => {
+            getBeers();
+        })
+    }
 
 
     return(
         <div>
             <>
-            {console.log(props.props.user)}
-            {console.log(id)}
             <Grid>
                 
                 <Paper elevation={0} style = {PaperStyle}>
@@ -144,22 +162,22 @@ export default function MyBreweryManage(props){
                     <form>
                 <Grid container spacing={1}>
                   <Grid xs={12} sm={6} item>
-                    <TextField placeholder="Enter Beer Name" label="Beer Name" variant="outlined" fullWidth required />
+                    <TextField placeholder="Enter Beer Name" label="Beer Name" variant="outlined" fullWidth value={name} onChange={(e) => setBeerName(e.target.value)} required />
                   </Grid>
                   <Grid xs={12} sm={6} item>
-                    <TextField placeholder="Enter Beer Type" label="Beer Type" variant="outlined" fullWidth required />
+                    <TextField placeholder="Enter Beer Type" label="Beer Type" variant="outlined" fullWidth value={type} onChange={(e) => setBeerType(e.target.value)} required />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField  placeholder="Enter Beer ABV" label="Beer ABV" variant="outlined" fullWidth required />
+                    <TextField  placeholder="Enter Beer ABV" label="Beer ABV" variant="outlined" fullWidth  value={abv} onChange={(e) => setBeerABV(e.target.value)} required />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField  placeholder="Enter Beer Image" label="Beer Image" variant="outlined" fullWidth required />
+                    <TextField  placeholder="Enter Beer Image" label="Beer Image" variant="outlined" fullWidth value={image} onChange={(e) => setBeerImage(e.target.value)} required />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField label="Beer Description" multiline rows={4} placeholder="Enter Brewery Descriptioon" variant="outlined" fullWidth required />
+                    <TextField label="Beer Description" multiline rows={4} placeholder="Enter Brewery Descriptioon" variant="outlined" fullWidth  value={description} onChange={(e) => setBeerDescription(e.target.value)} required />
                   </Grid>
                   <Grid item xs={12}>
-                    <Button type="submit" variant="contained" color="primary" fullWidth>Add Item</Button>
+                    <Button type="submit" variant="contained" color="primary" fullWidth onClick={handleClick}>Add Item</Button>
                   </Grid>
   
                 </Grid>

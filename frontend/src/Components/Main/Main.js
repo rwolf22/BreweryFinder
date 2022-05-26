@@ -55,7 +55,6 @@ class Main extends Component {
         
         return(
             <div>
-                {console.log( this.props.user.id)}
                 {this.props.token.token !== undefined ?
                         <div>
                             <PageAppBar/>

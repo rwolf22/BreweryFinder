@@ -59,14 +59,12 @@ export default function SelectedBreweryHome(){
         return brewery.breweryId == id;
     })
 
-    console.log(filteredBrewery)
     
     
 
     const filterdBeers = beers.filter(beer =>{
         return beer.breweryId == id;
     })
-    console.log(filterdBeers)
 
 
     useEffect(() =>{

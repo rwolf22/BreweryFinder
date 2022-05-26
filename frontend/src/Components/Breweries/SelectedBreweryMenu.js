@@ -46,14 +46,12 @@ export default function SelectedBreweryMenu(props){
         return brewery.breweryId == id;
     })
 
-    console.log(filteredBrewery)
     
     
 
     const filterdBeers = beers.filter(beer =>{
         return beer.breweryId == id;
     })
-    console.log(filterdBeers)
 
 
     useEffect(() =>{
@@ -62,7 +60,6 @@ export default function SelectedBreweryMenu(props){
     },[])
 
     function addToFavorites(beerName){
-        console.log("added beer to favorites")
         axios.post(baseUrl + "/beer/favorites/" + props.props + "/add/" + beerName)
     }
     
