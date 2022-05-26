@@ -114,7 +114,7 @@ class MyBreweries extends Component{
                     </Paper>
                     <Grid container direction="row" justifyContent="center" alignItems="center" >
                     <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={5} style = {PaperStyle4}>
+                    <Paper elevation={0} style = {PaperStyle4}>
                     <Typography
             variant="h2"
             noWrap

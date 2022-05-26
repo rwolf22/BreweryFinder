@@ -31,7 +31,7 @@ export default function MyBreweriesList(props){
 
     return(
         <div>
-            <Paper elevation={5} style = {PaperStyle4Events}>
+            <Paper elevation={0} style = {PaperStyle4Events}>
                     <Typography
             variant="h2"
             noWrap
@@ -51,9 +51,9 @@ export default function MyBreweriesList(props){
           </Typography>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                     {/* <img src={image7}></img> */}
-                    <Paper elevation={5} style = {PaperStyle4}>
+                    <Paper elevation={0} style = {PaperStyle4}>
                     {filteredBreweries.map(brewery =>(
-                <Paper elevation={5} style = {PaperStyle4}><div key ={brewery}>
+                <Paper elevation={3} style = {PaperStyle4}><div key ={brewery}>
                     BREWERY NAME:<br/>{brewery.name}
                     {brewery.breweryId}<Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                         <Button>
