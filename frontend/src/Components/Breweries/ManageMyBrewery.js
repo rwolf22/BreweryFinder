@@ -25,10 +25,11 @@ export default function MyBreweryManage(props){
 
     const [name, setBeerName] = useState("");
     const [type, setBeerType] = useState("");
-    const [abv, setBeerABV] = useState("");
+    const [abv, setBeerABV] = useState();
     const [image, setBeerImage] = useState("");
     const [description, setBeerDescription] = useState("");
     const breweryId = id;
+    
     function getEvents(){
       fetch("http://localhost:8081/newsAndEvents/all")
       .then(res => res.json())
@@ -91,19 +92,12 @@ function deleteBeerItem(beerId) {
 
 const handleClick=(e) =>{
         e.preventDefault()
-        const newBeer = {breweryId, name, type, abv, image, description}
-        fetch("http://localhost:8081/beer/create",{
-          method: 'POST',
-          body: {breweryId, name, type, abv, image, description}
-        })
-        .then((response) => {
-            return response.text();
-        })
-        .then((data) => {
-            getBeers();
-        })
-    }
-
+        const beer = {breweryId, name, type, abv, image, description}
+      
+        axios.post('http://localhost:8081/beer/create',{breweryId, name, type, abv, image, description}, {headers: {
+          'Authorization' : `Bearer ${props.props.token.token}`}})
+    
+}
 
     return(
         <div>
