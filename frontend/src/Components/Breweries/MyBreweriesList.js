@@ -54,10 +54,15 @@ export default function MyBreweriesList(props){
                     <Paper elevation={5} style = {PaperStyle4}>
                     {filteredBreweries.map(brewery =>(
                 <Paper elevation={5} style = {PaperStyle4}><div key ={brewery}>
-                    BREWERY NAME:<br/>{brewery.name}<Grid container direction="row" justifyContent="flex-end" alignItems="center">   
+                    BREWERY NAME:<br/>{brewery.name}
+                    {brewery.breweryId}<Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                         <Button>
                             <Typography variant='p'>
-                                <Link to="/MyBrewery/Manage">  MANAGE BREWERY</Link>
+                                <Link to={{
+                                    pathname: `/MyBreweries/${brewery.breweryId}/manage`,
+                                }}
+                                >
+                                MANAGE BREWERY</Link>
                             </Typography>
                         </Button>
                     </Grid>
