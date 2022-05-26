@@ -37,6 +37,12 @@ export default function MyBreweryManage(props){
           }
       )
   }
+  const filteredEvents = events.filter(event =>{
+        return event.breweryId == id;
+    })
+    
+    
+    
     function getBeers(){
       fetch("http://localhost:8081/beer/all")
       .then(res => res.json())
@@ -50,10 +56,9 @@ export default function MyBreweryManage(props){
   })
 
 
-    const filteredEvents = events.filter(event =>{
-        return event.breweryId == id;
-    })
-    function getBreweries(){
+  
+
+  function getBreweries(){
       fetch("http://localhost:8081/brewery/all")
       .then(res => res.json())
       .then((result) => {
@@ -64,6 +69,18 @@ export default function MyBreweryManage(props){
   const filteredBrewery = breweries.filter(brewery =>{
     return brewery.breweryId == id;
 })
+
+function deleteBeerItem(beerId) {
+  fetch("http://localhost:8080/beer/" + id + "/delete/" + beerId , {
+      method: 'DELETE',
+  })
+      .then((response) => {
+          return response.text();
+      })
+      .then((data) => {
+        getBeers();
+      })
+}
 
   useEffect(() =>{
     getEvents();
@@ -268,7 +285,7 @@ const handleClick=(e) =>{
                     <Grid container direction="row" justifyContent="center" alignItems="center">
                     NAME: {beer.name} <br/><br/>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
+                        <Button onClick={()=> deleteBeerItem(beer.id) }>
                             <Typography variant='p'>
                             DELETE ITEM
                             </Typography>
