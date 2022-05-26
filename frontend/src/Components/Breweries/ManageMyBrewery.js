@@ -1,12 +1,11 @@
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import ImgCarousel from '../ImageSlider/ImageCarousel';
 import Typography from '@mui/material/Typography';
 import {Link} from 'react-router-dom'
 import Button from '@mui/material/Button';
-
+import React, { useEffect, useState }from 'react';
 import TextField from '@mui/material/TextField';
-import image7 from '../../images/events.jpg'
+import { useParams } from 'react-router-dom';
 
 
 
@@ -17,11 +16,63 @@ const PaperStyle2Edited = { height:'500px', width:'40%', margin: "20px auto"}
 const PaperStyle4 = { height:'98%', width:'98%', margin: "5px auto"}
 const PaperStyle2Events = { height:'auto', width:'40%', margin: "20px auto"}
 const PaperStyle4Events = { height:'98%', width:'98%', margin: "5px auto"}
-export default function MyBreweryManage(){
+
+export default function MyBreweryManage(props){
+  const{ id } = useParams();
+    const [beers, setBeers] = useState([]);
+    const [breweries, setBreweries] = useState([]);
+    const [events, setEvents] = useState([]);
+
+    function getEvents(){
+      fetch("http://localhost:8081/newsAndEvents/all")
+      .then(res => res.json())
+      .then((result) => {
+          setEvents(result);
+          }
+      )
+  }
+    function getBeers(){
+      fetch("http://localhost:8081/beer/all")
+      .then(res => res.json())
+      .then((result) => {
+          setBeers(result);
+          }
+      )
+  }
+  const filterdBeers = beers.filter(beer =>{
+    return beer.breweryId == 1;
+  })
+
+
+    const filteredEvents = events.filter(event =>{
+        return event.breweryId == 1;
+    })
+    function getBreweries(){
+      fetch("http://localhost:8081/brewery/all")
+      .then(res => res.json())
+      .then((result) => {
+          setBreweries(result);
+          }
+      )
+  }
+  const filteredBrewery = breweries.filter(brewery =>{
+    return brewery.breweryId == id;
+})
+
+  useEffect(() =>{
+    getEvents();
+    getBeers();
+    getBreweries();
+  },[])
+
+
+
+
     return(
         <div>
             <>
-            
+            {console.log(props.props.user)}
+            {console.log(id)}
             <Grid>
                 
                 <Paper elevation={0} style = {PaperStyle}>
@@ -39,7 +90,11 @@ export default function MyBreweryManage(){
               textDecoration: 'none',
             }}
           >
-            *BREWEY NAME* DASHBOARD
+            {filteredBrewery.map(brewery =>(
+                <div key ={brewery}>
+                    {brewery.name} DASHBOARD
+                    </div>
+                    ))} 
           </Typography>
                 <Paper elevation={5} style = {PaperStyle2}>
                 <Paper elevation={0} style = {PaperStyle3}>
@@ -169,7 +224,7 @@ export default function MyBreweryManage(){
   alignItems="flex-start"
 >
                     <Paper elevation={5} style = {PaperStyle2Events}>
-                    <Paper elevation={5} style = {PaperStyle4Events}>
+                    <Paper elevation={0} style = {PaperStyle4Events}>
                     <Typography
             variant="h2"
             noWrap
@@ -189,134 +244,11 @@ export default function MyBreweryManage(){
           </Typography>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                     {/* <img src={image7}></img> */}
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO :  
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                DELETE ITEM
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                    BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO :  
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                DELETE ITEM
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                    BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO :  
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                DELETE ITEM
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                    BEER INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BEER INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
+                    {filterdBeers.map((beer,index) =>(
+                              (
+                <Paper elevation= {5} style = {PaperStyle4} key ={beer}>
+                    <Grid container direction="row" justifyContent="center" alignItems="center">
+                    NAME: {beer.name} <br/><br/>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                         <Button>
                             <Typography variant='p'>
@@ -324,12 +256,19 @@ export default function MyBreweryManage(){
                             </Typography>
                         </Button>
                     </Grid>
-                    </Paper>
+                    </Grid>
+
+                </Paper>)
+            ))}
+                    
                     </Grid>
                     </Paper>
                     </Paper>
+
+
+                    
                     <Paper elevation={5} style = {PaperStyle2Events}>
-                    <Paper elevation={5} style = {PaperStyle4Events}>
+                    <Paper elevation={0} style = {PaperStyle4Events}>
                     <Typography
             variant="h2"
             noWrap
@@ -349,66 +288,13 @@ export default function MyBreweryManage(){
           </Typography>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                     {/* <img src={image7}></img> */}
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                    EVENT INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    EVENT INFO :  
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    EVENT INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                DELETE ITEM
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                    EVENT INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    EVENT INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    EVENT INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
+                    {filteredEvents.map((event,index) =>(
+                            (
+                <Paper elevation= {5} style = {PaperStyle4} key ={event}>
+                    <Grid container direction="row" justifyContent="center" alignItems="center">
+                    EVENT NAME: {event.name} <br/>
+                    EVENT DATE: {event.eventDate} <br/>
+                    EVENT DESCRIPTION: {event.description}
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                         <Button>
                             <Typography variant='p'>
@@ -416,7 +302,12 @@ export default function MyBreweryManage(){
                             </Typography>
                         </Button>
                     </Grid>
-                    </Paper>
+                    </Grid>
+
+                </Paper>)
+            ))}
+                   
+                    
                     </Grid>
                     </Paper>
                     </Paper>
