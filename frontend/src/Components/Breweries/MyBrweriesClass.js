@@ -39,7 +39,8 @@ class MyBreweries extends Component{
         })
     }
     
-    handleSubmit = () => {
+    handleSubmit = (e) => {
+      e.preventDefault();
         const data = {ownerId: this.props.props.user.id, name: this.state.name, address: this.state.address, description: this.state.description, image: this.state.image}
         axios.post(baseUrl + '/brewery/create', 
             {
