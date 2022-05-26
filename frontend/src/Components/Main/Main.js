@@ -18,6 +18,7 @@ import PageAppBar from '../Pages/Appbar'
 import MyBreweries from '../Breweries/MyBrweriesClass'
 import FavoriteBreweries from '../Breweries/FavoriteBreweries'
 import FavoriteBeers from '../Breweries/FavoriteBeers'
+import MyBreweryManage from '../Breweries/ManageMyBrewery'
 
 const mapStateToProps = state => {
     return {
@@ -54,6 +55,7 @@ class Main extends Component {
         
         return(
             <div>
+                {console.log( this.props.user.id)}
                 {this.props.token.token !== undefined ?
                         <div>
                             <PageAppBar/>
@@ -66,7 +68,8 @@ class Main extends Component {
                             <Route path='/favorite/beers' component={() => <FavoriteBeers props={this.props.user.username}/>}/>
                             <Route path='/favorite/breweries' component={() => <FavoriteBreweries props={this.props.user.username}/>}/>
                             <Route path='/breweryhome' component={() => <BreweryHome props={this.props.user.username}/>}/>
-                            <Route path='/MyBreweries' component={() => <MyBreweries token={this.props.token}/>} />
+                            <Route path="/MyBreweries/:id/manage"  component={() => <MyBreweryManage props={this.props}/>}/>
+                            <Route path='/MyBreweries' component={() => <MyBreweries props={this.props}/>} />
                             <Route path='/selectedbrewery/:id/Menu'  component={this.props.token.token !== undefined ? () => <SelectedBreweryMenu props={this.props.user.username}/> : null}/>
                             <Route path='/selectedbrewery/:id/OurEvents' component={this.props.token.token !== undefined ? () => <SelectedBreweryEvents/> : null}/>
                             <Route path="/selectedbrewery/:id" component={this.props.token.token !== undefined ? () => <SelectedBreweryHome/> : null}/>

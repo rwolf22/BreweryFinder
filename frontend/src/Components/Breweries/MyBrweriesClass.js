@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { baseUrl } from '../../Shared/baseUrl'
+import MyBreweriesList from './MyBreweriesList';
 
 
 const AvatarStyle = {backgroundColor: '#2E3B55'}
@@ -15,6 +16,7 @@ const PaperStyle2 = { height:'auto', width:'90%', margin: "20px auto"}
 const PaperStyle3 = { height:'auto', width:'60%', margin: "20px auto"}
 const PaperStyle2Edited = { height:'500px', width:'96%', margin: "20px auto"}
 const PaperStyle4 = { height:'98%', width:'98%', margin: "5px auto"}
+
 const PaperStyle2Events = { height:'auto', width:'96%', margin: "20px auto"}
 const PaperStyle4Events = { height:'98%', width:'98%', margin: "5px auto"}
 class MyBreweries extends Component{
@@ -25,7 +27,8 @@ class MyBreweries extends Component{
             name: "",
             address: '',
             description: ' ',
-            image: '  '
+            image: '  ',
+            breweries: [{}]
         }
         
     }
@@ -37,12 +40,11 @@ class MyBreweries extends Component{
         })
     }
     
-
     handleSubmit = () => {
-        const data = {ownerId: 6, name: this.state.name, address: this.state.address, description: this.state.description, image: this.state.image}
+        const data = {ownerId: this.props.props.user.id, name: this.state.name, address: this.state.address, description: this.state.description, image: this.state.image}
         axios.post(baseUrl + '/brewery/create', 
             {
-                ownerId: 6, 
+                ownerId: this.props.props.user.id, 
                 name: this.state.name, 
                 address: this.state.address, 
                 description: this.state.description, 
@@ -50,18 +52,25 @@ class MyBreweries extends Component{
             }
           ,{
             headers: {
-              'Authorization' : `Bearer ${this.props.token.token}`
+              'Authorization' : `Bearer ${this.props.props.token.token}`
     }})
             console.log(data)
     }
 
     render(){
+      function getMyBreweries(){
+        fetch("http://localhost:8081/brewery/all")
+        .then(res => res.json())
+        .then((result) => {
+            this.setState({breweries : result});
+            }
+        )
+      }
         return(
             <div>
             <>
-            
             <Grid>
-                
+                {console.log(this.state.breweries)}
                 <Paper elevation={0} style = {PaperStyle}>
                 <Typography
             variant="h2"
@@ -161,96 +170,7 @@ class MyBreweries extends Component{
                     </Paper>
                     </Paper>
                     <Paper elevation={5} style = {PaperStyle2Events}>
-                    <Paper elevation={5} style = {PaperStyle4Events}>
-                    <Typography
-            variant="h2"
-            noWrap
-            component="a"
-            justifyContent="center"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: '#2E3B55',
-              textDecoration: 'none',
-            }}
-          >
-            MANAGE BREWERIES
-          </Typography>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                    {/* <img src={image7}></img> */}
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                        BREWERY INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BREWERY INFO :  
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BREWERY INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/MyBrewery/Manage">  MANAGE BREWERY</Link>
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    <Paper elevation={5} style = {PaperStyle4}>
-                    <p>
-                    BREWERY INFO : 
-                        fasdfaf
-                        addTokenf
-                    </p>
-                    <p> 
-                    BREWERY INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <p>
-                    BREWERY INFO : 
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/MyBrewery/Manage"> MANAGE BREWERY</Link>
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Paper>
-                    </Grid>
-                    </Paper>
+                    <MyBreweriesList props={this.props.props.user.id}/> 
                     </Paper>
                     </Grid>
                     

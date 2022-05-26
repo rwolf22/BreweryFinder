@@ -17,7 +17,7 @@ const PaperStyle2Edited = { height:'500px', width:'96%', margin: "20px auto"}
 const PaperStyle4 = { height:'98%', width:'98%', margin: "5px auto"}
 const PaperStyle2Events = { height:'auto', width:'96%', margin: "20px auto"}
 const PaperStyle4Events = { height:'98%', width:'98%', margin: "5px auto"}
-export default function MyBrewery(){
+export default function MyBrewery(props){
     return(
         <div>
             <>
