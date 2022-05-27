@@ -235,7 +235,7 @@ const handleEventSubmit =(e) =>{
                     <TextField placeholder="Enter Event Name" label="Event Name" variant="outlined" fullWidth  value={name} onChange={(e) => setBeerName(e.target.value)} required />
                   </Grid>
                   <Grid xs={12} sm={6} item>
-                    <TextField placeholder="Enter Event Date" label="Event Date" variant="outlined" fullWidth required  value={eventDate} onChange={(e) => seteventDate(e.target.value)}/>
+                    <TextField  type="date" placeholder="Enter Event Date" label="Event Date" variant="outlined" fullWidth required  value={eventDate} onChange={(e) => seteventDate(e.target.value)}/>
                   </Grid>
                   <Grid item xs={12}>
                     <TextField label="Event Description" multiline rows={7} placeholder="Enter Event Descriptioon" variant="outlined" fullWidth value={description} onChange={(e) => setBeerDescription(e.target.value)} required />
