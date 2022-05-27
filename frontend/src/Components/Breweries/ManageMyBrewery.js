@@ -29,6 +29,7 @@ export default function MyBreweryManage(props){
     const [image, setBeerImage] = useState("");
     const [description, setBeerDescription] = useState("");
     const breweryId = id;
+    const [eventDate, seteventDate] = useState("");
     
     function getEvents(){
       fetch("http://localhost:8081/newsAndEvents/all")
@@ -38,9 +39,7 @@ export default function MyBreweryManage(props){
           }
       )
   }
-  const filteredEvents = events.filter(event =>{
-        return event.breweryId == id;
-    })
+  
     
     
     
@@ -94,9 +93,21 @@ const handleClick=(e) =>{
         e.preventDefault()
         const beer = {breweryId, name, type, abv, image, description}
       
-        axios.post('http://localhost:8081/beer/create',{breweryId, name, type, abv, image, description}, {headers: {
-          'Authorization' : `Bearer ${props.props.token.token}`}})
-    
+        axios.post('http://localhost:8081/beer/create',
+          {breweryId, name, type, abv, image, description}, 
+        {headers: {
+          'Authorization' : `Bearer ${props.props.token.token}`}
+        })
+}
+
+const handleEventSubmit =(e) =>{
+  e.preventDefault()
+  axios.post('http://localhost:8081/newsAndEvents/create',
+  {breweryId, name, eventDate, description}, 
+{headers: {
+  'Authorization' : `Bearer ${props.props.token.token}`}
+})
+ {console.log({breweryId, name, eventDate, description})}
 }
 
     return(
@@ -221,16 +232,16 @@ const handleClick=(e) =>{
                     <form>
                 <Grid container spacing={1}>
                   <Grid xs={12} sm={6} item>
-                    <TextField placeholder="Enter Event Name" label="Event Name" variant="outlined" fullWidth required />
+                    <TextField placeholder="Enter Event Name" label="Event Name" variant="outlined" fullWidth  value={name} onChange={(e) => setBeerName(e.target.value)} required />
                   </Grid>
                   <Grid xs={12} sm={6} item>
-                    <TextField placeholder="Enter Event Date" label="Event Date" variant="outlined" fullWidth required />
+                    <TextField placeholder="Enter Event Date" label="Event Date" variant="outlined" fullWidth required  value={eventDate} onChange={(e) => seteventDate(e.target.value)}/>
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField label="Event Description" multiline rows={7} placeholder="Enter Event Descriptioon" variant="outlined" fullWidth required />
+                    <TextField label="Event Description" multiline rows={7} placeholder="Enter Event Descriptioon" variant="outlined" fullWidth value={description} onChange={(e) => setBeerDescription(e.target.value)} required />
                   </Grid>
                   <Grid item xs={12}>
-                    <Button type="submit" variant="contained" color="primary" fullWidth>Add Event</Button>
+                    <Button type="submit" variant="contained" color="primary" fullWidth onClick={handleEventSubmit} >Add Event</Button>
                   </Grid>
   
                 </Grid>
@@ -317,24 +328,7 @@ const handleClick=(e) =>{
           </Typography>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                     {/* <img src={image7}></img> */}
-                    {filteredEvents.map((event,index) =>(
-                            (
-                <Paper elevation= {5} style = {PaperStyle4} key ={event}>
-                    <Grid container direction="row" justifyContent="center" alignItems="center">
-                    EVENT NAME: {event.name} <br/>
-                    EVENT DATE: {event.eventDate} <br/>
-                    EVENT DESCRIPTION: {event.description}
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                            DELETE ITEM
-                            </Typography>
-                        </Button>
-                    </Grid>
-                    </Grid>
-
-                </Paper>)
-            ))}
+                    
                    
                     
                     </Grid>

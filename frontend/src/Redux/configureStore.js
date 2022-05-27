@@ -8,6 +8,7 @@ export const ConfigureStore = () => {
         combineReducers({
             token: Token,
             user: User
+            
         }),
         applyMiddleware(thunk)
     );
