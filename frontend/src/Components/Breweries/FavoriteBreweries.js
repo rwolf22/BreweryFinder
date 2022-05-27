@@ -36,7 +36,6 @@ export default function FavoriteBreweries(props){
 
     
     function removeBrewery(breweryName){
-        console.log("Removed Brewery")
         fetch(baseUrl + "/brewery/favorites/" + props.props + "/remove/" + breweryName, {
             method: 'DELETE',
         })
@@ -44,7 +43,6 @@ export default function FavoriteBreweries(props){
                 return response.text();
             })
             .then((data) => {
-                console.log('Brewery Deleted');
                 getBreweries();
             })
     }

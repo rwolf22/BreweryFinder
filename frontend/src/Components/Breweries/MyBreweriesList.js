@@ -25,7 +25,6 @@ export default function MyBreweriesList(props){
 
     useEffect(() =>{
         getBreweries();
-        console.log(props.props)
     },[])
 
 

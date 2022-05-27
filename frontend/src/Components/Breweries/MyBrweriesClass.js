@@ -28,7 +28,6 @@ class MyBreweries extends Component{
             address: '',
             description: ' ',
             image: '  ',
-            breweries: [{}]
         }
         
     }
@@ -40,7 +39,8 @@ class MyBreweries extends Component{
         })
     }
     
-    handleSubmit = () => {
+    handleSubmit = (e) => {
+      e.preventDefault();
         const data = {ownerId: this.props.props.user.id, name: this.state.name, address: this.state.address, description: this.state.description, image: this.state.image}
         axios.post(baseUrl + '/brewery/create', 
             {
@@ -54,23 +54,13 @@ class MyBreweries extends Component{
             headers: {
               'Authorization' : `Bearer ${this.props.props.token.token}`
     }})
-            console.log(data)
     }
 
     render(){
-      function getMyBreweries(){
-        fetch("http://localhost:8081/brewery/all")
-        .then(res => res.json())
-        .then((result) => {
-            this.setState({breweries : result});
-            }
-        )
-      }
         return(
             <div>
             <>
             <Grid>
-                {console.log(this.state.breweries)}
                 <Paper elevation={0} style = {PaperStyle}>
                 <Typography
             variant="h2"
