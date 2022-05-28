@@ -10,13 +10,15 @@ import { baseUrl } from '../../Shared/baseUrl'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import { Description } from '@mui/icons-material';
+import { height } from '@mui/system';
 
 
 
 const PaperStyle = { height:'auto', width:'95%', margin: "20px auto"}
 const PaperStyle2 = { height:'auto', width:'70%', margin: "20px auto"}
 const PaperStyle3 = { height:'auto', width:'60%', margin: "20px auto"}
-const PaperStyle2Edited = { height:'auto', width:'30%', margin: "20px auto"}
+const PaperStyle2Edited = { minHeight: 350, width:'30%', margin: "20px auto"}
 const PaperStyle4 = { height:'650px', width:'48%', margin: "auto auto"}
 
 const LeaveStyle = { height:'50%', width:'80%', margin: "10px auto"}
@@ -119,6 +121,13 @@ export default function SelectedBreweryMenu(props){
             setOpen(false);
         };
 
+
+      const [isReadMoreShown, setReadMoreShown] = useState(false);
+
+      const toggleBtn = () =>{
+          setReadMoreShown(prevState => !prevState)
+      }
+
     return(
         <div>
             <>
@@ -171,7 +180,7 @@ export default function SelectedBreweryMenu(props){
             VIEW OUR BEERS BELOW  
           </Typography>
                     </Paper>
-                    <Grid container direction="row" justifyContent="center" alignItems="center" >
+                    <Grid container direction="column" justifyContent="center" alignItems="center" >
                     <Grid container direction="row" justifyContent="center" alignItems="center">   
                          {filterdBeers.map(beer =>(
                 <Paper elevation={5} style = {PaperStyle2Edited} key = {beer}>
@@ -197,13 +206,39 @@ export default function SelectedBreweryMenu(props){
                     NAME: {beer.name} <br/><br/>
                     TYPE: {beer.type}<br/><br/>
                     ABV: {beer.abv}<br/><br/>
-                    DESCRIPTION: {beer.description}<br/><br/>
-                    ID: {beer.beerId}
+                    {isReadMoreShown ? (beer.description) :  (beer.description).substr(0,180)}
+                    <Button onClick={toggleBtn}>
+                        {isReadMoreShown ? <Typography
+                            variant="p"
+                            noWrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            }}
+                        > 
+                                READ LESS
+                            </Typography> : <Typography
+                            variant="p"
+                            noWrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            }}
+                        > 
+                                READ MORE
+                            </Typography>} 
+                        </Button><br/>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                     <Button onClick={handleOpen}>REVIEWS</Button>
                         <Modal
                             open={open}
-                            onClose={handleClose}
+                            onClose={handleClose}   
                             aria-labelledby="parent-modal-title"
                             aria-describedby="parent-modal-description"
                         >
