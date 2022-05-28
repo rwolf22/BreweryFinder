@@ -57,6 +57,7 @@ class Main extends Component {
             <div>
                 {this.props.token.token !== undefined ?
                         <div>
+                            {console.log(this.props)}
                             <PageAppBar/>
                             <Link to='/breweryhome'>Home | </Link>
                             <Link to='/login' onClick={this.handleLogout}>logout | </Link> 
@@ -69,7 +70,7 @@ class Main extends Component {
                             <Route path='/breweryhome' component={() => <BreweryHome props={this.props.user.username}/>}/>
                             <Route path="/MyBreweries/:id/manage"  component={() => <MyBreweryManage props={this.props}/>}/>
                             <Route path='/MyBreweries' component={() => <MyBreweries props={this.props}/>} />
-                            <Route path='/selectedbrewery/:id/Menu'  component={this.props.token.token !== undefined ? () => <SelectedBreweryMenu props={this.props.user.username}/> : null}/>
+                            <Route path='/selectedbrewery/:id/Menu'  component={this.props.token.token !== undefined ? () => <SelectedBreweryMenu props={this.props}/> : null}/>
                             <Route path='/selectedbrewery/:id/OurEvents' component={this.props.token.token !== undefined ? () => <SelectedBreweryEvents/> : null}/>
                             <Route path="/selectedbrewery/:id" component={this.props.token.token !== undefined ? () => <SelectedBreweryHome/> : null}/>
                         </div>  
