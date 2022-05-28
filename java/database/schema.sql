@@ -84,7 +84,7 @@ CREATE TABLE review (
 CREATE TABLE news_events (
 	news_events_id int DEFAULT nextval('seq_news_events_id'),
 	brewery_id int NOT NULL,
-	name varchar(50) NOT NULL,
+	event_name varchar(50) NOT NULL,
 	event_date DATE NOT NULL,
 	description varchar(200),
 	CONSTRAINT PK_news_events PRIMARY KEY (news_events_id)
@@ -127,7 +127,7 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
 INSERT INTO brewery (owner_id, name, address, description) VALUES (2, 'Sinistral Brewing Co.', '123 North Street', 'We are a 5 barrel brewery, dedicated to crafting exceptional beers. Direct from owner and head brewer Blane Perry''s passion for the art of brewing, we offer a selection of signature beers, rotating seasonal specialties and experimental beers using locally sourced ingredients. Flight tastings, pints and crowler fills are available in our tasting room.');
 INSERT INTO brewery (owner_id, name, address, description) VALUES (2, 'Eavesdrop Brewery', '456 South Ave.', 'Eavesdrop Brewery craft beers are a unique mix of local ingredients, fresh flavors, and new twists on classic beers. We take pride in what we brew and are always thinking outside the box!');
 INSERT INTO brewery (owner_id, name, address, description) VALUES (2, 'Tucked Away Brewing Co.', '789 East Blvd.', 'Tucked Away Brewing Company is a Veteran-owned craft brewery in the City of Manassas founded by beer enthusiasts who turned their passion for home brewing into a full-scale brewery. The focus for each batch is to make and share amazing beer. The name says it all, it is Tucked Away, but as the owners learned through their travels, along every journey are the great tucked away places that make it worth it!');
-INSERT INTO brewery (owner_id, name, address, description) VALUES (2, '2 Silos Brewing Co.', '987 West Rd.', 'From lagers to barrel-aged stouts, we at 2 Silos Brewing Co. pride ourselves on creating high-quality, delicious craft beer offerings while respecting our environment and playing an active role in our community.Located on the campus of Farm Brew LIVE at Innovation Park in Prince William County, VA, we are a premier destination brewery. A place for family and friends to come together and enjoy craft beer, food, cocktails, and live music.  We’re a family committed to bringing the best that local brewers, chefs, and entertainers have to offer in one unforgettable experience.')
+INSERT INTO brewery (owner_id, name, address, description) VALUES (2, '2 Silos Brewing Co.', '987 West Rd.', 'From lagers to barrel-aged stouts, we at 2 Silos Brewing Co. pride ourselves on creating high-quality, delicious craft beer offerings while respecting our environment and playing an active role in our community.Located on the campus of Farm Brew LIVE at Innovation Park in Prince William County, VA, we are a premier destination brewery. A place for family and friends to come together and enjoy craft beer, food, cocktails, and live music.  We’re a family committed to bringing the best that local brewers, chefs, and entertainers have to offer in one unforgettable experience.');
 
 --Beer
 INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (1, 'Summerteeth Hard Seltzer', 'Hard Seltzer', 4.6, 'If beer''s not your thing, you''ll love our hard seltzer. Enjoy it straight from the tap either unflavored or with Pineapple or Prickly Pear Key Lime.');
@@ -177,10 +177,10 @@ INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (4, 'Dos Silo
 INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (4, 'Cold Boi', 'Lager', 5.2, 'A tasty cold boi based on a traditional Maibock. This crushable malty golden lager is here to welcome longer days and warmer weather.');
 
 --Events
-INSERT INTO news_events (brewery_id, name, event_date, description) VALUES (1, 'Bingo Night', '2022-06-01', 'Every Wednesdy night from 9pm-close is BINGO NIGHT! Bring a friend, grab a beer, and try to win gift card to many local stores and restaurants.');
-INSERT INTO news_events (brewery_id, name, event_date, description) VALUES (1, 'Trivia Night', '2022-06-02', 'Every Thursday night from 9pm-close is TRIVIA NIGHT! Bring a friend, grab a beer, and try to win gift card to many local stores and restaurants.');
-INSERT INTO news_events (brewery_id, name, event_date, description) VALUES (1, 'Food Truck Week', '2022-06-06', 'All week we will have a new food truck on site each day.');
-INSERT INTO news_events (brewery_id, name, event_date, description) VALUES (1, '50% Off Pint Glasses', '2022-06-10', 'Come in and get yourself a Twin Barrel pint glass for half price.');
+INSERT INTO news_events (brewery_id, event_name, event_date, description) VALUES (1, 'Bingo Night', '2022-06-01', 'Every Wednesdy night from 9pm-close is BINGO NIGHT! Bring a friend, grab a beer, and try to win gift card to many local stores and restaurants.');
+INSERT INTO news_events (brewery_id, event_name, event_date, description) VALUES (1, 'Trivia Night', '2022-06-02', 'Every Thursday night from 9pm-close is TRIVIA NIGHT! Bring a friend, grab a beer, and try to win gift card to many local stores and restaurants.');
+INSERT INTO news_events (brewery_id, event_name, event_date, description) VALUES (1, 'Food Truck Week', '2022-06-06', 'All week we will have a new food truck on site each day.');
+INSERT INTO news_events (brewery_id, event_name, event_date, description) VALUES (1, '50% Off Pint Glasses', '2022-06-10', 'Come in and get yourself a Twin Barrel pint glass for half price.');
 
 --Reviews
 INSERT INTO review (beer_id, author, rating, review) VALUES (1, 'Michele', 4, 'I''m not a big fan of beer and this is a great alternative.');
