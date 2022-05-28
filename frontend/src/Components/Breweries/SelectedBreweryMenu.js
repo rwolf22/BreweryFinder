@@ -12,6 +12,7 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { Description } from '@mui/icons-material';
 import { height } from '@mui/system';
+import ReviewModal from './ReviewModal';
 
 
 
@@ -28,7 +29,6 @@ export default function SelectedBreweryMenu(props){
 
     const [beers, setBeers] = useState([]);
     const [breweries, setBreweries] = useState([]);
-    const [reviews, setReviews] = useState([]);
     const [rating, setRating] = useState();
     const [review, setReview] = useState("");
     const{ id } = useParams();
@@ -54,18 +54,7 @@ export default function SelectedBreweryMenu(props){
         )
     }
 
-    function getReviews(){
-        fetch("http://localhost:8081/review/all")
-        .then(res => res.json())
-        .then((result) => {
-            setReviews(result);
-            }
-        )
     
-    }
-    // const filteredReviews = reviews.filter(review =>{
-    //     return review.beerId === 
-    // })
     
 
     function getBreweries(){
@@ -92,7 +81,6 @@ export default function SelectedBreweryMenu(props){
     useEffect(() =>{
         getBeers();
         getBreweries();
-        getReviews();
     },[])
 
     function addToFavorites(beerName){
@@ -172,7 +160,7 @@ export default function SelectedBreweryMenu(props){
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
+              letterSpacing: '.2rem',
               color: '#2E3B55',
               textDecoration: 'none',
             }}
@@ -206,6 +194,7 @@ export default function SelectedBreweryMenu(props){
                     NAME: {beer.name} <br/><br/>
                     TYPE: {beer.type}<br/><br/>
                     ABV: {beer.abv}<br/><br/>
+                    ID: {beer.beerId}<br/>
                     {isReadMoreShown ? (beer.description) :  (beer.description).substr(0,180)}
                     <Button onClick={toggleBtn}>
                         {isReadMoreShown ? <Typography
@@ -235,87 +224,7 @@ export default function SelectedBreweryMenu(props){
                             </Typography>} 
                         </Button><br/>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                    <Button onClick={handleOpen}>REVIEWS</Button>
-                        <Modal
-                            open={open}
-                            onClose={handleClose}   
-                            aria-labelledby="parent-modal-title"
-                            aria-describedby="parent-modal-description"
-                        >
-                            <Box sx={{ ...style, width: '1300px'}}>
-                            <Grid
-                                container
-                                direction="row"
-                                justifyContent="center"
-                                alignItems="center"
-                                >
-                                 <Paper elevation={0} style = {PaperStyle4} >
-                                 <Typography
-                            variant="h3"
-                            noWrap
-                            justifyContent="center"
-                            sx={{
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 900,
-                            color: '#2E3B55',
-                            }}
-                        > 
-                                REVIEWS
-                            </Typography>
-                            <Paper elevation={0}>
-                            {reviews.map((review, index) =>(
-                                index < 6  &&  (
-                                 <Paper elevation={5}  style = {ReviewStyle} key = {review}>
-                                    NAME: {review.author} <br/>
-                                    RATING: {review.rating} <br/>
-                                    REVIEW: {review.review}
-                                </Paper>)
-                                    ))}
-
-                            </Paper>
-                                 </Paper>
-                                 <Paper elevation={0} style = {PaperStyle4} >
-                                 <Typography
-                            variant="h3"
-                            noWrap
-                            justifyContent="center"
-                            sx={{
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 900,
-                            color: '#2E3B55',
-                            }}
-                        > 
-                                LEAVE REVIEW
-                            </Typography>
-                            <Paper elevation={0} style={LeaveStyle}>
-                            <Grid container direction="row" justifyContent="center" alignItems="flex-center">   
-                    <form>
-                            <Grid container spacing={1}>
-                            
-                            <Grid xs={12} item>
-                                <TextField type="number" value={rating} onChange={(e) => setRating(e.target.value)} 
-                                placeholder="Enter Rating" label="Rating" variant="outlined" fullWidth required />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField label="Review" multiline rows={4} value={review} onChange={(e) => setReview(e.target.value)} 
-                                placeholder="Enter Beer Review" variant="outlined" fullWidth  required />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Button type="submit" variant="contained" color="primary" fullWidth onClick={handleReviewClick} >Add Item</Button>
-                            </Grid>
-            
-                            </Grid>
-                        </form>
-
-                    </Grid>
-
-                            </Paper>
-                                 </Paper>
-                            </Grid>
-                            </Box>
-                        </Modal>
+                    <ReviewModal props={beer.beerId}/>
                     </Grid>
                     </Grid>
                     
