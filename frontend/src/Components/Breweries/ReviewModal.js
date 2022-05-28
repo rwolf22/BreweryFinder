@@ -23,21 +23,21 @@ const LeaveStyle = { height:'50%', width:'80%', margin: "10px auto"}
 const ReviewStyle = { height:'99%', width:'80%', margin: "10px auto"}
 
 
-export default function ReviewModal(props){
+export default function ReviewModal({name,props}){
     
     const [reviews, setReviews] = useState([]);
     const [rating, setRating] = useState();
     const [review, setReview] = useState("");
     const beer_id = props;
     
-    const author = "test";
+    const author = name.user.username;
     const handleReviewClick=(e) =>{
         e.preventDefault()
       
         axios.post('http://localhost:8081/review/create',
           {beer_id, author, rating, review},
           {headers: {
-            'Authorization' : `Bearer ${props.props.token.token}`}
+            'Authorization' : `Bearer ${name.token.token}`}
           })
 }
 
@@ -65,7 +65,7 @@ export default function ReviewModal(props){
     
     }
     const filteredReviews = reviews.filter(review =>{
-        return review.beer_id == props.props;
+        return review.beer_id == props;
     })
 
 
@@ -83,7 +83,6 @@ export default function ReviewModal(props){
 
     return(
         <>
-        {console.log(filteredReviews)}
 <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                     <Button onClick={handleOpen}>REVIEWS</Button>
                         <Modal

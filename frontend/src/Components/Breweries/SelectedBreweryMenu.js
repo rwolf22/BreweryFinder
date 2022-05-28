@@ -224,7 +224,7 @@ export default function SelectedBreweryMenu(props){
                             </Typography>} 
                         </Button><br/>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                    <ReviewModal props={beer.beerId}/>
+                    <ReviewModal name={props.props} props={beer.beerId}/>
                     </Grid>
                     </Grid>
                     
