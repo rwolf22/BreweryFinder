@@ -9,4 +9,6 @@ public interface ReviewDao {
     List<Review> getAll();
 
     boolean create (Review newReview);
+
+    boolean delete (Long reviewId);
 }

@@ -12,6 +12,8 @@ public interface BeerDao {
 
     List<Beer> getFavorites(String username);
 
+    boolean deleteBeer(Long beerId);
+
     boolean favoriteExists(String username, String beerName);
 
     boolean addFavorite(String username, String beerName);

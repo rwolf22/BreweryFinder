@@ -31,4 +31,10 @@ public class NewsAndEventsController {
     public boolean create(@RequestBody @Valid NewsAndEvents event) {
         return newsAndEventsDao.create(event);
     }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(path = "/delete/{eventId}", method = RequestMethod.DELETE)
+    public boolean delete(@PathVariable Long eventId) {
+        return newsAndEventsDao.delete(eventId);
+    }
 }

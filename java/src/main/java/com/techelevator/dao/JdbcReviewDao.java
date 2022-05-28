@@ -36,6 +36,13 @@ public class JdbcReviewDao implements ReviewDao{
         return rowsUpdated > 0;
     }
 
+    @Override
+    public boolean delete(Long reviewId) {
+        String sql = "DELETE FROM review WHERE review_id = ?;";
+        int rowsDeleted = jdbcTemplate.update(sql, reviewId);
+        return rowsDeleted == 1;
+    }
+
     private Review mapRowToReview(SqlRowSet rowSet) {
         Review review = new Review();
         review.setReview_id(rowSet.getLong("review_id"));

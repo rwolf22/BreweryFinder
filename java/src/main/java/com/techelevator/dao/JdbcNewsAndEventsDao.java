@@ -32,10 +32,17 @@ public class JdbcNewsAndEventsDao implements NewsAndEventsDao{
 
     @Override
     public boolean create(NewsAndEvents event) {
-        String sql = "INSERT INTO news_events (brewery_id, name, event_date, description) " +
+        String sql = "INSERT INTO news_events (brewery_id, event_name, event_date, description) " +
                 "VALUES(?, ?, ?, ?);";
-        int rowsUpdated = jdbcTemplate.update(sql, event.getBreweryId(), event.getName(), event.getEventDate(), event.getDescription());
+        int rowsUpdated = jdbcTemplate.update(sql, event.getBreweryId(), event.getEventName(), event.getEventDate(), event.getDescription());
         return rowsUpdated > 0;
+    }
+
+    @Override
+    public boolean delete(Long eventId) {
+        String sql = "DELETE FROM news_events WHERE news_events_id = ?;";
+        int rowsDeleted = jdbcTemplate.update(sql, eventId);
+        return rowsDeleted == 1;
     }
 
     private NewsAndEvents mapRowToNewsAndEvents (SqlRowSet rowSet) {
@@ -43,7 +50,7 @@ public class JdbcNewsAndEventsDao implements NewsAndEventsDao{
         event.setNewsEventsId(rowSet.getLong("news_events_id"));
         event.setBreweryId(rowSet.getLong("brewery_id"));
         event.setBreweryName(breweryDao.getNameById(event.getBreweryId()));
-        event.setName(rowSet.getString("name"));
+        event.setEventName(rowSet.getString("event_name"));
         event.setEventDate(rowSet.getDate("event_date").toLocalDate());
         event.setDescription(rowSet.getString("description"));
         return event;

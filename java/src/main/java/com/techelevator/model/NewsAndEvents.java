@@ -10,7 +10,7 @@ public class NewsAndEvents {
     private Long breweryId;
     private String breweryName;
     @NotNull
-    private String name;
+    private String eventName;
     @NotNull
     private LocalDate eventDate;
     @NotNull
@@ -19,11 +19,11 @@ public class NewsAndEvents {
     public NewsAndEvents() {
     }
 
-    public NewsAndEvents(Long newsEventsId, Long breweryId, String breweryName, String name, LocalDate eventDate, String description) {
+    public NewsAndEvents(Long newsEventsId, Long breweryId, String breweryName, String eventName, LocalDate eventDate, String description) {
         this.newsEventsId = newsEventsId;
         this.breweryId = breweryId;
         this.breweryName = breweryName;
-        this.name = name;
+        this.eventName = eventName;
         this.eventDate = eventDate;
         this.description = description;
     }
@@ -52,12 +52,12 @@ public class NewsAndEvents {
         this.breweryName = breweryName;
     }
 
-    public String getName() {
-        return name;
+    public String getEventName() {
+        return eventName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
     public LocalDate getEventDate() {

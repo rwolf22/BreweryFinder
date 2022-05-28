@@ -33,6 +33,12 @@ public class BreweryController {
         return breweryDao.create(newBrewery);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(path = "/delete/{breweryId}", method = RequestMethod.DELETE)
+    public boolean delete(@PathVariable Long breweryId) {
+        return breweryDao.deleteBrewery(breweryId);
+    }
+
     @RequestMapping(path = "/favorites/{username}/all", method = RequestMethod.GET)
     public List<Brewery> getFavorites(@PathVariable String username) {
         return breweryDao.getFavorites(username);

@@ -38,6 +38,8 @@ public class JdbcBeerDao implements BeerDao{
         return rowsUpdated == 1;
     }
 
+
+
     @Override
     public List<Beer> getFavorites(String username) {
         List<Beer> favorites = new ArrayList<>();
@@ -50,6 +52,13 @@ public class JdbcBeerDao implements BeerDao{
             favorites.add(mapRowToBeer(results));
         }
         return favorites;
+    }
+
+    @Override
+    public boolean deleteBeer(Long beerId) {
+        String sql = "DELETE FROM beer WHERE beer_id = ?;";
+        int rowsDeleted = jdbcTemplate.update(sql, beerId);
+        return rowsDeleted == 1;
     }
 
     @Override

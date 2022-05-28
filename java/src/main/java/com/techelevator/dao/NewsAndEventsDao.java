@@ -9,4 +9,6 @@ public interface NewsAndEventsDao {
     List<NewsAndEvents> getAll();
 
     boolean create(NewsAndEvents event);
+
+    boolean delete(Long eventId);
 }

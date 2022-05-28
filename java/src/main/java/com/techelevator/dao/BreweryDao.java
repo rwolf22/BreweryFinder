@@ -10,6 +10,8 @@ public interface BreweryDao {
 
     boolean create(Brewery newBrewery);
 
+    boolean deleteBrewery (Long breweryId);
+
     List<Brewery> getFavorites(String username);
 
     boolean favoriteExists(String username, String breweryName);

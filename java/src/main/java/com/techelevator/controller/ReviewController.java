@@ -25,10 +25,14 @@ public class ReviewController {
         return reviewDao.getAll();
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     public boolean create(@RequestBody @Valid Review newReview) {
         return reviewDao.create(newReview);
+    }
+
+    @RequestMapping(path = "/delete/{reviewId}", method = RequestMethod.DELETE)
+    public boolean delete(@PathVariable Long reviewId) {
+        return reviewDao.delete(reviewId);
     }
 }

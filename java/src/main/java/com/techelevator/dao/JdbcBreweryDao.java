@@ -37,6 +37,13 @@ public class JdbcBreweryDao implements BreweryDao{
     }
 
     @Override
+    public boolean deleteBrewery(Long breweryId) {
+        String sql = "DELETE FROM brewery WHERE brewery_id =?;";
+        int rowsDeleted = jdbcTemplate.update(sql, breweryId);
+        return rowsDeleted == 1;
+    }
+
+    @Override
     public List<Brewery> getFavorites(String username) {
         List<Brewery> favorites = new ArrayList<>();
         String sql = "SELECT * FROM brewery " +
