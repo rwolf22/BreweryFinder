@@ -194,7 +194,6 @@ export default function SelectedBreweryMenu(props){
                     NAME: {beer.name} <br/><br/>
                     TYPE: {beer.type}<br/><br/>
                     ABV: {beer.abv}<br/><br/>
-                    ID: {beer.beerId}<br/>
                     {isReadMoreShown ? (beer.description) :  (beer.description).substr(0,180)}
                     <Button onClick={toggleBtn}>
                         {isReadMoreShown ? <Typography
