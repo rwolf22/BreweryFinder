@@ -39,7 +39,9 @@ export default function MyBreweryManage(props){
           }
       )
   }
-  
+  const filteredEvents = events.filter(event =>{
+    return event.breweryId == id;
+  })
     
     
     
@@ -328,7 +330,23 @@ const handleEventSubmit =(e) =>{
           </Typography>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                     {/* <img src={image7}></img> */}
-                    
+                    {filteredEvents.map((event,index) =>(
+                      (
+                        <Paper elevation= {5} style = {PaperStyle4} key ={event}>
+                    <Grid container direction="row" justifyContent="center" alignItems="center">
+                    NAME: {event.name} <br/><br/>
+                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
+                        <Button >
+                            <Typography variant='p'>
+                            DELETE ITEM
+                            </Typography>
+                        </Button>
+                    </Grid>
+                    </Grid>
+
+                </Paper>
+                      )
+                    ))}
                    
                     
                     </Grid>
