@@ -160,7 +160,7 @@ class MyBreweries extends Component{
                     </Paper>
                     </Paper>
                     <Paper elevation={5} style = {PaperStyle2Events}>
-                    <MyBreweriesList props={this.props.props.user.id}/> 
+                    <MyBreweriesList user={this.props.props.token} props={this.props.props.user.id}/> 
                     </Paper>
                     </Grid>
                     
