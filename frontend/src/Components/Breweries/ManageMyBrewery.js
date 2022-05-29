@@ -120,16 +120,18 @@ const handleClick=(e) =>{
           'Authorization' : `Bearer ${props.props.token.token}`}
         })
         getBeers();
+        getBeers();
 }
 
 const handleEventSubmit =(e) =>{
   e.preventDefault()
   axios.post('http://localhost:8081/newsAndEvents/create',
-  {breweryId, eventName, eventDate, description}, 
-{headers: {
-  'Authorization' : `Bearer ${props.props.token.token}`}
-})
- {console.log({breweryId, name, eventDate, description})}
+    {breweryId, eventName, eventDate, description}, 
+  {headers: {
+    'Authorization' : `Bearer ${props.props.token.token}`}
+  })
+  getEvents();
+  getEvents();
 }
 
     return(
