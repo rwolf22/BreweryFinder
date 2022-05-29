@@ -179,6 +179,15 @@ export default function SelectedBreweryHome(){
       </Link>
           </Typography>
                     <Grid container direction="row" justifyContent="center" alignItems="center">   
+                    {filteredEvents.map((event,index) =>(
+                             index < 7 && (
+                <Paper elevation= {1} style = {PaperStyle4} key ={event}>
+                    <Grid container direction="row" justifyContent="center" alignItems="center">
+                    NAME: {event.eventName} <br/><br/>
+                    </Grid>
+
+                </Paper>)
+            ))}
 
                     </Grid>
                     </Paper>
