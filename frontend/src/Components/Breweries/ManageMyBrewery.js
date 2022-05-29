@@ -7,7 +7,7 @@ import React, { useEffect, useState }from 'react';
 import TextField from '@mui/material/TextField';
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
-
+import { baseUrl } from '../../Shared/baseUrl'
 
 const PaperStyle = { height:'auto', width:'95%', margin: "20px auto"}
 const PaperStyle2 = { height:'auto', width:'90%', margin: "20px auto"}
@@ -29,7 +29,10 @@ export default function MyBreweryManage(props){
     const [image, setBeerImage] = useState("");
     const [description, setBeerDescription] = useState("");
     const breweryId = id;
-    const [eventDate, seteventDate] = useState("");
+
+    const [eventName, setEventName] = useState("");
+    const [eventDate, setEventDate] = useState("");
+    const [eventdescription, setEventDescription] = useState("");
     
     function getEvents(){
       fetch("http://localhost:8081/newsAndEvents/all")
@@ -39,9 +42,23 @@ export default function MyBreweryManage(props){
           }
       )
   }
+  
   const filteredEvents = events.filter(event =>{
     return event.breweryId == id;
   })
+  function deleteEvent(event) {
+    fetch(baseUrl + "/newsAndEvents/delete/" + event , {
+      method: 'DELETE',
+      headers: {
+        'Authorization' : `Bearer ${props.props.token.token}`}
+  })
+      .then((response) => {
+          return response.text();
+      })
+      .then((data) => {
+        getEvents();
+      })
+  }
     
     
     
@@ -73,15 +90,17 @@ export default function MyBreweryManage(props){
 })
 
 function deleteBeerItem(beerId) {
-  fetch("http://localhost:8080/beer/" + id + "/delete/" + beerId , {
-      method: 'DELETE',
-  })
-      .then((response) => {
-          return response.text();
-      })
-      .then((data) => {
-        getBeers();
-      })
+  fetch(baseUrl + "/beer/delete/" + beerId , {
+    method: 'DELETE',
+    headers: {
+      'Authorization' : `Bearer ${props.props.token.token}`}
+})
+    .then((response) => {
+        return response.text();
+    })
+    .then((data) => {
+      getBeers();
+    })
 }
 
   useEffect(() =>{
@@ -100,12 +119,13 @@ const handleClick=(e) =>{
         {headers: {
           'Authorization' : `Bearer ${props.props.token.token}`}
         })
+        getBeers();
 }
 
 const handleEventSubmit =(e) =>{
   e.preventDefault()
   axios.post('http://localhost:8081/newsAndEvents/create',
-  {breweryId, name, eventDate, description}, 
+  {breweryId, eventName, eventDate, description}, 
 {headers: {
   'Authorization' : `Bearer ${props.props.token.token}`}
 })
@@ -115,6 +135,7 @@ const handleEventSubmit =(e) =>{
     return(
         <div>
             <>
+            {console.log(props.props.user.username)}
             <Grid>
                 
                 <Paper elevation={0} style = {PaperStyle}>
@@ -234,10 +255,10 @@ const handleEventSubmit =(e) =>{
                     <form>
                 <Grid container spacing={1}>
                   <Grid xs={12} sm={6} item>
-                    <TextField placeholder="Enter Event Name" label="Event Name" variant="outlined" fullWidth  value={name} onChange={(e) => setBeerName(e.target.value)} required />
+                    <TextField placeholder="Enter Event Name" label="Event Name" variant="outlined" fullWidth  value={eventName} onChange={(e) => setEventName(e.target.value)} required />
                   </Grid>
                   <Grid xs={12} sm={6} item>
-                    <TextField  type="date" placeholder="Enter Event Date" label="Event Date" variant="outlined" fullWidth required  value={eventDate} onChange={(e) => seteventDate(e.target.value)}/>
+                    <TextField  type="date" placeholder="Enter Event Date" label="Event Date" variant="outlined" fullWidth required  value={eventDate} onChange={(e) => setEventDate(e.target.value)}/>
                   </Grid>
                   <Grid item xs={12}>
                     <TextField label="Event Description" multiline rows={7} placeholder="Enter Event Descriptioon" variant="outlined" fullWidth value={description} onChange={(e) => setBeerDescription(e.target.value)} required />
@@ -286,19 +307,21 @@ const handleEventSubmit =(e) =>{
           </Typography>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                     {/* <img src={image7}></img> */}
+                    {console.log(events)}
                     {filterdBeers.map((beer,index) =>(
                               (
                 <Paper elevation= {5} style = {PaperStyle4} key ={beer}>
                     <Grid container direction="row" justifyContent="center" alignItems="center">
                     NAME: {beer.name} <br/><br/>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button onClick={()=> deleteBeerItem(beer.id) }>
+                        <Button onClick={()=> deleteBeerItem(beer.beerId) }>
                             <Typography variant='p'>
                             DELETE ITEM
                             </Typography>
                         </Button>
                     </Grid>
                     </Grid>
+                    
 
                 </Paper>)
             ))}
@@ -334,9 +357,9 @@ const handleEventSubmit =(e) =>{
                       (
                         <Paper elevation= {5} style = {PaperStyle4} key ={event}>
                     <Grid container direction="row" justifyContent="center" alignItems="center">
-                    NAME: {event.name} <br/><br/>
+                    NAME: {event.eventName} <br/><br/>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button >
+                        <Button onClick={()=> deleteEvent(event.newsEventsId) }>
                             <Typography variant='p'>
                             DELETE ITEM
                             </Typography>

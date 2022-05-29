@@ -104,7 +104,7 @@ CREATE TABLE favorite_beer (
 	CONSTRAINT FK_brewery_id FOREIGN KEY (beer_id) REFERENCES beer(beer_id)
 );
 
-ALTER TABLE beer
+ALTER TABLE beeraa
 ADD CONSTRAINT FK_brewery_id 
 FOREIGN KEY (brewery_id) REFERENCES brewery(brewery_id);
 
