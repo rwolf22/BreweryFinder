@@ -22,6 +22,7 @@ export default function BreweryHome(props){
     
     const [breweries, setBreweries] = useState([]);
     const breweryName = "Test Brewery";
+    
     function getBreweries(){
         fetch("http://localhost:8081/brewery/all")
         .then(res => res.json())

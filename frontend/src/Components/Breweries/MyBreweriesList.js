@@ -4,12 +4,13 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import React, { useEffect, useState }from 'react';
+import { baseUrl } from '../../Shared/baseUrl'
 
 const PaperStyle4 = { height:'98%', width:'98%', margin: "5px auto"}
 
 const PaperStyle4Events = { height:'98%', width:'98%', margin: "5px auto"}
 
-export default function MyBreweriesList(props){
+export default function MyBreweriesList({user,props}){
     const [breweries, setBreweries] = useState([]);
     function getBreweries(){
         fetch("http://localhost:8081/brewery/all")
@@ -20,8 +21,23 @@ export default function MyBreweriesList(props){
         )
     }
    const filteredBreweries = breweries.filter(brewery =>{
-    return brewery.ownerId === props.props;
+    return brewery.ownerId === props;
     })
+    function deleteBrewery(breweryID) {
+        fetch(baseUrl + "/brewery/delete/" + breweryID , {
+          method: 'DELETE',
+          headers: {
+            'Authorization' : `Bearer ${user.token}`}
+      })
+          .then((response) => {
+              return response.text();
+          })
+          .then((data) => {
+            getBreweries();
+          })
+      }
+
+
 
     useEffect(() =>{
         getBreweries();
@@ -64,6 +80,13 @@ export default function MyBreweriesList(props){
                                 MANAGE BREWERY</Link>
                             </Typography>
                         </Button>
+                        <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
+                        <Button onClick={()=> deleteBrewery(brewery.breweryId) }>
+                            <Typography variant='p'>
+                            DELETE BREWERY
+                            </Typography>
+                        </Button>
+                    </Grid>
                     </Grid>
                     </div></Paper>
                     ))}

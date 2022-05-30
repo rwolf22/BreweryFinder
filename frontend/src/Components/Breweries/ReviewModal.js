@@ -39,6 +39,7 @@ export default function ReviewModal({name,props}){
           {headers: {
             'Authorization' : `Bearer ${name.token.token}`}
           })
+          getReviews();
 }
 
     const style = {
