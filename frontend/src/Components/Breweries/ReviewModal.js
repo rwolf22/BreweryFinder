@@ -37,17 +37,17 @@ export default function ReviewModal({name,props}){
     const author = name.user.username;
     const handleReviewClick=(e) =>{
         e.preventDefault()
-      
-        axios.post('http://localhost:8081/review/create',
+      if(rating  < 6 && rating > 0){
+          axios.post('http://localhost:8081/review/create',
           {beer_id, author, rating, review},
           {headers: {
             'Authorization' : `Bearer ${name.token.token}`}
           })
-          .then((response) => {
-            alert("Review Created");
-          }, (error) => {
-            alert("Error adding Review");
-          });
+          alert("Review Created");
+        }else{
+            alert("Please enter a number between 1-5");
+        }
+          
 }
 
     const style = {
