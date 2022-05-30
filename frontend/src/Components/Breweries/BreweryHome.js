@@ -12,7 +12,7 @@ import {Link} from 'react-router-dom'
 
 const PaperStyle = { height:'auto', width:'95%', margin: "20px auto"}
 const PaperStyle2 = { height:'auto', width:'90%', margin: "20px auto"}
-const PaperStyle3 = { height:'auto', width:'60%', margin: "20px auto"}
+const PaperStyle3 = { height:'900px', width:'90%', margin: "20px auto"}
 const PaperStyle4 = { height:'auto', width:'99%', margin: "auto auto"}
 
 
@@ -54,8 +54,8 @@ export default function BreweryHome(props){
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
+              fontFamily: 'San Francisco',
+              fontWeight: 600,
               letterSpacing: '.3rem',
               color: '#2E3B55',
               textDecoration: 'none',
@@ -76,7 +76,7 @@ export default function BreweryHome(props){
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
+              fontFamily: 'San Francisco',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: '#2E3B55',
@@ -86,35 +86,57 @@ export default function BreweryHome(props){
             FIND A BREWERY NEAR YOU
           </Typography>
                     </Paper>
-                    <Paper elevation={5} style = {PaperStyle2}>
+                    <Paper elevation={0} style = {PaperStyle2}>
                         <br/>
                     <Paper elevation={0} style = {PaperStyle4}>
                         
                     {breweries.map(brewery =>(
                 <Paper elevation= {9} style = {{margin:'10px', padding: "15px", textAlign: "center"}} key ={brewery.breweryId}>
                     
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button onClick ={()=> addToFavorites(brewery.name)}>
-                        <Typography
+                    
+                    <Typography
+                            variant="h4"
+                            noWrap
+                            justifyContent="flex-start"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'San Francisco',
+                            fontWeight: 900,
+                            color: '#274785',
+                            }}
+                        > 
+                                {brewery.name}
+                            </Typography> 
+                            <Typography
                             variant="p"
                             noWrap
-                            justifyContent="center"
+                            justifyContent="flex-start"
                             sx={{
                             display: { xs: 'none', md: 'flex' },
                             fontFamily: 'monospace',
                             fontWeight: 900,
+                            color: '#abc1eb',
+                            }}
+                        > 
+                                {brewery.address}
+                            </Typography>
+                            <Typography
+                            variant="subtitle2: 'h6'"
+                            Wrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'San Francisco',
+                            fontWeight: 900,
                             color: '#2E3B55',
                             }}
                         > 
-                                ADD TO FAVORITES
+                                {brewery.description}
                             </Typography>
-                        </Button> 
+                            <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
+                        
                         
                     </Grid>
-                    NAME: {brewery.name} <br/><br/>
-                    ADDRESS: {brewery.address}<br/><br/>
-                    description: {brewery.description}<br/><br/>
-                    image: {brewery.image}<br/><br/>
                     
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                         <Button>
@@ -140,8 +162,25 @@ export default function BreweryHome(props){
                             </Typography>
                         </Button> 
                         
+                        
                     </Grid>
-                    
+                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">  
+                    <Button onClick ={()=> addToFavorites(brewery.name)}>
+                        <Typography
+                            variant="p"
+                            noWrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            }}
+                        > 
+                                ADD TO FAVORITES
+                            </Typography>
+                        </Button> 
+                        </Grid>
 
                 </Paper>
             ))}
@@ -149,17 +188,7 @@ export default function BreweryHome(props){
                     </Paper>
                     </Paper>
 
-                    <Grid  align="left">
-                    <p>
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    </Grid>
+                    
                     </Paper>
                 </Paper> 
             </Grid>

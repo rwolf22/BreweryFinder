@@ -12,6 +12,10 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { Description } from '@mui/icons-material';
 import { height } from '@mui/system';
+import Rating from '@mui/material/Rating';
+import PersonIcon from '@mui/icons-material/Person';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
 
 const PaperStyle = { height:'auto', width:'95%', margin: "20px auto"}
 const PaperStyle2 = { height:'auto', width:'70%', margin: "20px auto"}
@@ -39,7 +43,11 @@ export default function ReviewModal({name,props}){
           {headers: {
             'Authorization' : `Bearer ${name.token.token}`}
           })
-          getReviews();
+          .then((response) => {
+            alert("Review Created");
+          }, (error) => {
+            alert("Error adding Review");
+          });
 }
 
     const style = {
@@ -80,12 +88,30 @@ export default function ReviewModal({name,props}){
 
     useEffect(() =>{
         getReviews();
+
     },[])
 
+   
     return(
         <>
 <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                    <Button onClick={handleOpen}>REVIEWS</Button>
+                        
+                    <Button onClick={handleOpen}>
+                        <Typography
+                            variant="p"
+                            component="a"
+                            noWrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            }}
+                        >REVIEWS</Typography>
+                    </Button> 
+                            
+                    
                         <Modal
                             open={open}
                             onClose={handleClose}   
@@ -117,9 +143,46 @@ export default function ReviewModal({name,props}){
                             {filteredReviews.map((review, index) =>(
                                 index < 6  &&  (
                                  <Paper elevation={5}  style = {ReviewStyle} key = {review}>
-                                    NAME: {review.author} <br/>
-                                    RATING: {review.rating} <br/>
-                                    REVIEW: {review.review}
+                                     
+                                     <Stack
+  direction="row"
+  justifyContent="flex-start"
+  alignItems="center"
+  spacing={2}
+>
+                            <Avatar> {review.author.substr(0,1)}</Avatar>
+                            <Typography
+                            variant="p"
+                            noWrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            }}
+                        > 
+                                {review.author}
+                            </Typography>
+                                </Stack>
+                                <Rating name="read-only" value={review.rating} readOnly /><br/>
+                                {
+                                    review.review.length === 0 ? null : 
+                                    <Typography
+                                        variant="p"
+                                        justifyContent="flex-start"
+                                        sx={{
+                                        display: { xs: 'none', md: 'flex' },
+                                        fontFamily: 'monospace',
+                                        fontWeight: 500,
+                                        color: '#2E3B55',
+                                        }}
+                                    > 
+                                    "{review.review}"
+                                    </Typography>
+                                }
+                                
+                                   
                                 </Paper>)
                                     ))}
 
@@ -146,11 +209,13 @@ export default function ReviewModal({name,props}){
                             
                             <Grid xs={12} item>
                                 <TextField type="number" value={rating} onChange={(e) => setRating(e.target.value)} 
-                                placeholder="Enter Rating" label="Rating" variant="outlined" fullWidth required />
+                                placeholder="Enter Rating" label="Rating" variant="outlined"
+                                InputProps={{ inputProps: { min: "1", max: "5", step: "1" } }}
+                                fullWidth required />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField label="Review" multiline rows={4} value={review} onChange={(e) => setReview(e.target.value)} 
-                                placeholder="Enter Beer Review" variant="outlined" fullWidth  required />
+                                placeholder="Enter Beer Review" variant="outlined" fullWidth  />
                             </Grid>
                             <Grid item xs={12}>
                                 <Button type="submit" variant="contained" color="primary" fullWidth onClick={handleReviewClick} >Add Item</Button>

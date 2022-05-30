@@ -52,7 +52,7 @@ class Main extends Component {
     }
 
     render(){
-        
+        // this.props.user.authorities[0].name === "ROLE_USER" ? userstuff || this.props.user.authorities[0].name === "ROLE_admin" ? admin stuff : no role stuff 
         return(
             <div>
                 {this.props.token.token !== undefined ?

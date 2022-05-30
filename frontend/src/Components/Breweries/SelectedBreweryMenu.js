@@ -17,8 +17,8 @@ import ReviewModal from './ReviewModal';
 
 
 const PaperStyle = { height:'auto', width:'95%', margin: "20px auto"}
-const PaperStyle2 = { height:'auto', width:'70%', margin: "20px auto"}
-const PaperStyle3 = { height:'auto', width:'60%', margin: "20px auto"}
+const PaperStyle2 = { height:'auto', width:'90%', margin: "20px auto"}
+const PaperStyle3 = { height:'850px', width:'100%', margin: "0px auto"}
 const PaperStyle2Edited = { minHeight: 350, width:'30%', margin: "20px auto"}
 const PaperStyle4 = { height:'650px', width:'48%', margin: "auto auto"}
 
@@ -120,31 +120,28 @@ export default function SelectedBreweryMenu(props){
         <div>
             <>
             <Grid>
-                <Paper elevation={0} style = {PaperStyle}>
-                <Typography
-            variant="h2"
-            noWrap
-            justifyContent="center"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: '#2E3B55',
-              textDecoration: 'none',
-            }}
-          >
-            {filteredBrewery.map(brewery =>(
+                <Paper elevation={5} style = {PaperStyle}>
+                <br/>
+                    {filteredBrewery.map(brewery =>(
                 <div key ={brewery}>
-                    NAME: {brewery.name} 
+                    <Typography
+                            variant="h2"
+                            noWrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'San Francisco',
+                            fontWeight: 900,
+                            color: '#274785',
+                            }}
+                        > 
+                                {brewery.name}
+                            </Typography> 
                     </div>
                     ))}
-          </Typography>
-                <Paper elevation={5} style = {PaperStyle2}>
+                <Paper elevation={0} style = {PaperStyle2}>
                 <Paper elevation={0} style = {PaperStyle3}>
                 <Grid container direction="row" justifyContent="center" alignItems="center" >
-                        *BREWERY IMAGES GO HERE*
                     </Grid>
 
                     
@@ -152,6 +149,7 @@ export default function SelectedBreweryMenu(props){
                    
 
                     <Typography
+                    
             variant="h2"
             noWrap
             justifyContent="center"
@@ -190,11 +188,70 @@ export default function SelectedBreweryMenu(props){
                         </Button>
                     </Grid>
                     
-                    <Grid container direction="row" justifyContent="center" alignItems="center">
-                    NAME: {beer.name} <br/><br/>
-                    TYPE: {beer.type}<br/><br/>
-                    ABV: {beer.abv}<br/><br/>
-                    {isReadMoreShown ? (beer.description) :  (beer.description).substr(0,180)}
+                    <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start">
+                    <Typography
+                            variant="h6"
+                            noWrap
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            textDecoration: "none",
+                            }}
+                        > 
+                    {beer.name} 
+                    </Typography>
+                    <Typography
+                            variant="p"
+                            component="a"
+                            noWrap
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            textDecoration: "none",
+                            }}
+                        > 
+                    { beer.abv} ABV
+                    </Typography>
+                    <Typography
+                            variant="p"
+                            component="a"
+                            noWrap
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            textDecoration: "none",
+                            }}
+                        > 
+                    { beer.type} 
+                    </Typography>
+                    
+                    {isReadMoreShown ?<Typography
+                            variant="subtitle2: 'h6'"
+                            Wrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'San Francisco',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            }}
+                        > {beer.description.substr(0,300)} </Typography> :  <Typography
+                        variant="subtitle2: 'h6'"
+                        Wrap
+                        justifyContent="center"
+                        sx={{
+                        display: { xs: 'none', md: 'flex' },
+                        fontFamily: 'San Francisco',
+                        fontWeight: 900,
+                        color: '#2E3B55',
+                        }}
+                    > {beer.description} </Typography>}
                     <Button onClick={toggleBtn}>
                         {isReadMoreShown ? <Typography
                             variant="p"
@@ -204,10 +261,10 @@ export default function SelectedBreweryMenu(props){
                             display: { xs: 'none', md: 'flex' },
                             fontFamily: 'monospace',
                             fontWeight: 900,
-                            color: '#2E3B55',
+                            color: '#909ba7',
                             }}
                         > 
-                                READ LESS
+                                READ MORE
                             </Typography> : <Typography
                             variant="p"
                             noWrap
@@ -216,12 +273,13 @@ export default function SelectedBreweryMenu(props){
                             display: { xs: 'none', md: 'flex' },
                             fontFamily: 'monospace',
                             fontWeight: 900,
-                            color: '#2E3B55',
+                            color: '#909ba7',
                             }}
                         > 
-                                READ MORE
+                                READ LESS
                             </Typography>} 
                         </Button><br/>
+                        
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                     <ReviewModal name={props.props} props={beer.beerId}/>
                     </Grid>
@@ -233,19 +291,6 @@ export default function SelectedBreweryMenu(props){
                   
                     </Grid>
                     
-                    
-
-                    <Grid  align="left">
-                    <p>
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    </Grid>
                     </Paper>
                 </Paper> 
             </Grid>

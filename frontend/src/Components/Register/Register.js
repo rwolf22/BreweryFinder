@@ -18,6 +18,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import HomeAppbar from '../Pages/HomeAppbar';
+import Snackbar from '@mui/material/Snackbar';
 
 const PaperStyle = {Padding: '50px 20px', height:'70vh', width:450, margin: "20px auto"}
 const AvatarStyle = {backgroundColor: '#2E3B55'}
@@ -47,9 +48,13 @@ class Register extends Component{
         const data = {username: this.state.username, password: this.state.password, confirmPassword: this.state.confirmPassword, role: this.state.role}
         if(this.state.password === this.state.confirmPassword){
             axios.post(baseUrl + "/register", data)
+            alert("You may now login");
+            
         }else{
-            alert("Password and Confirm Password must match!!!");
-            <Alert severity="error">This is an error alert — check it out!</Alert>
+            alert("Passwords Do Not Match");
+            
+           
+            
         }
     }
 
@@ -100,7 +105,7 @@ class Register extends Component{
                 <Stack  spacing={2} direction="column">
                 <br/> 
                 <Box textAlign='center'>
-                <Button style = {{ width: 300}} variant="contained" type="submit" onClick={this.handleSubmit}> Sign in</Button>
+                <Button  style = {{ width: 300}} variant="contained" type="submit" onClick={this.handleSubmit}> Sign in</Button>
                 </Box>
                 <Typography> Already Have an Account? 
                     <Link to="/login"> Sign in Here</Link>

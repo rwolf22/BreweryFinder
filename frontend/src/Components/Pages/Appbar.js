@@ -13,6 +13,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import SportsBarIcon from '@mui/icons-material/SportsBar';
 import PersonIcon from '@mui/icons-material/Person';
+import {Link} from 'react-router-dom'
+
 
 const pages = ['Starred Brewries', 'Starred Beers'];
 const settings = ['Profile', 'Account', 'Logout'];
@@ -45,7 +47,6 @@ const PageAppBar = () => {
             variant="h5"
             noWrap
             component="a"
-            href="/breweryhome"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -56,7 +57,14 @@ const PageAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            BREWERY FINDER
+            <Link className='homeLink'
+          to={{
+              pathname: `/breweryhome`,
+          }}
+          >
+          BREWERY FINDER
+      </Link>
+            
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
