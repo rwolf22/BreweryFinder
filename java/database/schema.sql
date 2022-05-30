@@ -67,7 +67,7 @@ CREATE TABLE brewery (
 	owner_id int NOT NULL,
 	name varchar(50) NOT NULL,
 	address varchar(50) NOT NULL,
-	description varchar(500),
+	description varchar(1000),
 	image varchar(50),
 	CONSTRAINT PK_brewery PRIMARY KEY (brewery_id)
 );
