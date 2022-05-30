@@ -16,8 +16,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import {Link} from 'react-router-dom'
 
 
-const pages = ['Starred Brewries', 'Starred Beers'];
-const settings = ['Profile', 'Account', 'Logout'];
+const pages = ['favorite breweries', 'favorite beers', 'My Breweries'];
+const settings = ['Logout'];
 
 const PageAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -98,7 +98,26 @@ const PageAppBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">
+                  {
+                    page.substring(0,1) === "M" ? 
+                    <Link className='homeLink'
+                    to={{
+                        pathname: `/${page.replace(" ", "")}`,
+                    }}
+                    >
+                      {page}
+                    </Link>
+                    :
+                    <Link className='homeLink'
+          to={{
+              pathname: `/${page.replace(" ","/")}`,
+          }}
+          >
+            {page}
+          </Link>
+                  }
+                    </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -129,7 +148,26 @@ const PageAppBar = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+               <Typography textAlign="center">
+               {
+                    page.substring(0,1) === "M" ? 
+                    <Link className='homeLink'
+                    to={{
+                        pathname: `/${page.replace(" ", "")}`,
+                    }}
+                    >
+                      {page}
+                    </Link>
+                    :
+                    <Link className='homeLink'
+          to={{
+              pathname: `/${page.replace(" ","/")}`,
+          }}
+          >
+            {page}
+          </Link>
+                  }
+                    </Typography>
               </Button>
             ))}
           </Box>
@@ -158,7 +196,12 @@ const PageAppBar = () => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center">
+                <Button href='login' >
+                  {setting}
+                </Button>
+          
+                    </Typography>
                 </MenuItem>
               ))}
             </Menu>

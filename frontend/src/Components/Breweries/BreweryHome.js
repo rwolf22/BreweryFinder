@@ -43,7 +43,7 @@ export default function BreweryHome(props){
 
     return(
         <div>
-            <> HELLO  {props.props}
+            <> 
             <Grid>
             
                 <Paper elevation={0} style = {PaperStyle}>

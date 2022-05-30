@@ -57,13 +57,7 @@ class Main extends Component {
             <div>
                 {this.props.token.token !== undefined ?
                         <div>
-                            {console.log(this.props)}
                             <PageAppBar/>
-                            <Link to='/breweryhome'>Home | </Link>
-                            <Link to='/login' onClick={this.handleLogout}>logout | </Link> 
-                            <Link to='/MyBreweries' >my Breweries  | </Link> 
-                            <Link to='/favorite/breweries'> favorite breweries  | </Link> 
-                            <Link to='/favorite/beers'> favorite beers  | </Link> 
                             <Redirect to='/breweryhome'/>
                             <Route path='/favorite/beers' component={() => <FavoriteBeers props={this.props.user.username}/>}/>
                             <Route path='/favorite/breweries' component={() => <FavoriteBreweries props={this.props.user.username}/>}/>
