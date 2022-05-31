@@ -27,7 +27,7 @@ class MyBreweries extends Component{
             name: "",
             address: '',
             description: ' ',
-            image: '  ',
+            image: 'null',
         }
         
     }
@@ -135,11 +135,6 @@ class MyBreweries extends Component{
                     <TextField placeholder="Enter Brewery Address" id="address" name="address"
                     label="Brewery Address" variant="outlined" fullWidth  
                     onChange={this.handleInputChange} required />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField  placeholder="Enter Brewery Image" name="image" id='image'
-                     label="Brewery Image" variant="outlined" fullWidth  
-                     onChange={this.handleInputChange} required/>
                   </Grid>
                   <Grid item xs={12}>
                     <TextField label="Brewery Description"  name="description" id='description'

@@ -18,7 +18,7 @@ import ReviewModal from './ReviewModal';
 
 const PaperStyle = { height:'auto', width:'95%', margin: "20px auto"}
 const PaperStyle2 = { height:'auto', width:'90%', margin: "20px auto"}
-const PaperStyle3 = { height:'850px', width:'100%', margin: "0px auto"}
+const PaperStyle3 = { height:'850px', width:'100%', margin: "40px auto"}
 const PaperStyle2Edited = { minHeight: 350, width:'30%', margin: "20px auto"}
 const PaperStyle4 = { height:'650px', width:'48%', margin: "auto auto"}
 
@@ -110,7 +110,7 @@ export default function SelectedBreweryMenu(props){
         };
 
 
-      const [isReadMoreShown, setReadMoreShown] = useState(false);
+      const [isReadMoreShown, setReadMoreShown] = useState(true);
 
       const toggleBtn = () =>{
           setReadMoreShown(prevState => !prevState)
@@ -164,7 +164,7 @@ export default function SelectedBreweryMenu(props){
             }}
           >
             VIEW OUR BEERS BELOW  
-          </Typography>
+          </Typography> 
                     </Paper>
                     <Grid container direction="column" justifyContent="center" alignItems="center" >
                     <Grid container direction="row" justifyContent="center" alignItems="center">   
