@@ -13,19 +13,16 @@ public class Brewery {
     private String address;
     @NotNull
     private String description;
-    @NotNull
-    private String image;
 
     public Brewery() {
     }
 
-    public Brewery(Long breweryId, Long ownerId, String name, String address, String description, String image) {
+    public Brewery(Long breweryId, Long ownerId, String name, String address, String description) {
         this.breweryId = breweryId;
         this.ownerId = ownerId;
         this.name = name;
         this.address = address;
         this.description = description;
-        this.image = image;
     }
 
     public Long getBreweryId() {
@@ -66,13 +63,5 @@ public class Brewery {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 }

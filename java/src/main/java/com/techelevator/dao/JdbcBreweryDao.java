@@ -32,7 +32,7 @@ public class JdbcBreweryDao implements BreweryDao{
     public boolean create(Brewery newBrewery) {
         String sql = "INSERT INTO brewery (owner_id, name, address, description, image) " +
                 "VALUES (?, ?, ?, ?, ?);";
-        int rowsUpdated = jdbcTemplate.update(sql, newBrewery.getOwnerId(), newBrewery.getName(), newBrewery.getAddress(), newBrewery.getDescription(), newBrewery.getImage());
+        int rowsUpdated = jdbcTemplate.update(sql, newBrewery.getOwnerId(), newBrewery.getName(), newBrewery.getAddress(), newBrewery.getDescription());
         return rowsUpdated > 0;
     }
 
@@ -101,7 +101,6 @@ public class JdbcBreweryDao implements BreweryDao{
         brewery.setName(rowSet.getString("name"));
         brewery.setAddress(rowSet.getString("address"));
         brewery.setDescription(rowSet.getString("description"));
-        brewery.setImage(rowSet.getString("image"));
         return brewery;
     }
 }

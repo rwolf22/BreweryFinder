@@ -58,7 +58,6 @@ CREATE TABLE beer (
 	type varchar(50) NOT NULL,
 	abv decimal(3,1) NOT NULL,
 	description varchar(1000) NOT NULL,
-	image varchar(50),
 	CONSTRAINT PK_beer PRIMARY KEY (beer_id)
 );
 
@@ -68,7 +67,6 @@ CREATE TABLE brewery (
 	name varchar(50) NOT NULL,
 	address varchar(50) NOT NULL,
 	description varchar(1000),
-	image varchar(50),
 	CONSTRAINT PK_brewery PRIMARY KEY (brewery_id)
 );
 
@@ -104,7 +102,7 @@ CREATE TABLE favorite_beer (
 	CONSTRAINT FK_brewery_id FOREIGN KEY (beer_id) REFERENCES beer(beer_id)
 );
 
-ALTER TABLE beeraa
+ALTER TABLE beer
 ADD CONSTRAINT FK_brewery_id 
 FOREIGN KEY (brewery_id) REFERENCES brewery(brewery_id);
 
