@@ -57,7 +57,7 @@ class Main extends Component {
             <div>
                 {this.props.token.token !== undefined ?
                         <div>
-                            <PageAppBar/>
+                            <PageAppBar props={this.props.user.username} />
                             <Redirect to='/breweryhome'/>
                             <Route path='/favorite/beers' component={() => <FavoriteBeers props={this.props.user.username}/>}/>
                             <Route path='/favorite/breweries' component={() => <FavoriteBreweries props={this.props.user.username}/>}/>

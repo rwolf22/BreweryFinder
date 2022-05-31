@@ -19,7 +19,7 @@ import {Link} from 'react-router-dom'
 const pages = ['favorite breweries', 'favorite beers', 'My Breweries'];
 const settings = ['Logout'];
 
-const PageAppBar = () => {
+const PageAppBar = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -141,6 +141,7 @@ const PageAppBar = () => {
           >
             BREWERY FINDER
           </Typography>
+          {console.log(props.props)}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -175,7 +176,7 @@ const PageAppBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar> <PersonIcon/></Avatar>
+                <Avatar> {props.props.substr(0,1)} </Avatar>
               </IconButton>
             </Tooltip>
             <Menu
