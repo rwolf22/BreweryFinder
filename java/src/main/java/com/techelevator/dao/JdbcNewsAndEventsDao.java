@@ -32,9 +32,9 @@ public class JdbcNewsAndEventsDao implements NewsAndEventsDao{
 
     @Override
     public boolean create(NewsAndEvents event) {
-        String sql = "INSERT INTO news_events (brewery_id, event_name, event_date, description) " +
+        String sql = "INSERT INTO news_events (brewery_id, event_name, event_date, event_description) " +
                 "VALUES(?, ?, ?, ?);";
-        int rowsUpdated = jdbcTemplate.update(sql, event.getBreweryId(), event.getEventName(), event.getEventDate(), event.getDescription());
+        int rowsUpdated = jdbcTemplate.update(sql, event.getBreweryId(), event.getEventName(), event.getEventDate(), event.getEventDescription());
         return rowsUpdated > 0;
     }
 
@@ -52,7 +52,7 @@ public class JdbcNewsAndEventsDao implements NewsAndEventsDao{
         event.setBreweryName(breweryDao.getNameById(event.getBreweryId()));
         event.setEventName(rowSet.getString("event_name"));
         event.setEventDate(rowSet.getDate("event_date").toLocalDate());
-        event.setDescription(rowSet.getString("description"));
+        event.setEventDescription(rowSet.getString("event_description"));
         return event;
     }
 }
