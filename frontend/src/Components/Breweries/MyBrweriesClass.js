@@ -166,20 +166,7 @@ class MyBreweries extends Component{
                     <MyBreweriesList user={this.props.props.token} props={this.props.props.user.id}/> 
                     </Paper>
                     </Grid>
-                    
-                    
-
-                    <Grid  align="left">
-                    <p>
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    </Grid>
+                    <br/><br/>
                     </Paper>
                 </Paper> 
             </Grid>

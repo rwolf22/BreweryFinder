@@ -111,7 +111,7 @@ export default function MyBreweriesList({user,props}){
                     </Grid>
                     </Grid>
                     </div></Paper>
-                    ))}
+                    ))}<br/>
                     </Paper>
                     </Grid>
                     </Paper>
