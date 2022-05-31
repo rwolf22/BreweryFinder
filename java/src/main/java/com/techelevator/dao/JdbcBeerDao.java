@@ -34,7 +34,7 @@ public class JdbcBeerDao implements BeerDao{
     public boolean createBeer(Beer newBeer) {
         String sql = "INSERT INTO beer (brewery_id, name, type, abv, description, image) " +
                 "VALUES(?, ?, ?, ?, ?, ?);";
-        int rowsUpdated = jdbcTemplate.update(sql, newBeer.getBreweryId(), newBeer.getName(), newBeer.getType(), newBeer.getAbv(), newBeer.getDescription(), newBeer.getImage());
+        int rowsUpdated = jdbcTemplate.update(sql, newBeer.getBreweryId(), newBeer.getName(), newBeer.getType(), newBeer.getAbv(), newBeer.getDescription());
         return rowsUpdated == 1;
     }
 
@@ -100,7 +100,6 @@ public class JdbcBeerDao implements BeerDao{
         beer.setType(rowSet.getString("type"));
         beer.setAbv(rowSet.getDouble("abv"));
         beer.setDescription(rowSet.getString("description"));
-        beer.setImage(rowSet.getString("image"));
         return beer;
     }
 }

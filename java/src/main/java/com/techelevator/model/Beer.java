@@ -16,13 +16,11 @@ public class Beer {
     private Double abv;
     @NotNull
     private String description;
-    @NotNull
-    private String image;
 
     public Beer() {
     }
 
-    public Beer(Long beerId, Long breweryId,String breweryName, String name, String type, Double abv, String description, String image) {
+    public Beer(Long beerId, Long breweryId,String breweryName, String name, String type, Double abv, String description) {
         this.beerId = beerId;
         this.breweryId = breweryId;
         this.breweryName = breweryName;
@@ -30,7 +28,6 @@ public class Beer {
         this.type = type;
         this.abv = abv;
         this.description = description;
-        this.image = image;
     }
 
     public Long getBeerId() {
@@ -87,13 +84,5 @@ public class Beer {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 }
