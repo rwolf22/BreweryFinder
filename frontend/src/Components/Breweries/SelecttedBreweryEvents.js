@@ -118,7 +118,7 @@ export default function SelectedBreweryEvents(){
                             color: '#2E3B55',
                             textDecoration: "none",
                             }}
-                        > {event.description}
+                        > {event.eventDescription}
                     </Typography>
                     
                     </Grid>

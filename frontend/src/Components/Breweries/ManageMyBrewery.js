@@ -32,7 +32,7 @@ export default function MyBreweryManage(props){
 
     const [eventName, setEventName] = useState("");
     const [eventDate, setEventDate] = useState("");
-    const [eventdescription, setEventDescription] = useState("");
+    const [eventDescription, setEventDescription] = useState("");
     
     function getEvents(){
       fetch("http://localhost:8081/newsAndEvents/all")
@@ -130,9 +130,9 @@ const handleClick=(e) =>{
 
 const handleEventSubmit =(e) =>{
   e.preventDefault()
-  if(eventName !== "" && eventDate !== "" && description !== ""){
+  if(eventName !== "" && eventDate !== "" && eventDescription !== ""){
 axios.post('http://localhost:8081/newsAndEvents/create',
-    {breweryId, eventName, eventDate, description}, 
+    {breweryId, eventName, eventDate, eventDescription}, 
   {headers: {
     'Authorization' : `Bearer ${props.props.token.token}`}
   })
@@ -148,7 +148,6 @@ axios.post('http://localhost:8081/newsAndEvents/create',
     return(
         <div>
             <>
-            {console.log(props.props.user.username)}
             <Grid>
                 
                 <Paper elevation={0} style = {PaperStyle}>
@@ -273,7 +272,7 @@ axios.post('http://localhost:8081/newsAndEvents/create',
                     <TextField  type="date" placeholder="Enter Event Date" label="Event Date" variant="outlined" fullWidth required  value={eventDate} onChange={(e) => setEventDate(e.target.value)}/>
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField label="Event Description" multiline rows={7} placeholder="Enter Event Description" variant="outlined" fullWidth value={description} onChange={(e) => setBeerDescription(e.target.value)} required />
+                    <TextField label="Event Description" multiline rows={7} placeholder="Enter Event Description" variant="outlined" fullWidth value={eventDescription} onChange={(e) => setEventDescription(e.target.value)} required />
                   </Grid>
                   <Grid item xs={12}>
                     <Button type="submit" variant="contained" color="primary" fullWidth onClick={handleEventSubmit} >Add Event</Button>
@@ -319,7 +318,6 @@ axios.post('http://localhost:8081/newsAndEvents/create',
           </Typography>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                     {/* <img src={image7}></img> */}
-                    {console.log(events)}
                     {filterdBeers.map((beer,index) =>(
                               (
                 <Paper elevation= {5} style = {PaperStyle4} key ={beer}>

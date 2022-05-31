@@ -26,8 +26,7 @@ class MyBreweries extends Component{
         this.state = {
             name: "",
             address: '',
-            description: ' ',
-            image: 'null',
+            description: ' '
         }
         
     }
@@ -41,15 +40,13 @@ class MyBreweries extends Component{
     
     handleSubmit = (e) => {
       e.preventDefault();
-        const data = {ownerId: this.props.props.user.id, name: this.state.name, address: this.state.address, description: this.state.description, image: this.state.image}
         if(this.state.name !== ""  && this.state.description !== '' && this.state.address !== ''){
           axios.post(baseUrl + '/brewery/create', 
             {
                 ownerId: this.props.props.user.id, 
                 name: this.state.name, 
                 address: this.state.address, 
-                description: this.state.description, 
-                image: this.state.image
+                description: this.state.description
             }
           ,{
             headers: {
