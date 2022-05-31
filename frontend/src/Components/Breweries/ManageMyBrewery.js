@@ -130,13 +130,19 @@ const handleClick=(e) =>{
 
 const handleEventSubmit =(e) =>{
   e.preventDefault()
-  axios.post('http://localhost:8081/newsAndEvents/create',
+  if(eventName !== "" && eventDate !== "" && description !== ""){
+axios.post('http://localhost:8081/newsAndEvents/create',
     {breweryId, eventName, eventDate, description}, 
   {headers: {
     'Authorization' : `Bearer ${props.props.token.token}`}
   })
   getEvents();
   getEvents();
+  alert("Event Created")
+  }else{
+    alert("Error Creating Event")
+  }
+  
 }
 
     return(
@@ -319,7 +325,7 @@ const handleEventSubmit =(e) =>{
                 <Paper elevation= {5} style = {PaperStyle4} key ={beer}>
                     <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start">
                     <Typography
-                            variant="h6"
+                            variant="p"
                             noWrap
                             sx={{
                             display: { xs: 'none', md: 'flex' },
@@ -329,7 +335,7 @@ const handleEventSubmit =(e) =>{
                             textDecoration: "none",
                             }}
                         > 
-                    {beer.name} 
+                    NAME: {beer.name} 
                     </Typography>
                     <Typography
                             variant="p"
@@ -343,7 +349,7 @@ const handleEventSubmit =(e) =>{
                             textDecoration: "none",
                             }}
                         > 
-                    { beer.abv} ABV
+                    ABV: { beer.abv}% ABV
                     </Typography>
                     <Typography
                             variant="p"
@@ -357,7 +363,7 @@ const handleEventSubmit =(e) =>{
                             textDecoration: "none",
                             }}
                         > 
-                    { beer.type} 
+                    TYPE :{ beer.type} 
                     </Typography>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                         <Button onClick={()=> deleteBeerItem(beer.beerId) }>
@@ -402,8 +408,37 @@ const handleEventSubmit =(e) =>{
                     {filteredEvents.map((event,index) =>(
                       (
                         <Paper elevation= {5} style = {PaperStyle4} key ={event}>
-                    <Grid container direction="row" justifyContent="center" alignItems="center">
-                    NAME: {event.eventName} <br/><br/>
+                    <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start">
+                    <Typography variant="p"
+                                noWrap
+                                justifyContent="center"
+                                sx={{
+                                mr: 2,
+                                display: { xs: 'none', md: 'flex' },
+                                fontFamily: 'monospace',
+                                fontWeight: 700,
+                                letterSpacing: '.3rem',
+                                color: '#2E3B55',
+                                textDecoration: 'none',
+                                }}
+                            >   
+                        EVENT NAME:  {event.eventName}
+                    </Typography>
+                    <Typography variant="p"
+                                noWrap
+                                justifyContent="center"
+                                sx={{
+                                mr: 2,
+                                display: { xs: 'none', md: 'flex' },
+                                fontFamily: 'monospace',
+                                fontWeight: 700,
+                                letterSpacing: '.3rem',
+                                color: '#2E3B55',
+                                textDecoration: 'none',
+                                }}
+                            >   
+                        EVENT DATE:  {event.eventDate}
+                    </Typography>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                         <Button onClick={()=> deleteEvent(event.newsEventsId) }>
                             <Typography variant='p'>
