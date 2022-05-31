@@ -32,8 +32,8 @@ public class JdbcBeerDao implements BeerDao{
 
     @Override
     public boolean createBeer(Beer newBeer) {
-        String sql = "INSERT INTO beer (brewery_id, name, type, abv, description, image) " +
-                "VALUES(?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO beer (brewery_id, name, type, abv, description) " +
+                "VALUES(?, ?, ?, ?, ?);";
         int rowsUpdated = jdbcTemplate.update(sql, newBeer.getBreweryId(), newBeer.getName(), newBeer.getType(), newBeer.getAbv(), newBeer.getDescription());
         return rowsUpdated == 1;
     }

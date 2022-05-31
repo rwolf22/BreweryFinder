@@ -30,8 +30,8 @@ public class JdbcBreweryDao implements BreweryDao{
 
     @Override
     public boolean create(Brewery newBrewery) {
-        String sql = "INSERT INTO brewery (owner_id, name, address, description, image) " +
-                "VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO brewery (owner_id, name, address, description) " +
+                "VALUES (?, ?, ?, ?);";
         int rowsUpdated = jdbcTemplate.update(sql, newBrewery.getOwnerId(), newBrewery.getName(), newBrewery.getAddress(), newBrewery.getDescription());
         return rowsUpdated > 0;
     }
