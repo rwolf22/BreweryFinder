@@ -84,7 +84,7 @@ CREATE TABLE news_events (
 	brewery_id int NOT NULL,
 	event_name varchar(50) NOT NULL,
 	event_date DATE NOT NULL,
-	description varchar(200),
+	event_description varchar(200),
 	CONSTRAINT PK_news_events PRIMARY KEY (news_events_id)
 );
 
@@ -175,10 +175,10 @@ INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (4, 'Dos Silo
 INSERT INTO beer (brewery_id, name, type, abv, description) VALUES (4, 'Cold Boi', 'Lager', 5.2, 'A tasty cold boi based on a traditional Maibock. This crushable malty golden lager is here to welcome longer days and warmer weather.');
 
 --Events
-INSERT INTO news_events (brewery_id, event_name, event_date, description) VALUES (1, 'Bingo Night', '2022-06-01', 'Every Wednesdy night from 9pm-close is BINGO NIGHT! Bring a friend, grab a beer, and try to win gift card to many local stores and restaurants.');
-INSERT INTO news_events (brewery_id, event_name, event_date, description) VALUES (1, 'Trivia Night', '2022-06-02', 'Every Thursday night from 9pm-close is TRIVIA NIGHT! Bring a friend, grab a beer, and try to win gift card to many local stores and restaurants.');
-INSERT INTO news_events (brewery_id, event_name, event_date, description) VALUES (1, 'Food Truck Week', '2022-06-06', 'All week we will have a new food truck on site each day.');
-INSERT INTO news_events (brewery_id, event_name, event_date, description) VALUES (1, '50% Off Pint Glasses', '2022-06-10', 'Come in and get yourself a Twin Barrel pint glass for half price.');
+INSERT INTO news_events (brewery_id, event_name, event_date, event_description) VALUES (1, 'Bingo Night', '2022-06-01', 'Every Wednesdy night from 9pm-close is BINGO NIGHT! Bring a friend, grab a beer, and try to win gift card to many local stores and restaurants.');
+INSERT INTO news_events (brewery_id, event_name, event_date, event_description) VALUES (1, 'Trivia Night', '2022-06-02', 'Every Thursday night from 9pm-close is TRIVIA NIGHT! Bring a friend, grab a beer, and try to win gift card to many local stores and restaurants.');
+INSERT INTO news_events (brewery_id, event_name, event_date, event_description) VALUES (1, 'Food Truck Week', '2022-06-06', 'All week we will have a new food truck on site each day.');
+INSERT INTO news_events (brewery_id, event_name, event_date, event_description) VALUES (1, '50% Off Pint Glasses', '2022-06-10', 'Come in and get yourself a Twin Barrel pint glass for half price.');
 
 --Reviews
 INSERT INTO review (beer_id, author, rating, review) VALUES (1, 'Michele', 4, 'I''m not a big fan of beer and this is a great alternative.');

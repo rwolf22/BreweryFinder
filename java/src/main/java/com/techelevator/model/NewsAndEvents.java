@@ -14,18 +14,18 @@ public class NewsAndEvents {
     @NotNull
     private LocalDate eventDate;
     @NotNull
-    private String description;
+    private String eventDescription;
 
     public NewsAndEvents() {
     }
 
-    public NewsAndEvents(Long newsEventsId, Long breweryId, String breweryName, String eventName, LocalDate eventDate, String description) {
+    public NewsAndEvents(Long newsEventsId, Long breweryId, String breweryName, String eventName, LocalDate eventDate, String eventDescription) {
         this.newsEventsId = newsEventsId;
         this.breweryId = breweryId;
         this.breweryName = breweryName;
         this.eventName = eventName;
         this.eventDate = eventDate;
-        this.description = description;
+        this.eventDescription = eventDescription;
     }
 
     public Long getNewsEventsId() {
@@ -68,11 +68,11 @@ public class NewsAndEvents {
         this.eventDate = eventDate;
     }
 
-    public String getDescription() {
-        return description;
+    public String getEventDescription() {
+        return eventDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setEventDescription(String eventDescription) {
+        this.eventDescription = eventDescription;
     }
 }
