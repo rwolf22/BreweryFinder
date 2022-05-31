@@ -89,7 +89,7 @@ export default function MyBreweriesList({user,props}){
                             <Typography variant='p'>
                                 <Link 
                                 to={{
-                                    pathname: `/MyBreweries/${brewery.breweryId}/manage`,
+                                    pathname: `/MyBrewery/${brewery.breweryId}/manage`,
                                 }}
                                 >
                                 MANAGE BREWERY</Link>

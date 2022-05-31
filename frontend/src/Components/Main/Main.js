@@ -62,7 +62,7 @@ class Main extends Component {
                             <Route path='/favorite/beers' component={() => <FavoriteBeers props={this.props.user.username}/>}/>
                             <Route path='/favorite/breweries' component={() => <FavoriteBreweries props={this.props.user.username}/>}/>
                             <Route path='/breweryhome' component={() => <BreweryHome props={this.props.user.username}/>}/>
-                            <Route path="/MyBreweries/:id/manage"  component={() => <MyBreweryManage props={this.props}/>}/>
+                            <Route path="/MyBrewery/:id/manage"  component={() => <MyBreweryManage props={this.props}/>}/>
                             <Route path='/MyBreweries' component={() => <MyBreweries props={this.props}/>} />
                             <Route path='/selectedbrewery/:id/Menu'  component={this.props.token.token !== undefined ? () => <SelectedBreweryMenu props={this.props}/> : null}/>
                             <Route path='/selectedbrewery/:id/OurEvents' component={this.props.token.token !== undefined ? () => <SelectedBreweryEvents/> : null}/>
