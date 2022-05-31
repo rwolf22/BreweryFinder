@@ -133,7 +133,7 @@ export default function SelectedBreweryHome(){
             }}
           ><Link
           to={{
-              pathname: `${id}/menu`,
+              pathname: `/selectedbrewery/${id}/menu`,
           }}
           >
           MENU
@@ -185,7 +185,7 @@ export default function SelectedBreweryHome(){
             }}
           ><Link
           to={{
-              pathname: `${id}/OurEvents`,
+              pathname: `/selectedbrewery/${id}/OurEvents`,
           }}
           >
           EVENTS

@@ -214,7 +214,7 @@ export default function SelectedBreweryMenu(props){
                             textDecoration: "none",
                             }}
                         > 
-                    { beer.abv} ABV
+                    { beer.abv}% ABV
                     </Typography>
                     <Typography
                             variant="p"

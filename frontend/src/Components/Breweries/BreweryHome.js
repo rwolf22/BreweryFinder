@@ -154,7 +154,7 @@ export default function BreweryHome(props){
                                 
                             <Link
                                 to={{
-                                    pathname: `/selectedbrewery/${brewery.breweryId}`,
+                                    pathname: `/brewery/${brewery.breweryId}`,
                                 }}
                                 >
                                 VISIT

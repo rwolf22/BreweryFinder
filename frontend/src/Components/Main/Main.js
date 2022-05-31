@@ -66,7 +66,7 @@ class Main extends Component {
                             <Route path='/MyBreweries' component={() => <MyBreweries props={this.props}/>} />
                             <Route path='/selectedbrewery/:id/Menu'  component={this.props.token.token !== undefined ? () => <SelectedBreweryMenu props={this.props}/> : null}/>
                             <Route path='/selectedbrewery/:id/OurEvents' component={this.props.token.token !== undefined ? () => <SelectedBreweryEvents/> : null}/>
-                            <Route path="/selectedbrewery/:id" component={this.props.token.token !== undefined ? () => <SelectedBreweryHome/> : null}/>
+                            <Route path="/brewery/:id" component={this.props.token.token !== undefined ? () => <SelectedBreweryHome/> : null}/>
                         </div>  
                     :   
                      <Switch> 
