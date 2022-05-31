@@ -273,7 +273,7 @@ axios.post('http://localhost:8081/newsAndEvents/create',
                     <TextField  type="date" placeholder="Enter Event Date" label="Event Date" variant="outlined" fullWidth required  value={eventDate} onChange={(e) => setEventDate(e.target.value)}/>
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField label="Event Description" multiline rows={7} placeholder="Enter Event Descriptioon" variant="outlined" fullWidth value={description} onChange={(e) => setBeerDescription(e.target.value)} required />
+                    <TextField label="Event Description" multiline rows={7} placeholder="Enter Event Description" variant="outlined" fullWidth value={description} onChange={(e) => setBeerDescription(e.target.value)} required />
                   </Grid>
                   <Grid item xs={12}>
                     <Button type="submit" variant="contained" color="primary" fullWidth onClick={handleEventSubmit} >Add Event</Button>
