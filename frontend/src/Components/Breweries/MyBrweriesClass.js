@@ -42,7 +42,8 @@ class MyBreweries extends Component{
     handleSubmit = (e) => {
       e.preventDefault();
         const data = {ownerId: this.props.props.user.id, name: this.state.name, address: this.state.address, description: this.state.description, image: this.state.image}
-        axios.post(baseUrl + '/brewery/create', 
+        if(this.state.name !== ""  && this.state.description !== '' && this.state.address !== ''){
+          axios.post(baseUrl + '/brewery/create', 
             {
                 ownerId: this.props.props.user.id, 
                 name: this.state.name, 
@@ -54,6 +55,13 @@ class MyBreweries extends Component{
             headers: {
               'Authorization' : `Bearer ${this.props.props.token.token}`
     }})
+    alert("Brewery Created")
+        }else{
+          alert("Error creating brewery.")
+        }
+        
+        
+        
     }
 
     render(){

@@ -69,11 +69,26 @@ export default function MyBreweriesList({user,props}){
                     <Paper elevation={0} style = {PaperStyle4}>
                     {filteredBreweries.map(brewery =>(
                 <Paper elevation={3} style = {PaperStyle4}><div key ={brewery}>
-                    BREWERY NAME:<br/>{brewery.name}
-                    {brewery.breweryId}<Grid container direction="row" justifyContent="flex-end" alignItems="center">   
+                    <Typography
+                            variant="h6"
+                            noWrap
+                            component="a"
+                            justifyContent="flex-start"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'San Francisco',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            textDecoration: 'none',
+                            }}
+                        > 
+                                {brewery.name}
+                            </Typography> 
+                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                         <Button>
                             <Typography variant='p'>
-                                <Link to={{
+                                <Link 
+                                to={{
                                     pathname: `/MyBreweries/${brewery.breweryId}/manage`,
                                 }}
                                 >
@@ -82,7 +97,14 @@ export default function MyBreweriesList({user,props}){
                         </Button>
                         <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                         <Button onClick={()=> deleteBrewery(brewery.breweryId) }>
-                            <Typography variant='p'>
+                            <Typography 
+                            sx={{
+                                display: { xs: 'none', md: 'flex' },
+                                fontFamily: 'monospace',
+                                fontWeight: 900,
+                                color: '#2E3B55',
+                                }}
+                            variant='p'>
                             DELETE BREWERY
                             </Typography>
                         </Button>
