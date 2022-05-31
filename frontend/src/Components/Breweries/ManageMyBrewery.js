@@ -113,7 +113,7 @@ function deleteBeerItem(beerId) {
 const handleClick=(e) =>{
         e.preventDefault()
         const beer = {breweryId, name, type, abv, image, description}
-      
+      if(name !== "" && type !== "" && abv > 0 && abv < 100 && description !== "" ){
         axios.post('http://localhost:8081/beer/create',
           {breweryId, name, type, abv, image, description}, 
         {headers: {
@@ -121,6 +121,11 @@ const handleClick=(e) =>{
         })
         getBeers();
         getBeers();
+        alert("Item Created")
+      }else{
+        alert("Error Creating Item")
+      }
+        
 }
 
 const handleEventSubmit =(e) =>{
@@ -178,8 +183,7 @@ const handleEventSubmit =(e) =>{
               color: '#2E3B55',
               textDecoration: 'none',
             }}
-          >
-            Edit & Mange Your Brewery
+          >Mange Your Brewery
           </Typography>
                     </Grid>
 
@@ -214,11 +218,11 @@ const handleEventSubmit =(e) =>{
                   <Grid xs={12} sm={6} item>
                     <TextField placeholder="Enter Beer Type" label="Beer Type" variant="outlined" fullWidth value={type} onChange={(e) => setBeerType(e.target.value)} required />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField  placeholder="Enter Beer ABV" label="Beer ABV" variant="outlined" fullWidth  value={abv} onChange={(e) => setBeerABV(e.target.value)} required />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField  placeholder="Enter Beer Image" label="Beer Image" variant="outlined" fullWidth value={image} onChange={(e) => setBeerImage(e.target.value)} required />
+                  <Grid item xs={12} sm={12}>
+                  <TextField type="number" value={abv} onChange={(e) => setBeerABV(e.target.value)} 
+                                placeholder="Enter ABV" label="ABV" variant="outlined"
+                                InputProps={{ inputProps: { min: "1", max: "100", step: "1" } }}
+                                fullWidth required />
                   </Grid>
                   <Grid item xs={12}>
                     <TextField label="Beer Description" multiline rows={4} placeholder="Enter Brewery Descriptioon" variant="outlined" fullWidth  value={description} onChange={(e) => setBeerDescription(e.target.value)} required />
@@ -313,8 +317,48 @@ const handleEventSubmit =(e) =>{
                     {filterdBeers.map((beer,index) =>(
                               (
                 <Paper elevation= {5} style = {PaperStyle4} key ={beer}>
-                    <Grid container direction="row" justifyContent="center" alignItems="center">
-                    NAME: {beer.name} <br/><br/>
+                    <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start">
+                    <Typography
+                            variant="h6"
+                            noWrap
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            textDecoration: "none",
+                            }}
+                        > 
+                    {beer.name} 
+                    </Typography>
+                    <Typography
+                            variant="p"
+                            component="a"
+                            noWrap
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            textDecoration: "none",
+                            }}
+                        > 
+                    { beer.abv} ABV
+                    </Typography>
+                    <Typography
+                            variant="p"
+                            component="a"
+                            noWrap
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            textDecoration: "none",
+                            }}
+                        > 
+                    { beer.type} 
+                    </Typography>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                         <Button onClick={()=> deleteBeerItem(beer.beerId) }>
                             <Typography variant='p'>
@@ -378,20 +422,7 @@ const handleEventSubmit =(e) =>{
                     </Paper>
                     </Paper>
                     </Grid>
-                    
-                    
-
-                    <Grid  align="left">
-                    <p>
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    </Grid>
+                    <br/>
                     </Paper>
                 </Paper> 
             </Grid>
