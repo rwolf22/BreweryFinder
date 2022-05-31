@@ -99,10 +99,45 @@ export default function FavoriteBreweries(props){
                         </Button> 
                         
                     </Grid>
-                    NAME: {brewery.name} <br/><br/>
-                    ADDRESS: {brewery.address}<br/><br/>
-                    description: {brewery.description}<br/><br/>
-                    image: {brewery.image}<br/><br/>
+                    <Typography
+                            variant="h4"
+                            noWrap
+                            justifyContent="flex-start"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'San Francisco',
+                            fontWeight: 900,
+                            color: '#274785',
+                            }}
+                        > 
+                                {brewery.name}
+                            </Typography> 
+                            <Typography
+                            variant="p"
+                            noWrap
+                            justifyContent="flex-start"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#abc1eb',
+                            }}
+                        > 
+                                {brewery.address}
+                            </Typography>
+                            <Typography
+                            variant="subtitle2: 'h6'"
+                            Wrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'San Francisco',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            }}
+                        > 
+                                {brewery.description}
+                            </Typography>
                     
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                         <Button>
@@ -136,18 +171,6 @@ export default function FavoriteBreweries(props){
             <br/>
                     </Paper>
                     </Paper>
-
-                    <Grid  align="left">
-                    <p>
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    </Grid>
                     </Paper>
                 </Paper> 
             </Grid>

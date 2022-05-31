@@ -12,13 +12,13 @@ function ImgCarousel(){
         <div>
              <Carousel className='main-slide' autoPlay emulateTouch infiniteLoop >
                 <div>
-                    <img src={image1} height="500px" width="3px"/>
+                    <img src={image1} height="690px" width="3px"/>
                 </div>
                 <div>
-                    <img src={image2} height="500px" width="200px" />
+                    <img src={image2} height="690px" width="200px" />
                 </div>
                 <div>
-                    <img src={image3} height="500px" width="200px"  />
+                    <img src={image3} height="690px" width="200px"  />
                 </div>
             </Carousel>
         </div>

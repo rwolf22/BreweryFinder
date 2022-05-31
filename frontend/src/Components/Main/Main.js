@@ -52,18 +52,12 @@ class Main extends Component {
     }
 
     render(){
-        
+        // this.props.user.authorities[0].name === "ROLE_USER" ? userstuff || this.props.user.authorities[0].name === "ROLE_admin" ? admin stuff : no role stuff 
         return(
             <div>
                 {this.props.token.token !== undefined ?
                         <div>
-                            {console.log(this.props)}
-                            <PageAppBar/>
-                            <Link to='/breweryhome'>Home | </Link>
-                            <Link to='/login' onClick={this.handleLogout}>logout | </Link> 
-                            <Link to='/MyBreweries' >my Breweries  | </Link> 
-                            <Link to='/favorite/breweries'> favorite breweries  | </Link> 
-                            <Link to='/favorite/beers'> favorite beers  | </Link> 
+                            <PageAppBar props={this.props.user.username} />
                             <Redirect to='/breweryhome'/>
                             <Route path='/favorite/beers' component={() => <FavoriteBeers props={this.props.user.username}/>}/>
                             <Route path='/favorite/breweries' component={() => <FavoriteBreweries props={this.props.user.username}/>}/>

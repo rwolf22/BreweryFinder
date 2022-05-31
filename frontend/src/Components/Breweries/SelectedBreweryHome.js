@@ -9,7 +9,7 @@ import React, { useEffect, useState }from 'react';
 
 const PaperStyle = { height:'auto', width:'95%', margin: "20px auto"}
 const PaperStyle2 = { height:'auto', width:'90%', margin: "20px auto"}
-const PaperStyle3 = { height:'auto', width:'60%', margin: "20px auto"}
+const PaperStyle3 = { height:'750px', width:'90%', margin: "20px auto"}
 const PaperStyle2Edited = { height:'500px', width:'500px', margin: "20px auto"}
 const PaperStyle4 = { height:'98%', width:'98%', margin: "5px auto"}
 
@@ -83,30 +83,29 @@ export default function SelectedBreweryHome(){
             
             <Grid>
                 <Paper elevation={0} style = {PaperStyle}>
-                <Typography
-            variant="h2"
-            noWrap
-            justifyContent="center"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: '#2E3B55',
-              textDecoration: 'none',
-            }}
-          >
-            {filteredBrewery.map(brewery =>(
+                
+            
+                <Paper elevation={5} style = {PaperStyle2}>
+                    <br/>
+                    {filteredBrewery.map(brewery =>(
                 <div key ={brewery}>
-                    NAME: {brewery.name}
+                    <Typography
+                            variant="h2"
+                            noWrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'San Francisco',
+                            fontWeight: 900,
+                            color: '#274785',
+                            }}
+                        > 
+                                {brewery.name}
+                            </Typography> 
                     </div>
                     ))}
-          </Typography>
-                <Paper elevation={5} style = {PaperStyle2}>
                 <Paper elevation={0} style = {PaperStyle3}>
                 <Grid container direction="row" justifyContent="center" alignItems="center" >
-                        *BREWERY IMAGES GO HERE*
                     </Grid>
 
                     
@@ -117,7 +116,7 @@ export default function SelectedBreweryHome(){
                     </Paper>
                     <Grid container direction="row" justifyContent="center" alignItems="center" >
                     <Paper elevation={5} style = {PaperStyle2Edited}>
-                    <Paper elevation={0} style = {PaperStyle4}>
+                    <Paper elevation={5} style = {PaperStyle4}>
                     <Typography
             variant="h2"
             noWrap
@@ -144,9 +143,23 @@ export default function SelectedBreweryHome(){
                     <Grid container direction="row" justifyContent="center" alignItems="center">   
                          {filterdBeers.map((beer,index) =>(
                              index < 7 && (
-                <Paper elevation= {1} style = {PaperStyle4} key ={beer}>
+                <Paper elevation= {2} style = {PaperStyle4} key ={beer}>
                     <Grid container direction="row" justifyContent="center" alignItems="center">
-                    NAME: {beer.name} <br/><br/>
+                    <Typography
+                         component="a"
+                            variant="p"
+                            noWrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            textDecoration: "none",
+                            }}
+                        > 
+                    {beer.name} 
+                    </Typography><br/> <br/>
                     </Grid>
 
                 </Paper>)
@@ -168,7 +181,7 @@ export default function SelectedBreweryHome(){
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: '#2E3B55',
-              textDecoration: 'none',
+              textDecoration: "none",
             }}
           ><Link
           to={{
@@ -181,9 +194,22 @@ export default function SelectedBreweryHome(){
                     <Grid container direction="row" justifyContent="center" alignItems="center">   
                     {filteredEvents.map((event,index) =>(
                              index < 7 && (
-                <Paper elevation= {1} style = {PaperStyle4} key ={event}>
+                <Paper elevation= {2} style = {PaperStyle4} key ={event}>
                     <Grid container direction="row" justifyContent="center" alignItems="center">
-                    NAME: {event.eventName} <br/><br/>
+                    <Typography
+                         component="a"
+                            variant="p"
+                            noWrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            textDecoration: "none",
+                            }}
+                        >{event.eventName}
+                    </Typography> <br/><br/>
                     </Grid>
 
                 </Paper>)
@@ -196,17 +222,7 @@ export default function SelectedBreweryHome(){
                     
                     
 
-                    <Grid  align="left">
-                    <p>
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    </Grid>
+                    
                     </Paper>
                 </Paper> 
             </Grid>

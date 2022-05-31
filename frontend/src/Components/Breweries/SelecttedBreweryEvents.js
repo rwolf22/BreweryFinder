@@ -10,7 +10,7 @@ import React, { useEffect, useState }from 'react';
 
 const PaperStyle = { height:'auto', width:'95%', margin: "20px auto"}
 const PaperStyle2 = { height:'auto', width:'90%', margin: "20px auto"}
-const PaperStyle3 = { height:'auto', width:'60%', margin: "20px auto"}
+const PaperStyle3 = { height:'auto', width:'0%', margin: "20px auto"}
 const PaperStyle2Edited = { height:'500px', width:'40%', margin: "20px auto"}
 const PaperStyle4 = { height:'87% ', width:'98%', margin: "auto auto"}
 
@@ -57,7 +57,7 @@ export default function SelectedBreweryEvents(){
             
             <Grid>
                 
-                <Paper elevation={0} style = {PaperStyle}>
+                <Paper elevation={5} style = {PaperStyle}>
                 <Typography
             variant="h2"
             noWrap
@@ -79,7 +79,7 @@ export default function SelectedBreweryEvents(){
                     ))}
           </Typography>
                 <Paper elevation={5} style = {PaperStyle2}>
-                <Paper elevation={0} style = {PaperStyle3}>
+                <Paper elevation={5} style = {PaperStyle3}>
                 <Grid container direction="row" justifyContent="center" alignItems="center" >
                         *BREWERY IMAGES GO HERE*
                     </Grid>
@@ -105,7 +105,7 @@ export default function SelectedBreweryEvents(){
             VIEW OUR EVENTS BELOW  
           </Typography>
                     </Paper>
-                    <Grid  direction="row" justifyContent="center"> 
+                    <Grid  direction="row" justifyContent="center" alignItems="center"> 
                         {filteredEvents.map(event =>(
                     <div  key = {event}>
                         
@@ -131,13 +131,6 @@ export default function SelectedBreweryEvents(){
                         </Grid>
                     
                     </Paper>
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
-                        <Button>
-                            <Typography variant='p'>
-                                <Link to="/selectedBrewery"> ADD TO FAVORITES</Link>
-                            </Typography>
-                        </Button>
-                    </Grid>
                     </Paper>
                 </div>
             ))}
@@ -146,17 +139,7 @@ export default function SelectedBreweryEvents(){
                     
                     
 
-                    <Grid  align="left">
-                    <p>
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    </Grid>
+                   
                     </Paper>
                 </Paper> 
             </Grid>

@@ -39,3 +39,6 @@
 .css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop {
   background-color: rgba(187, 24, 24, 0);
 }
+a.MuiTypography-root{
+text-decoration: none;  
+}

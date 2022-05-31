@@ -46,7 +46,11 @@ export default function FavoriteBeers(props){
                 getBeers();
             })
     }
+    const [isReadMoreShown, setReadMoreShown] = useState(true);
 
+    const toggleBtn = () =>{
+        setReadMoreShown(prevState => !prevState)
+    }
     return(
         <div>
             <>
@@ -104,11 +108,101 @@ export default function FavoriteBeers(props){
                         </Button> 
                         
                     </Grid>
-                    NAME: {beer.name} <br/><br/>
-                    type: {beer.type}<br/><br/>
-                    description: {beer.description}<br/><br/>
-                    abv: {beer.abv}<br/><br/>
-                    image: {beer.image}<br/><br/>
+                    <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start">
+                    <Typography
+                            variant="h6"
+                            noWrap
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            textDecoration: "none",
+                            }}
+                        > 
+                    {beer.name} 
+                    </Typography>
+                    <Typography
+                            variant="p"
+                            component="a"
+                            noWrap
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            textDecoration: "none",
+                            }}
+                        > 
+                    { beer.abv} ABV
+                    </Typography>
+                    <Typography
+                            variant="p"
+                            component="a"
+                            noWrap
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            textDecoration: "none",
+                            }}
+                        > 
+                    { beer.type} 
+                    </Typography>
+                    
+                    {isReadMoreShown ?<Typography
+                            variant="subtitle2: 'h6'"
+                            Wrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'San Francisco',
+                            fontWeight: 900,
+                            color: '#2E3B55',
+                            }}
+                        > {beer.description.substr(0,300)} </Typography> :  <Typography
+                        variant="subtitle2: 'h6'"
+                        Wrap
+                        justifyContent="center"
+                        sx={{
+                        display: { xs: 'none', md: 'flex' },
+                        fontFamily: 'San Francisco',
+                        fontWeight: 900,
+                        color: '#2E3B55',
+                        }}
+                    > {beer.description} </Typography>}
+                    <Button onClick={toggleBtn}>
+                        {isReadMoreShown ? <Typography
+                            variant="p"
+                            noWrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#909ba7',
+                            }}
+                        > 
+                                READ MORE
+                            </Typography> : <Typography
+                            variant="p"
+                            noWrap
+                            justifyContent="center"
+                            sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 900,
+                            color: '#909ba7',
+                            }}
+                        > 
+                                READ LESS
+                            </Typography>} 
+                        </Button><br/>
+                        
+                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">
+                    </Grid>
+                    </Grid>
                     <Grid container direction="row" justifyContent="flex-end" alignItems="center">   
                         <Button>
                         <Typography
@@ -142,18 +236,6 @@ export default function FavoriteBeers(props){
             <br/>
                     </Paper>
                     </Paper>
-
-                    <Grid  align="left">
-                    <p>
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    </Grid>
                     </Paper>
                 </Paper> 
             </Grid>

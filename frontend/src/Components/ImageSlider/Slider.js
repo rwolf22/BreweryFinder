@@ -11,7 +11,7 @@ function ImgSlider(){
     return(
         <BackgroundSlider
           images={[image5, image4, image7, image2, image3, image1, image6]}
-          duration={8}
+          duration={4}
           transition={2}
         />
     )

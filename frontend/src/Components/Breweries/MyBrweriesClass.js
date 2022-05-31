@@ -27,7 +27,7 @@ class MyBreweries extends Component{
             name: "",
             address: '',
             description: ' ',
-            image: '  ',
+            image: 'null',
         }
         
     }
@@ -42,7 +42,8 @@ class MyBreweries extends Component{
     handleSubmit = (e) => {
       e.preventDefault();
         const data = {ownerId: this.props.props.user.id, name: this.state.name, address: this.state.address, description: this.state.description, image: this.state.image}
-        axios.post(baseUrl + '/brewery/create', 
+        if(this.state.name !== ""  && this.state.description !== '' && this.state.address !== ''){
+          axios.post(baseUrl + '/brewery/create', 
             {
                 ownerId: this.props.props.user.id, 
                 name: this.state.name, 
@@ -54,6 +55,13 @@ class MyBreweries extends Component{
             headers: {
               'Authorization' : `Bearer ${this.props.props.token.token}`
     }})
+    alert("Brewery Created")
+        }else{
+          alert("Error creating brewery.")
+        }
+        
+        
+        
     }
 
     render(){
@@ -137,11 +145,6 @@ class MyBreweries extends Component{
                     onChange={this.handleInputChange} required />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField  placeholder="Enter Brewery Image" name="image" id='image'
-                     label="Brewery Image" variant="outlined" fullWidth  
-                     onChange={this.handleInputChange} required/>
-                  </Grid>
-                  <Grid item xs={12}>
                     <TextField label="Brewery Description"  name="description" id='description'
                     multiline rows={4} placeholder="Enter Brewery Descriptioon" 
                     variant="outlined" fullWidth  
@@ -163,20 +166,7 @@ class MyBreweries extends Component{
                     <MyBreweriesList user={this.props.props.token} props={this.props.props.user.id}/> 
                     </Paper>
                     </Grid>
-                    
-                    
-
-                    <Grid  align="left">
-                    <p>
-                        fasdfa
-                        sdf
-                        Afd
-                        a
-                        df
-                        a
-                        defamationa
-                    </p>
-                    </Grid>
+                    <br/><br/>
                     </Paper>
                 </Paper> 
             </Grid>

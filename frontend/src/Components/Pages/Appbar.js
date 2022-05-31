@@ -13,11 +13,13 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import SportsBarIcon from '@mui/icons-material/SportsBar';
 import PersonIcon from '@mui/icons-material/Person';
+import {Link} from 'react-router-dom'
 
-const pages = ['Starred Brewries', 'Starred Beers'];
-const settings = ['Profile', 'Account', 'Logout'];
 
-const PageAppBar = () => {
+const pages = ['favorite breweries', 'favorite beers', 'My Breweries'];
+const settings = ['Logout'];
+
+const PageAppBar = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -45,7 +47,6 @@ const PageAppBar = () => {
             variant="h5"
             noWrap
             component="a"
-            href="/breweryhome"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -56,7 +57,14 @@ const PageAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            BREWERY FINDER
+            <Link className='homeLink'
+          to={{
+              pathname: `/breweryhome`,
+          }}
+          >
+          BREWERY FINDER
+      </Link>
+            
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -90,7 +98,26 @@ const PageAppBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">
+                  {
+                    page.substring(0,1) === "M" ? 
+                    <Link className='homeLink'
+                    to={{
+                        pathname: `/${page.replace(" ", "")}`,
+                    }}
+                    >
+                      {page}
+                    </Link>
+                    :
+                    <Link className='homeLink'
+          to={{
+              pathname: `/${page.replace(" ","/")}`,
+          }}
+          >
+            {page}
+          </Link>
+                  }
+                    </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -114,6 +141,7 @@ const PageAppBar = () => {
           >
             BREWERY FINDER
           </Typography>
+          {console.log(props.props)}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -121,7 +149,26 @@ const PageAppBar = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+               <Typography textAlign="center">
+               {
+                    page.substring(0,1) === "M" ? 
+                    <Link className='homeLink'
+                    to={{
+                        pathname: `/${page.replace(" ", "")}`,
+                    }}
+                    >
+                      {page}
+                    </Link>
+                    :
+                    <Link className='homeLink'
+          to={{
+              pathname: `/${page.replace(" ","/")}`,
+          }}
+          >
+            {page}
+          </Link>
+                  }
+                    </Typography>
               </Button>
             ))}
           </Box>
@@ -129,7 +176,7 @@ const PageAppBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar> <PersonIcon/></Avatar>
+                <Avatar> {props.props.substr(0,1)} </Avatar>
               </IconButton>
             </Tooltip>
             <Menu
@@ -150,7 +197,12 @@ const PageAppBar = () => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center">
+                <Button href='login' >
+                  {setting}
+                </Button>
+          
+                    </Typography>
                 </MenuItem>
               ))}
             </Menu>
